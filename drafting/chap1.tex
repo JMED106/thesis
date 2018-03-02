@@ -1,0 +1,222 @@
+\chapter{\bf From single neuron dynamics to population dynamics}
+\label{cha:chap1}
+
+\epigraph{``Quote''}{--- \textup{Author}, Title of Source.}
+
+\section{Introduction}
+
+\begin{itemize}
+\item Seminal works of Wilson and Cowan in 1972-73, Amari, Nunez
+\item Even a small piece of cortex has millions of neurons: extremely
+complex and large networks.
+\item Neurons themselves are extremely complex biological systems.
+\item Aim: to be able to study the dynamics of networks of neurons and
+understand the underlying mechanisms.
+However, the dynamics of even a single neuron are highly non-linear
+and in general very irregular due to the interaction with the rest
+of the network and the extracellular environment.
+ in the last 50 years a variety of mathematical models have been
+ developed To be able to catch the most relevant features of the
+ dynamics of neurons, without compromising
+the viability of the study of  larger systems.  
+Even though, and due to the extremely high amount of neurons present
+in any relevant cortical circuit, the study of population dynamics
+generally require the use of mean-field models which average the
+dynamics of large number of neurons and provide a macroscopic
+description by means of measurable magnitudes.
+\item LFP, FMRI, EEG, FR
+\item \textbf{New macroscopic model, able to capture the dynamics of
+    populations of correlated neurons: synchronization.}
+\end{itemize}
+
+\subsection{Spiking neuron models}
+
+\begin{itemize}
+\item Hodgkin-Huxley, and IF models.
+\item Conductance-based and current-based IF models.
+\item Type I and type II. Transfer function.
+\item Comparison of different spiking neuron models: their viability
+  and biological plausibility.
+\end{itemize}
+
+\subsection{Population dynamics: Firing rate and neural field models}
+
+\begin{itemize}
+\item Macroscopic magnitudes involving the activity of neurons.
+\item Firing rate models: Wilson-Cowan type FR models. Heuristically
+  obtained. Asynchronous activity of neurons as a fundamental
+  assumption. They are not able to capture the transient dynamics of
+  neural populations. (Neurons assumed to be completely uncorrelated).
+\item Probabilistic approaches: Fokker-Planck equation. (Diffusion
+  limit).
+\item Spatially extended models: description of population of neurons
+  in a continuum space. Cortical layers, orientation selectivity,
+  whole brain modeling: waves.
+\item They provide a framework to be able to compare theoretical
+  results with experimental findings. Guide new experimental studies
+  based on theoretical findings. 
+\item We present a new firing rate model that is exactly derived from
+  the dynamics of single neurons, and therefore is able to describe
+  novel collective dynamics due to the correlations between neurons,
+  such as synchronization, partial synchronization, transient
+  synchronization. We show that these collective dynamics 
+\end{itemize}
+
+
+\section{Exact macroscopic description of an all-to-all population of
+  QIF neurons (QIF-FR)}
+
+\textit{\color{red} In this section we introduce the QIF-FR model,
+  first appeared in \cite{Montbrio2015}. We first give a full
+  description of the Quadratic-Integrate-and-Fire (QIF) spiking neuron
+model. We then derive the model using the Lorentzian ansatz, as in
+\cite{Montbrio2015}, and then present the derivation in the
+Theta-neuron space using Ott-Antonsen ansatz.}
+
+
+
+\subsection{\sloppy Canonical type-I spiking neuron model:
+  Quadratic-Integrate-and-Fire (QIF) model}
+
+\begin{itemize}
+\item Description of the full QIF model.
+\item Reduction to the normal form of the saddle-node bifurcation.
+\item Transfer function of the QIF model (to be used in chapters 2 and 3).
+\end{itemize}
+
+% here we describe the whole neuron model with the threshold potential
+% and everything else, and we do the reduction to the normal form of
+% the saddle-node bifurcation.
+
+\paragraph{Theta neuron:} {\it \color{red} this can be placed in a
+  box. Following the style of the text-books.}
+
+\subsection{Dimensionality reduction: Lorentzian Ansatz}
+
+
+\subsubsection{Ott-Antonsen theory}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\textwidth]{figs/chap1/ott-diagram.pdf}}
+\caption[From QIF/Theta to QIF-FR/QIF-Kuramoto]{\label{fig:ott} Scheme
+of the derivation of the QIF-Firing Rate model showing different
+paths towards the macroscopic description. Starting from the
+microscopic description, the dynamics of the population of QIF neurons
+may be reduce to a low-dimensional macroscopic description: the QIF-FR
+model. Equivalently, the QIF model can be express as an oscillator
+model, the Theta neuron, and then derive the low-dimensional
+description using the Ott-Antonsen ansatz in the Kuramoto space. From
+there the QIF-FR model can be obtained by means of the conformal
+mapping, a transformation in the complex plane.}
+\end{figure}
+
+\subsection{Firing rate model for current-based spiking neurons}
+
+\begin{itemize}
+\item Derivation of the model as in \cite{Montbrio2015}.
+\end{itemize}
+
+\subsection{Firing rate model for conductance-based spiking neurons}
+
+Following the general expression  for the QIF neuron
+\eqref{eq:qif_general}, we can now define the conductance-based QIF
+neuron as:
+\begin{equation}
+\label{eq:1}
+\tau \dot{v}_j = v_j^2 + \eta_j - g \tau S \left( t \right) \left(
+  v - v_{E,j} \right),
+\end{equation}
+where $g$ corresponds to the conductance of the synapses and
+$v_{E,j}$ denotes the reversal potential of the neuron $j$, which may
+be distributed in a similar fashion as the external currents $\eta_j$.
+
+{\color{red} We explicitly do the derivation ... }
+By applying the same procedure as before we obtain the QIF-firing-rate
+equations for the population of neurons:
+\begin{subequations}
+  \label{eq:conductance_fr}
+\begin{eqnarray}
+\label{eq:conductance_fr-R}
+\tau \dot R & = & \frac{\Delta}{\tau \pi} + 2 R V - g \tau R \left( R
+                  - \frac{\Gamma }{\tau\pi}\right) \\
+  \label{eq:conductance_fr-V}
+\tau \dot V & = & V^2 + \bar{\eta} - \left( \pi \tau R \right)^2 - g
+                  \tau R \left( V - V_E \right).
+\end{eqnarray}
+\end{subequations}
+
+\paragraph{Rescaled equations:} rescaling $\Delta$ and $\tau$ in the
+following way:
+\begin{eqnarray}
+\label{eq:3}
+R = \frac{\sqrt{\Delta}}{\tau} r; \quad V = \sqrt{\Delta} v; \quad t =
+\frac{\tau}{\sqrt{\Delta}}\tilde{t}. \\
+\bar{\eta} = \Delta \tilde{\eta}; \quad \Gamma = \Delta \gamma; \quad
+V_E = \sqrt{\Delta} v_E, \nonumber
+\end{eqnarray}
+gives
+\begin{subequations}
+\label{eq:conductance_fr-rescaled}
+\begin{eqnarray}
+\label{eq:conductance_fr-R-r}
+\dot r & = & \frac{1}{\pi} + 2 rv - g r \left( r
+                  - \frac{\gamma}{\pi}\right) \\
+  \label{eq:conductance_fr-V-r}
+\dot v & = & v^2 + \tilde{\eta} - \left( \pi  r \right)^2 - g
+                  r \left( v - v_E \right).
+\end{eqnarray}
+\end{subequations}
+
+
+
+
+\paragraph{Without external current heterogeneity:}  setting $\Delta =
+0$ makes easy to compute the fixed points. We may re-scale the equations
+again:
+\begin{eqnarray}
+\label{eq:3}
+R = \frac{\Gamma}{\tau} r; \quad V =  \Gamma v; \quad t =
+\frac{\tau}{\Gamma}\tilde{t}. \\
+\bar{\eta} = \Gamma^2 \tilde{\eta}; \quad
+V_E = \Gamma v_E, \nonumber
+\end{eqnarray}
+which leads to:
+\begin{subequations}
+\label{eq:conductance_fr-rescaled2}
+\begin{eqnarray}
+\label{eq:conductance_fr-R-r-2}
+\dot r & = & 2 rv - g r \left( r
+                  - \frac{1}{\pi}\right) \\
+  \label{eq:conductance_fr-V-r-2}
+\dot v & = & v^2 + \tilde{\eta} - \left( \pi  r \right)^2 - g
+                  r \left( v - v_E \right).
+\end{eqnarray}
+\end{subequations}
+
+
+
+
+ Eq. \eqref{eq:conductance_fr-R} gives two possible fixed
+points:
+\begin{subequations}
+  \label{eq:qif-cond-fixed}
+  \begin{align}
+    \label{eq:qif-cond-fixed1}
+    \left(r_{*}, v_{*} \right) &=\left( 0, - \sqrt{-\tilde \eta} \right).\\
+    \label{eq:qif-cond-fixed2}
+    \left(r_{*}, v_{*} \right) &=\left(\frac{v_Eg \pm \sqrt{\left( v_Eg \right)^2 + \left( g^2 + \pi^2
+        \right)\left( 4\eta + g^2/\pi^2 \right)}}{2 +
+      \frac{g^2}{2\pi^2}},  \frac{g}{2\pi} \left( \pi r - 1 \right) \right).
+  \end{align}
+\end{subequations}
+
+\paragraph{Without reversal potential heterogeneity:} 
+
+\section{Neural mass and neural field models}
+% ????
+
+%%% Local Variables: 
+%%% mode: latex
+%%% ispell-local-dictionary: "american"
+%%% TeX-master: "main"
+%%% End: 

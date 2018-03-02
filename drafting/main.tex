@@ -1,0 +1,288 @@
+\documentclass[12pt, b5paper]{tesi_upf}
+% two-side already included in class book, it rises an error combining caption and fltpage packages
+% CODIFICACIÓ
+\usepackage[latin1]{inputenc}
+% IDIOMES
+\usepackage[catalan,basque,spanish,english]{babel}
+
+% % NOMÉS PER A OBTENIR INDICACIÓ DEL MARC EN MIDA B5
+% These packages/options mess up with synctex.
+\usepackage[b5paper, inner=3.2cm,outer=2.0cm]{geometry}
+% \usepackage[b5paper]{geometry}
+% \usepackage[cam,a4,center,frame]{crop}
+
+% PER A INCLOURE GRÀFICS I EL LOGO DE LA UPF
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+% Extra packages.
+\usepackage{amsmath}
+\usepackage{dcolumn} % Align table columns on decimal point
+\usepackage{bm} % bold math
+\usepackage{amssymb}
+\usepackage{pifont}
+% \usepackage{times}
+\usepackage[nooneline]{subfigure}
+\usepackage{float}
+\usepackage{rotating}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+% caption in a separate page
+\usepackage[leftFloats, CaptionAfterwards]{fltpage}
+
+\usepackage{xr}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\newcommand{\PComment}[2]{\Comment{\parbox[t]{#1\linewidth}{\raggedright#2}}}
+
+\usepackage{microtype}          % To avoid undesired line breaks.
+                                % It does not solve the problem
+                                % completely in cites
+\usepackage{breakcites}         % This other package does the trick
+
+% FONTS TIMES O GARAMOND, 
+% \usepackage{times}
+% \usepackage{garamond}
+
+% SENSE HEADINGS: NO MODIFICAR
+\pagestyle{plain}
+
+% PER A L'ÍNDEX DE MATURES
+\usepackage{makeidx}
+\makeindex
+
+% ESTIL DE BIBLIOGRAFIA
+\bibliographystyle{apalike}
+\renewcommand{\bibname}{References}
+
+% This document is mostly in english
+\selectlanguage{english}
+
+% EN COMPTES DE ÍNDEX, LA TAULA DE CONTINGUTS ES TITULA SUMARI
+\addto\captionscatalan
+{\renewcommand{\contentsname}{\Large \sffamily Sumari}}
+
+\usepackage{titlesec}
+\usepackage[dotinlabels]{titletoc}
+\usepackage{appendix}
+\usepackage{chngcntr}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+
+
+\makeatletter
+\titlecontents{chapter}[6pc]
+{\addvspace{1pc}\bfseries
+  \titlerule[0pt]\filright}
+{\contentslabel
+  [\@chapapp\ 
+  \thecontentslabel]{6pc}}
+{}{\hfill\contentspage}
+[\addvspace{2pt}]
+\makeatother
+% Show only chapter/sectionentries:
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+\contentsfinish
+
+\AtBeginEnvironment{subappendices}{%
+\chapter*{\bf Appendix}
+\addcontentsline{toc}{chapter}{\hspace*{-2.5cm}\it Chapter Appendices\vspace*{0.4em}}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\counterwithin{equation}{section}
+}
+
+% Hyperrefs
+\usepackage[colorlinks=true, citecolor=black, linkcolor=black]{hyperref}
+
+% Different Chapter sytle
+% Styles: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne
+\usepackage[Lenny]{fncychap}
+\usepackage{epigraph}           % For introducing epigraphs
+\setlength\epigraphwidth{8cm}
+\setlength\epigraphrule{0pt}
+
+%AFEGIU EN AQUESTA PART LES VOSTRES DADES
+\title{Low-dimensional dynamics of large networks of spiking neurons}
+\subtitle{Synchronous activity and oscillations}
+\author{Jose M. Esnaola-Acebes}
+\thyear{2017}
+\department{of Information and Communication Technologies}
+\supervisor{Ernest Montbrió}
+
+\makeatletter
+\g@addto@macro\appendices{%
+  \renewcommand\chaptername{Appendix}%
+  \addtocontents{toc}{\protect\renewcommand{\protect\@chapapp}{\appendixname}}%
+}
+\makeatother
+
+% Footnotes are reset every page
+\usepackage{perpage} 
+\MakePerPage{footnote} 
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\begin{document}
+
+\pdfstringdefDisableCommands{%
+\let\MakeUppercase\relax
+}
+
+\frontmatter
+\cleardoublepage
+\maketitle
+\cleardoublepage
+
+%%%%%% Dedicatòria; si no es vol posar, comenteu fins a final de dedicatòria
+\noindent Escriviu aquí la vostra dedicatòria
+\cleardoublepage
+%%%%%% Final de dedicatòria
+
+%%%%%% Agraïments; si no es vol posar, comenteu fins a final de agraïments
+\noindent {\Large \sffamily Agraïments} Agraeixo....
+
+\cleardoublepage
+
+%%%%%% Final dels agraïments
+
+%ABSTRACT EN DOS IDIOMES. COM A MÍNIM CATALÀ. SI L'ALTRE ÉS EN CASTELLA CANVIEU EL QUE POSA ABSTRACT
+\selectlanguage{english}
+\section*{\Large \sffamily Abstract}
+This is the abstract of the thesis in English.  Please, use less
+than 150 words.
+
+
+% \selectlanguage{catalan}
+% \vspace*{\fill}
+% \section*{\Large \sffamily  Resum}
+% Vet aquí el resum de la tesi en català.  Si us plau, utilitzeu
+% menys de 150 paraules.
+% \vspace*{\fill}
+
+\cleardoublepage
+%FIN DE ABSTRACTE
+
+%PREFACI. 
+{\bf \sffamily Preface}
+
+\cleardoublepage
+%FINAL DE PREFACI
+
+
+%TAULA DE CONTINGUTS: OBLIGATÒRIA
+\tableofcontents
+
+%INDEX DE FIGURES; NOMÉS ES POSA SI HI HA FIGURES
+% \listoffigures
+%Fa que aparegui al sumari
+% \addcontentsline{toc}{chapter}{Índex de figures}
+
+%INDEX DE TAULES; NOMÉS ES POSA SI HI HA TAULES
+% \listoftables
+%Fa que aparegui al sumari
+% \addcontentsline{toc}{chapter}{Índex de taules}
+
+%COMENÇA EL TEXT
+\mainmatter
+
+%%%%%%%%%% Motivation of this work, key points: obtain better
+%%%%%%%%%% understanding of how the brain works. We want to discover
+%%%%%%%%%% the fundamental laws which shape the dynamics of the
+%%%%%%%%%% brain. In a similar way as it is done when studying the
+%%%%%%%%%% laws of thermodynamics and statistical mechanics. How the
+%%%%%%%%%% microscopic dynamics of single neurons interacting in large
+%%%%%%%%%% population networks determine or shape the macroscopic
+%%%%%%%%%% dynamics of the population. What are the fundamental
+%%%%%%%%%% properties of their interactions and how these laws may
+%%%%%%%%%% radically change their collective dynamics. 
+
+%%%%%%%%%% Conclusions or major findings: correlations between neuron
+%%%%%%%%%% dynamics, in terms of spike correlations, is a fundamental
+%%%%%%%%%% aspect of microscopic dynamics which radically changes the
+%%%%%%%%%% macroscopic behavior of their collective interactions. We
+%%%%%%%%%% have presented a new macroscopic model of neural dynamics
+%%%%%%%%%% which for the first time accounts for spike
+%%%%%%%%%% synchronization. We show that in addition to the already
+%%%%%%%%%% known (studied) macroscopic phenomena, the model displays a
+%%%%%%%%%% grate variety of novel macroscopic dynamics which can be
+%%%%%%%%%% directly related to the microscopic biological parameters
+%%%%%%%%%% determining the dynamics of single neurons, and also to the
+%%%%%%%%%% interactions between the neurons.
+
+%%%%%%%%%% Introduction: 
+
+\include{intro}
+
+%%%%%%%%%% Chapter 1: we will introduce the spiking neuron models,
+%%%%%%%%%% particularly the QIF model. We will introduce the neural
+%%%%%%%%%% mass models, and the "corresponding" population firing rate
+%%%%%%%%%% models. We will highlight the W-C type models, and their
+%%%%%%%%%% properties, such as the transfer function, the assumptions
+%%%%%%%%%% used to derive them, and their validity. Finally we will
+%%%%%%%%%% derive the QIF-FR where we will make use of Ernest's paper.
+\include{chap1}
+%%%%%%%%%% Chapter 2: In this chapter we include the paper about the
+%%%%%%%%%% neural field model, the ring model. Stimulus
+%%%%%%%%%% preference. Orientation selectivity.
+\include{chap2}
+
+
+%%%%%%%%%% Chapter 3: Random networks. Validity of the model
+%%%%%%%%%% (Pecora). Different kind of matrices and configurations.
+\include{chap3}
+
+%%%%%%%%%% Chapter 4: Other possible applications introducing synaptic
+%%%%%%%%%% dynamics.
+%%%%%%%%%% Synaptic kinetics. Synaptic depression and
+%%%%%%%%%% facilitation. Synaptic adaptation. 
+% \include{chap4}
+
+%%%%%%%%%% Conclusions
+\include{concl}
+
+% Change appendix section style
+%%
+
+
+%%%%%%%%%% Appendix A: Numerical simulations.
+\begin{appendices}
+ \chapter{\bf Numerical simulations}
+\label{cha:appA}
+\include{appdxA}
+\end{appendices}
+
+
+%%%%%%%%%% Appendix B: Numerical optimization.
+\renewcommand{\bibname}{\bf References}
+\bibliography{thesis}
+\addcontentsline{toc}{chapter}{References}
+
+\backmatter
+\printindex
+
+\end{document}
+
+
+%NUMERACIÓ DE LA PÀGINA EXTERIOR EXCEPTE EN LA PRIMERA PÀGINA DE CADA CAPÍTOL
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyfoot[RO]{\thepage}
+\fancyfoot[LE]{\thepage}
+
+
+%MUTIPLES ÍNDEX
+%En el preàmbul
+\usepackage{multind}
+\makeindex{authors}
+%Introducció d'entrades la forma
+\index{authors}{Einstein}
+%Situació de l'Índex
+\printindex{authors}{Author index}
+%Cal eliminar les comandes \usepakage{makeidx} \makeindex \printindex
+%cal exacutar des de la línia de comandes makeindex authors
+
+%%% Local Variables:
+%%% ispell-local-dictionary: "american"
+%%% TeX-master: t
+%%% End:

@@ -2,6 +2,155 @@
 \label{cha:intro}
 \addcontentsline{toc}{chapter}{\bf \uppercase{Introduction}}
 
+% Historical aperture: we must focus on mathematical neuroscience but
+% also mention the theories that attribute a computational role to
+% oscillatory dynamics in the brain.
+
+% Don't forget to mention the advanced in dynamical systems and
+% statistical physics which allowed so many quantitative studies in
+% theoretical neuroscince
+
+% We must do a brief review of the population models (firing rate models: WC
+% type models; density models: FP, ...;)
+
+Since the pioneering discoveries of Santiago Ramon y Cajal and Camilo Golgi in
+the late 19th century which established the foundations of what we nowadays know as
+Neuroscience, extensive work has been done in order to understand the
+laws that shape neural dynamics. As in almost any natural science,
+the aim of scientists toward universal laws explaining our
+observations have push, from the very beginning, towards mathematical
+descriptions of the observed phenomena. Early in the 20th century,
+Louis Lapicque introduced what is considered as the precursor  of
+the famous integrate-and-fire model neuron \citep{Brunel2007}
+\citep[see also][]{Brunel2007a,Abbott1999}, giving an intuitive view of the polarization
+process of neurons and the generation of the  
+first spike after stimulus onset ---what we know as
+the action potential. Theoretical
+neuroscience was born and following his work many phenomenological
+models describing the onset of the action potential were developed
+\citep{Hill1936,McCulloch1943,Stein1965,Geisler1966,Weiss1966,Stein1967b}.
+
+In the 1950's Hodgkin and Huxley published the first detailed biophysical model
+of the action potential \citep{Hodgkin1952}, a system of three differential equations
+which modeled the electrical currents across the cell membrane leading to action potentials in
+the squid's giant axon, and for which they received the Nobel price in
+1963. Their almost 30 year investigation not only proved that 
+detailed biophysical ---yet simple and elegant--- models of neural
+dynamics were possible,  but
+also drove them to the hypothesis of the existence of ionic channels,
+which were confirmed only few decades later. 
+
+Further development in the biophysical principles of neural dynamics
+was made with the addition of more cellular elements to the models, such as
+different classes of ionic channels and pumps, synapses,
+etc. Currently, detailed biophysical modeling of single neurons
+remains  a very active research area where sophisticated
+models are continuously expanding our knowledge about neural
+mechanisms. On the other hand, the necessity of decreasing the complexity
+of neural systems lead many theoreticians towards simplified models
+of the neuron, where only the underlying mechanisms that generate the
+action potential were studied. We refer to these phenomenological
+models as point neurons or \textbf{spiking neuron} models. The first
+of its kind was probably that developed by Lapicque that
+later evolved into the \textit{leaky integrate-and-fire} (LIF) neuron model
+\citep{Stein1965,Kni72}, which can be mathematically 
+derived as a limit case of the Hodgkin-Huxley model \citep[see~for~example][]{Gerstner2014}. Since the
+outbreak of computer driven simulations, their elegance and
+simplicity has make them a widely used tool in the study of
+principles of neural information processing.
+
+Yet, the complexity of each neuron added to their outstanding
+numerosity,
+makes the brain one of the most complex systems ever
+studied. A universe inside our heads
+is still waiting to be discovered.
+Even if we would use one of the simplest phenomenological
+model neurons, and without taking into account any
+complex network structure, a simple model of the brain would consist on a system of approximately
+$86\times 10^9$ differential equations --each describing the dynamics
+of a single neuron. A system
+impossible to work with, nor in the  20th century nor nowadays; even with
+the incredible computational power at our hands. With this paradigm in
+mind, models of population average activity started to appear, first
+in the 1950's by the hands of \citet{Beu56}, and later in the
+1960's by 
+\citet{Griffith1963}. They developed the first continuum
+approximations of neural activity by making some statistical
+assumptions, following a methodology closely related to that used in
+statistical mechanics in connection with
+thermodynamics. The aim was to 
+create low dimensional models capable of capturing the essential
+collective properties of neural populations, yet simple enough to provide a
+mathematically tractable framework for their study. 
+
+In parallel, the rapid progress made in experimental neuroscience
+with studies such as those carried out by Mountcastle and Hubel and
+Wiesel in the somato-sensory and visual cortices of cats and monkeys
+\citep{Mountcastle1957,Hubel1962,Hubel1968}, gave support to the
+original hypothesis of Beurle. During the 1970's all
+these accumulation of experimental evidence 
+inspired the work of many researchers, including
+\citet{Wilson1972,Wilson1973}, \citet{Kni72} and
+\citet{Amari1972,Ama74,Amari1977} among others, towards the
+development of  population models, also known as \textit{neural mass}
+models. ...
+\textbf{Firing Rate} models for the activity of neural population which
+became the canonical models for the study of large populations of
+neurons. These models consisted in systems of differential (or
+integro-differential) equations which could be $i)$ mathematically
+studied using the tools provided by dynamical systems theory and $ii)$
+easily solved using numerical methods in computer-driven simulations.
+
+\textit{(intro of the firing rate model)The model was thought from the
+  pragmatic point of view that sensory 
+information is introduced into the nervous system in the form of large
+spatio-temporal activity which involved too many neurons to be studied
+from the single neuron level. In addition, they exploited the
+hypothesis that neurons alone were unreliable units of information
+processing, and thus they assumed that any reliable observable should
+involve large population of neurons.
+}
+\textit{Brief description of what they are and their
+  mathematical representation (differential or integro-differential equations)}
+
+During the last 50 years, their equations were adapted or expanded to
+model different network configurations, to include synaptic kinetics,
+transmission delays, etc. They are used not only to model population
+of neurons but also average activity of single neurons (measured as
+trial-to-trial averages). Furthermore, they can be either used to
+describe discrete populations or spatially distributed systems, such
+as orientation selectivity or head direction systems. The latter case
+is modeled by means of a partial integro-differential version of the
+same equations.
+
+However, in general the connection between the macroscopic models:
+such as firing rate models, and their microscopic counterpart:
+populations of spiking neurons, has been so far done in an heuristic
+manner. In other words, the derivation of such equations does not
+follow a proper reduction of the microscopic neural system. Moreover,
+traditional firing rate models assume microstates  where neurons'
+activity is completely uncorrelated, and therefore they usually
+fail to describe any dynamical phenomena occurring as a consequence
+of synchronous firing, or even highly correlated activity. These
+include fast transients and some types of persistent oscillations
+observed in their homologous spiking neuron networks. In the following
+sections we briefly review the WC firing rate equations and describe
+the quadratic-integrate-and-fire (QIF) model neuron which we will use
+in the rest of the work.
+\newline 
+
+In Chapter I we apply these models to simulate excitatory and inhibitory
+neural networks and show some of the discrepancies that exist between
+both approaches. In addition, we present a novel firing rate model,
+exactly derived from the quadratic-integrate-and-fire model neuron
+which will solve such discrepancies and allow us to perform further
+dynamical studies. In Chapter II and III we show how this new FR model
+give precise results of networks of spiking neurons and we extract
+some interesting mechanistic conclusions which we discuss in the final
+section of this work.
+
+\cleardoublepage
+
 %%% Local Variables: 
 %%% mode: latex
 %%% ispell-local-dictionary: "american"

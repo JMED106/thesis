@@ -1,45 +1,208 @@
-\chapter{\bf From single neuron dynamics to population dynamics}
+% \chapter{\bf Synchrony-induced oscillations in networks of spiking
+%   neurons}
+\chapter{\bf Oscillatory dynamics in excitatory-inhibitory networks of
+  spiking neurons} 
 \label{cha:chap1}
 
 \epigraph{``Quote''}{--- \textup{Author}, Title of Source.}
 
-\section{Introduction}
+% \section{Introduction}
 
-\begin{itemize}
-\item Seminal works of Wilson and Cowan in 1972-73, Amari, Nunez
-\item Even a small piece of cortex has millions of neurons: extremely
-complex and large networks.
-\item Neurons themselves are extremely complex biological systems.
-\item Aim: to be able to study the dynamics of networks of neurons and
-understand the underlying mechanisms.
-However, the dynamics of even a single neuron are highly non-linear
-and in general very irregular due to the interaction with the rest
-of the network and the extracellular environment.
- in the last 50 years a variety of mathematical models have been
- developed To be able to catch the most relevant features of the
- dynamics of neurons, without compromising
-the viability of the study of  larger systems.  
-Even though, and due to the extremely high amount of neurons present
-in any relevant cortical circuit, the study of population dynamics
-generally require the use of mean-field models which average the
-dynamics of large number of neurons and provide a macroscopic
-description by means of measurable magnitudes.
-\item LFP, FMRI, EEG, FR
-\item \textbf{New macroscopic model, able to capture the dynamics of
-    populations of correlated neurons: synchronization.}
-\end{itemize}
+% El hilo discursivo de la tesis discurre a través del interés que
+% suscita el estudio de de la interacción de poblaciones
+% excitatorias-inhibitorias de neuronas y los fenómenos oscilatorios
+% emergentes en dichos sistemas.
 
-\subsection{Spiking neuron models}
+% La revisión de la literatura debería dejar patente que los métodos
+% clásicos utilizados para estudiar dichos sistemas, a saber, los
+% modelos de campo medio o Firig Rate, no reproducen de manera fiel lo
+% ocurrido en sistemas compuestos por multitud de neuronas. Más
+% concretamente, los modelos canónicos de Firing Rate son incapaces de
+% describir las oscilaciones que emergen en sistemas compuestos por dos
+% poblaciones de nueronas: excitatorias e inhibitorias. Además, en lo
+% referente a sistemas extendidos con algún tipo de topología definida
+% en un continuo, los modelos de Neural Field canónicos derivados de los
+% mencionados modelos de Firing Rate, \textit{no captan las oscilaciones
+%   amortiguadas} vistas en sistemas de spiking neurons.
+
+% Cabe destacar además, que los sistemas de spiking neuron a los que nos
+% referimos son más generales de lo que en un principio podía
+% parecer. Dichas dinámicas aparecen en modelos de LIF (no he
+% conseguido reproducir el efecto, ya que no he encontrado un rango de
+% parámetros adecuado), QIF, EIF (no lo he intentado), (como
+% alternativa podría hacerlo con Wang-Buszaki, pero no aportaría nada
+% nuevo ya que resulta equivalente para cierto límite)
+% etc.
+
+% Por lo tanto, sería ideal disponer de un sistema macroscópico, como los
+% normalmente empleados modelos de FR, que sea capaz no solo de captar
+% dichos comportamientos sino también permitir un mayor discernimiento
+% del mecanismo subyacente a dichos comportamientos.
+
+% Es por eso que en este trabajo explotamos un modelo exacto de FR
+% derivado a partir de un sistema de neuronas QIF que nos permitirá
+% realizar múltiples análisis matemáticos de forma relativamente
+% sencilla, y además establecerá en todo momento un puente entre el
+% sistema microscópico y ciertos observables referentes a la actividad
+% colectiva de dicho sistema.
+% \newline
+
+% En el primer capítulo introducimos los modelos canónicos existentes de
+% FR, sus aplicaciones en la neurociencia computacional, y sus logros,
+% así como la innumerable lista de dinámicas que han conseguido
+% describir.
+% Al mismo tiempo, demostramos las carencias de estos modelos a la hora
+% de describir ciertas dinámicas presentes en sistemas simples de
+% neuronas, tanto en sistemas consistentes en dos poblaciones discretas,
+% así como en sistemas extendidos dónde las neuronas están distribuidas
+% siguiendo una topología particular.
+% \newline
+
+% A continuación, describimos detalladamente la herramienta que nos
+% permitirá estudiar dichos fenómenos y desarrollar un razonamiento de
+% cara a entender las dinámicas presentes en estas redes
+% neuronales. En esta sección introduciremos de forma concreta el
+% sistema microscópico en el cual desarrollamos todo nuestro trabajo, es
+% decir, la población interconectada de neuronas modelizadas mediante la
+% conocida QIF. Seguidamente, aplicamos el ansatz Lorentziano obtenido
+% por inspiración del Ansatz de Ott-Antonsen y en esencia equivalente a éste.
+
+% Paralelamente, introducimos el modelo de Theta-neuron,
+% análoga a la neurona QIF para una topología de tipo circular
+% $\mathbb{S}$, la cual se deriva mediante un sencillo cambio de
+% variable. Y derivamos mediante el Ansatz de Ott-Antonse las ecuaciones
+% macroscópicas análogas a las previamente descritas. Esto último nos
+% podrá servir para el capítulo 3, aunque no está claro aún cómo lo
+% haríamos.
+% \newline
+
+
+% De esta manera, situamos al lector en el marco actual dónde los
+% modelos canónicos, y desarrollados mediante razonamientos heurísticos,
+% fallan a la hora de describir ciertas dinámicas muy generales de las
+% poblaciones de neuronas. Así justificamos la introducción de nuestro
+% nuevo modelo macroscópico que nos permita estudiar dichos fenómenos de
+% manera más rigurosa y de forma relativamente sencilla en comparación
+% a la enorme tarea de estudiar dichos fenómenos numéricamente
+% directamente desde los sistemas microscópicos.
+% \newline
+
+% Para introducir el capítulo 2, y también el 3, y justificar dicho
+% orden, es decir, primero estudiar el sistema extendido de poblaciones
+% excitatorias e inhibitorias, y más adelante el sistema discreto de un
+% par de poblaciones excitatoria e inhibitoria, aludimos a la dificultad
+% matemática de un sistema y el otro. A pesar de que el modelo extendido
+% pueda parecer más complicado que el sistema del par exc-inh, la
+% realidad es que en el primer caso el modelo se puede reducir a 2
+% un sistema de 2 ecuaciones integro-diferenciales, mientras que en el
+% segundo caso tenemos un sistema de 4 ecuaciones diferenciales.
+
+% En ambos casos realizaremos diferentes simplificaciones derivadas o no
+% de razonamientos fisiológicos que nos permitirán un estudio analítico
+% de las ecuaciones en cuestión.
+
+The primary aim of this chapter is to guide the reader towards the
+questions that inspired the work of this thesis, such that the
+research flow, strictly theoretical,  is
+followed in a natural way. We start by making some concrete observations
+regarding the dynamics of large populations of spiking neurons, which
+are indeed general to a great variety of spiking network
+models. Following the spirit of 
+the already introduced mean field modeling, we then try to study the
+dynamics of this observations by means of the classical Firing Rate
+models. It will be shown that these models fail to describe such
+phenomena and therefore we will be required to develop additional
+tools in order to understand the mechanics behind the observed
+dynamics. The chapter ends with the derivation of a novel
+firing rate model, which allowed us to study the phenomena and
+understand the precise mechanism common to all the observed dynamics.
+
+\section{Oscillations in a network of spiking neurons}
+\label{sec:oscill-netw-spik}
+
+\textit{Motivation: why does people use spiking neuron networks to
+  model, describe, reproduce, ... oscillations. Oscillations in the
+  cortex, in the hipocampus, thalamus, etc. Depending on the system or
+  mechanism we are trying to model we can use different configuration
+  of such networks. We may have discrete systems, with pulls of
+  neurons representing some kind of population without a specific
+  location. Such systems are typical of decision making, binocular
+  rivalry, etc. They are often use in pairs of excitatory and
+  inhibitory populations or just as a single population of either
+  excitatory or inhibitory neurons. On the other hand, some situations
+require a specific parameter assigned to each neuron, e.g. orientation
+selectivity neurons, frequency selectivity, etc. In such cases,
+neurons must be distributed and therefore we obtain a ``spatially''
+distributed network, also known as Neural Field.}
+
+In the following examples we present two different configurations of
+such networks. The first one will consist on a typical orientation
+selectivity neural field, where neurons are spatially arranged in a
+ring network. In the second example we investigate a two population
+excitatory-inhibitory network, with recurrent and cross coupling
+connectivity.
+
+
+
+
+We start by considering a network of spiking neurons in a steady
+homogeneous state, also known as the asynchronous state
 
 \begin{itemize}
 \item Hodgkin-Huxley, and IF models.
 \item Conductance-based and current-based IF models.
 \item Type I and type II. Transfer function.
 \item Comparison of different spiking neuron models: their viability
-  and biological plausibility.
+  and biological plausibility. \textit{Intro?}
 \end{itemize}
 
-\subsection{Population dynamics: Firing rate and neural field models}
+\subsection{Experiment I: decaying oscillations in  a spatially
+  distributed network of excitatory and inhibitory neurons}
+
+% Figure LIF simulations, QIF simulations
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\textwidth]{figs/chap1/if_nf/if_nf.pdf}}
+\caption[Spatio-temporal patterns in networks of LIF spiking neurons.]{\label{fig:lif-nf} Transient episodes of spike synchrony in heterogeneous ring networks of 
+$N =2\cdot 10^5$ LIF neurons, 
+Eqs.~(\ref{lif1},\ref{lif2}), as a result of spatially-inhomogeneous 
+perturbations applied  
+at time $t=0.12$. Each panel shows perturbations of different
+wavenumber ($K = 1,2,3,4$) applied  to all neurons in the network.
+Other parameters are: $\Delta = 1$, $\tau = 20$~ms, and $\bar\eta = 4$.
+All Fourier components of the connectivity~Eq.~\eqref{J} were
+$J_K^{e,i}=0$, except:
+$J^e_0=6.0$, $J^e_1=2.5$,  $J^e_2=1.875$,  $J^e_3=-0.75$,  $J^i_0=-6$.}
+\end{figure}
+
+
+\subsection{Experiment II: persistent oscillations in a model of
+  two interacting excitatory and inhibitory populations of spiking neurons}
+
+\section{Population dynamics: Canonical firing rate and neural field
+  models}
+
+Previously shown simulations consist on populations of spiking neurons
+of the order of $N = 10^5$, and they present incredibly rich dynamics
+when even for small number of parameters. Being such extensive systems
+they pose huge difficulties when trying to study them
+numerically. To be able to cope with this situation researchers in
+computational neuroscience have been developing mean field
+approximations which describe the population dynamics using some kind
+of macroscopic observable. Among others the most used measure is the
+firing rate of the population, which is a measurable magnitude using
+standard techniques of electrophysiology. The firing rate is the
+number of spikes emitted by the population in a given time interval.
+
+Models of firing rate estimate the probability of spike of the
+individual neurons and average over time giving a measure of the
+instantaneous activity of the network. They typically have the form of
+integro-differential functions which can be feasibly simulated and
+often allow a variety of analytical study.
+
+Among the numerous FR models used in computational neuroscience there
+is a family known as the Wilson-Cowan (WC) FR models from the seminal
+work of the authors with its name in 1972 and 1973. WC model consists
+on a one dimensional differential equation
 
 \begin{itemize}
 \item Macroscopic magnitudes involving the activity of neurons.

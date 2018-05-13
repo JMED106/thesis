@@ -4,7 +4,7 @@
 \usepackage[latin1]{inputenc}
 % IDIOMES
 \usepackage[catalan,basque,spanish,english]{babel}
-
+\usepackage[authoryear,round]{natbib}
 % % NOMÉS PER A OBTENIR INDICACIÓ DEL MARC EN MIDA B5
 % These packages/options mess up with synctex.
 \usepackage[b5paper, inner=3.2cm,outer=2.0cm]{geometry}
@@ -104,7 +104,7 @@
 
 %AFEGIU EN AQUESTA PART LES VOSTRES DADES
 \title{Low-dimensional dynamics of large networks of spiking neurons}
-\subtitle{Synchronous activity and oscillations}
+\subtitle{Synchrony-induced oscillatory dynamics}
 \author{Jose M. Esnaola-Acebes}
 \thyear{2017}
 \department{of Information and Communication Technologies}
@@ -121,6 +121,12 @@
 \usepackage{perpage} 
 \MakePerPage{footnote} 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% Custom commands
+\newcommand{\mal}[1]{{\color{red}\underline{#1}}}
+\newcommand{\sobra}[1]{{\color{gray}#1}}
+\newcommand{\duda}[1]{{\color{blue}\textit{#1}}}
+\newcommand{\cita}[1]{{\color{red}[cita]}}
 
 \begin{document}
 
@@ -145,28 +151,88 @@
 
 %%%%%% Final dels agraïments
 
-%ABSTRACT EN DOS IDIOMES. COM A MÍNIM CATALÀ. SI L'ALTRE ÉS EN CASTELLA CANVIEU EL QUE POSA ABSTRACT
+%ABSTRACT EN DOS IDIOMES. COM A MÍNIM CATALÀ. SI L'ALTRE ÉS EN
+%CASTELLA CANVIEU EL QUE POSA ABSTRACT
+
+\selectlanguage{catalan}
+\vspace*{\fill}
+\section*{\Large \sffamily  Resum}
+Vet aquí el resum de la tesi en català.  Si us plau, utilitzeu
+menys de 150 paraules.
+\vspace*{\fill}
+
+\selectlanguage{basque}
+\vspace*{\fill}
+\section*{\Large \sffamily  Laburpena}
+Laburpena euskaraz.
+\vspace*{\fill}
+
+
+\selectlanguage{spanish}
+\vspace*{\fill}
+\section*{\Large \sffamily  Resumen}
+Resumen en castellano.
+\vspace*{\fill}
+
 \selectlanguage{english}
 \section*{\Large \sffamily Abstract}
-This is the abstract of the thesis in English.  Please, use less
-than 150 words.
+% This is the abstract of the thesis in English.  Please, use less
+% than 150 words.
+
+Oscillatory dynamics are one of the most observed features of neural
+activity. They are found across species in any region of the brain at almost any
+scale, from single neuron dynamics to whole brain activity. \sobra{They
+present a high variability in frequency, amplitude, duration and
+form.} More specifically, typical recording techniques involving large
+population of neurons show stereotypical oscillatory dynamics in many
+brain areas during a wide variety of cognitive tasks.
+As such, oscillations are thought to play an important role in
+information processing as part of both the encoding and the decoding
+processes. Studying the underlying mechanisms that originate such
+oscillations could help understanding \duda{the overall brain functioning}. 
 
 
-% \selectlanguage{catalan}
-% \vspace*{\fill}
-% \section*{\Large \sffamily  Resum}
-% Vet aquí el resum de la tesi en català.  Si us plau, utilitzeu
-% menys de 150 paraules.
-% \vspace*{\fill}
+Population models describing the average activity of large ensembles
+of neurons have been extensively used as a mathematical tool to
+investigate the fundamental laws responsible of such
+oscillations. However, classical population models such as
+Wilson-Cowan type firing rate models are not designed to be able to
+capture synchronous activity in networks of neurons. In this thesis we
+have explored these limitations in traditional firing rate models and we
+have compared their dynamics for different network configurations against 
+simulations of spiking neurons. We focused our attention in analyzing
+the effect of collective synchronization in the macroscopic dynamics
+of neural populations and show that,
+synchronous activity \mal{plays an important role in} generating
+transient and persistent oscillations in networks of spiking neurons which
+are not capture by the traditional population models. In
+order to investigate the fundamental properties that originate such oscillations
+we used a novel firing rate model which is exactly derived from the
+population of spiking neurons \duda{and therefore represents an extension of
+standard Wilson-Cowan equations} in which spike synchrony is also
+correctly described. Due to the amenability of such model, we were
+able to investigate synchrony-induced phenomena in networks of
+excitatory and inhibitory networks, such as the emergence of
+modes of oscillations in spatially extended systems and
+\duda{persistent oscillations arising in discrete networks of
+  excitatory-inhibitory populations without synaptic kinetics nor time
+  delays.}
+\vspace*{\fill}
+
+
+\textbf{Keywords:} mathematical neuroscience, oscillations,
+synchronization, neural population, networks, firing rate, spiking neurons,
+quadratic-integrate-and-fire, neural-field, mean-field.
+
 
 \cleardoublepage
 %FIN DE ABSTRACTE
 
 %PREFACI. 
-{\bf \sffamily Preface}
+% {\bf \sffamily Preface}
 
-\cleardoublepage
-%FINAL DE PREFACI
+% \cleardoublepage
+% %FINAL DE PREFACI
 
 
 %TAULA DE CONTINGUTS: OBLIGATÒRIA
@@ -212,7 +278,7 @@ than 150 words.
 %%%%%%%%%% Introduction: 
 
 \include{intro}
-
+\cleardoublepage
 %%%%%%%%%% Chapter 1: we will introduce the spiking neuron models,
 %%%%%%%%%% particularly the QIF model. We will introduce the neural
 %%%%%%%%%% mass models, and the "corresponding" population firing rate
@@ -221,16 +287,17 @@ than 150 words.
 %%%%%%%%%% used to derive them, and their validity. Finally we will
 %%%%%%%%%% derive the QIF-FR where we will make use of Ernest's paper.
 \include{chap1}
+\cleardoublepage
 %%%%%%%%%% Chapter 2: In this chapter we include the paper about the
 %%%%%%%%%% neural field model, the ring model. Stimulus
 %%%%%%%%%% preference. Orientation selectivity.
 \include{chap2}
-
+\cleardoublepage
 
 %%%%%%%%%% Chapter 3: Random networks. Validity of the model
 %%%%%%%%%% (Pecora). Different kind of matrices and configurations.
 \include{chap3}
-
+\cleardoublepage
 %%%%%%%%%% Chapter 4: Other possible applications introducing synaptic
 %%%%%%%%%% dynamics.
 %%%%%%%%%% Synaptic kinetics. Synaptic depression and
@@ -239,7 +306,7 @@ than 150 words.
 
 %%%%%%%%%% Conclusions
 \include{concl}
-
+\cleardoublepage
 % Change appendix section style
 %%
 

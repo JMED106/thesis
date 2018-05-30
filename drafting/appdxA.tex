@@ -1,0 +1,102 @@
+\chapter{\bf \sffamily Generalization of the QIF-FR model}
+\label{cha:appA}
+
+% \section{Firing rate model for conductance-based spiking neurons}
+
+% % Following the general expression  for the QIF neuron
+% % \eqref{eq:qif_general}, we can now define the conductance-based QIF
+% % neuron as:
+% \begin{equation}
+% \label{eq:1}
+% \tau \dot{v}_j = v_j^2 + \eta_j - g \tau S \left( t \right) \left(
+%   v - v_{E,j} \right),
+% \end{equation}
+% where $g$ corresponds to the conductance of the synapses and
+% $v_{E,j}$ denotes the reversal potential of the neuron $j$, which may
+% be distributed in a similar fashion as the external currents $\eta_j$.
+
+% {\color{red} We explicitly do the derivation ... }
+% By applying the same procedure as before we obtain the QIF-firing-rate
+% equations for the population of neurons:
+% \begin{subequations}
+%   \label{eq:conductance_fr}
+% \begin{eqnarray}
+% \label{eq:conductance_fr-R}
+% \tau \dot R & = & \frac{\Delta}{\tau \pi} + 2 R V - g \tau R \left( R
+%                   - \frac{\Gamma }{\tau\pi}\right) \\
+%   \label{eq:conductance_fr-V}
+% \tau \dot V & = & V^2 + \bar{\eta} - \left( \pi \tau R \right)^2 - g
+%                   \tau R \left( V - V_E \right).
+% \end{eqnarray}
+% \end{subequations}
+
+% \paragraph{Rescaled equations:} rescaling $\Delta$ and $\tau$ in the
+% following way:
+% \begin{eqnarray}
+% \label{eq:3}
+% R = \frac{\sqrt{\Delta}}{\tau} r; \quad V = \sqrt{\Delta} v; \quad t =
+% \frac{\tau}{\sqrt{\Delta}}\tilde{t}. \\
+% \bar{\eta} = \Delta \tilde{\eta}; \quad \Gamma = \Delta \gamma; \quad
+% V_E = \sqrt{\Delta} v_E, \nonumber
+% \end{eqnarray}
+% gives
+% \begin{subequations}
+% \label{eq:conductance_fr-rescaled}
+% \begin{eqnarray}
+% \label{eq:conductance_fr-R-r}
+% \dot r & = & \frac{1}{\pi} + 2 rv - g r \left( r
+%                   - \frac{\gamma}{\pi}\right) \\
+%   \label{eq:conductance_fr-V-r}
+% \dot v & = & v^2 + \tilde{\eta} - \left( \pi  r \right)^2 - g
+%                   r \left( v - v_E \right).
+% \end{eqnarray}
+% \end{subequations}
+
+% \paragraph{Without external current heterogeneity:}  setting $\Delta =
+% 0$ makes easy to compute the fixed points. We may re-scale the equations
+% again:
+% \begin{eqnarray}
+% \label{eq:3}
+% R = \frac{\Gamma}{\tau} r; \quad V =  \Gamma v; \quad t =
+% \frac{\tau}{\Gamma}\tilde{t}. \\
+% \bar{\eta} = \Gamma^2 \tilde{\eta}; \quad
+% V_E = \Gamma v_E, \nonumber
+% \end{eqnarray}
+% which leads to:
+% \begin{subequations}
+% \label{eq:conductance_fr-rescaled2}
+% \begin{eqnarray}
+% \label{eq:conductance_fr-R-r-2}
+% \dot r & = & 2 rv - g r \left( r
+%                   - \frac{1}{\pi}\right) \\
+%   \label{eq:conductance_fr-V-r-2}
+% \dot v & = & v^2 + \tilde{\eta} - \left( \pi  r \right)^2 - g
+%                   r \left( v - v_E \right).
+% \end{eqnarray}
+% \end{subequations}
+
+
+
+
+%  Eq. \eqref{eq:conductance_fr-R} gives two possible fixed
+% points:
+% \begin{subequations}
+%   \label{eq:qif-cond-fixed}
+%   \begin{align}
+%     \label{eq:qif-cond-fixed1}
+%     \left(r_{*}, v_{*} \right) &=\left( 0, - \sqrt{-\tilde \eta} \right).\\
+%     \label{eq:qif-cond-fixed2}
+%     \left(r_{*}, v_{*} \right) &=\left(\frac{v_Eg \pm \sqrt{\left( v_Eg \right)^2 + \left( g^2 + \pi^2
+%         \right)\left( 4\eta + g^2/\pi^2 \right)}}{2 +
+%       \frac{g^2}{2\pi^2}},  \frac{g}{2\pi} \left( \pi r - 1 \right) \right).
+%   \end{align}
+% \end{subequations}
+
+% \paragraph{Without reversal potential heterogeneity:} hola.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% ispell-local-dictionary: "american"
+%%% TeX-master: "main"
+%%% End: 

@@ -1,14 +1,15 @@
-\chapter{\bf {Synchrony-induced modes of oscillation of a neural field model}}
+\chapter{\bf \sffamily Synchrony-induced modes of oscillation of a neural field model}
 % \chapter{Synchrony-induced mode of oscillation of a neural field model}
 \label{cha:chap2}
 
 \textit{This work has been developed in collaboration with Daniele
   Avitabile who performed numerical studies, Alex Roxin and Ernest
-  Montbrió, and it has been submitted to Physical Review E. Jose
-  M. Esnaola-Acebes, Alex Roxin, Daniele 
-  Avitabile and Ernest Montbrió. \textsf{Synchrony-induced modes of
-    oscillation of a 
-  neural field model}. (2017)}
+  Montbrió, and it has been published \citep*{Esnaola-Acebes2017b} % in Physical Review E.   Jose
+  % M. Esnaola-Acebes, Alex Roxin, Daniele 
+  % Avitabile and Ernest Montbrió. \textsf{Synchrony-induced modes of
+  %   oscillation of a 
+  % neural field model}. (2017)
+}
 
 \epigraph{``Quote''}{--- \textup{Author}, Title of Source.}
 
@@ -22,7 +23,7 @@ We investigate the modes of oscillation of heterogeneous ring-networks of quadra
 integrate-and-fire (QIF) neurons with non-local, space-dependent coupling. 
 Perturbations of the equilibrium state 
 with a particular wave number produce transient standing 
-waves with a specific frequency, analogous to those in a tense string. 
+waves with a specific temporal frequency, analogously to those in a tense string. 
 In the neuronal network, the equilibrium  corresponds to a spatially homogeneous, 
 asynchronous state. Perturbations of this state excite the network's 
 oscillatory modes, which reflect the interplay of episodes of 
@@ -30,27 +31,27 @@ synchronous spiking with the excitatory-inhibitory spatial interactions.
 In the thermodynamic limit, an exact low-dimensional neural field model (QIF-NFM)
 describing the macroscopic dynamics of the network is derived. 
 This allows us to obtain formulas for the Turing eigenvalues of the
-spatially-homogeneous state, and hence to obtain its stability boundary.
+spatially homogeneous state, and hence to obtain its stability boundary.
 We find that the frequency of each Turing mode depends on the corresponding Fourier
-coefficient of the synaptic pattern of connectivity. The decay rate instead, is
+coefficient of the synaptic pattern of connectivity. The decay rate instead is
 identical for all oscillation modes as a consequence of the
 heterogeneity-induced desynchronization of the neurons. 
-Finally, we numerically compute the spectrum of spatially-inhomogeneous
+Finally, we numerically compute the spectrum of spatially inhomogeneous
 solutions branching from the Turing bifurcation, showing that similar oscillatory
-modes operate in neural bump states, and are maintained away from onset.
+modes operate in neural bump states and are maintained away from onset.
 
 \clearpage
 
 \section{Introduction}
 
 
-Since the pioneering work of Wilson-Cowan~\cite{Wilson1973}, Amari~\cite{Ama74,Amari1977},
-and Nunez~\cite{Nunez1974}, continuum descriptions of neuronal activity 
+Since the pioneering work of \citet{Wilson1973}, \citet{Ama74,Amari1977},
+and \citet{Nunez1974}, continuum descriptions of neuronal activity 
 have become a powerful modeling  tool in neuroscience
-~\cite{Erm98,Coombes2005,ET10,Bre12,CGP14,Deco2008}. 
+\citep{Erm98,Coombes2005,ET10,Bre12,CGP14,Deco2008}. 
 Given that the number of neurons in a small region of cortex 
 is very large, these descriptions consider neurons to be distributed along a 
-continuous spatial variable, and the macroscopic state of the network to be 
+continuous spatial variable and the macroscopic state of the network to be 
 described by a single, space-dependent, firing rate variable. 
 The resulting neural field model (NFM) generally has the form of a continuous 
 first order integro-differential equation, greatly facilitating 
@@ -62,61 +63,60 @@ of the mean activity of a network of spiking neurons.
 Nevertheless, NFMs
 have proven to be remarkably accurate in qualitatively capturing the main types of
 dynamical states seen in networks of large numbers of asynchronous
-spiking neurons. For example it is well known that, in local 
+spiking neurons. For example, it is well known that, in local 
 networks of spiking neurons, differences between excitatory and inhibitory neurons 
-can lead to oscillations~\cite{Wilson1972,Erm94,Brunel2003a}. 
+can lead to oscillations~\citep{Wilson1972,Erm94,Brunel2003a}. 
 The generation of these oscillations does not depend on the spatial 
-character of the network, and hence can be observed in non-spatially dependent 
-firing rate models~\cite{Erm94}.
+character of the network and hence can be observed in non-spatially dependent 
+firing rate models~\citep{Erm94}.
 When the pattern of synaptic connectivity depends on the distance between neurons, 
 NFMs show that these differences between excitation 
 and inhibition can lead to the emergence of oscillations and waves
-~\cite{Amari1977,Pinto2001}.  Similar patterns can also be found in NFMs with   
+~\citep{Amari1977,Pinto2001}.  Similar patterns can also be found in NFMs with   
 spatially dependent delays ---modeling the effect of the finite velocity 
-propagation of action potentials~\cite{Wilson1973,Jirsa1997}---
+propagation of action potentials~\citep{Wilson1973,Jirsa1997}---
 %with heterogeneous synaptic connections, and also in stochastic spiking networks
 %with a mean field coupling 
-as a great deal of theoretical work indicates, see e.g.
-~\cite{Coombes2003,Atay2004,Coombes2009,Zhang2007,Hutt2008,Touboul2012,Vel13,Dijkstra2015}. 
+as a great deal of theoretical work indicates
+~\citep[see~e.g.][]{Coombes2003,Atay2004,Coombes2009,Zhang2007,Hutt2008,Touboul2012,Vel13,Dijkstra2015}. 
 %AS15,AW17
 
 In some cases the spatio-temporal dynamics of NFMs has been directly compared 
-to that observed in analogous networks of spiking neurons~\cite{Roxin2005,BBH07,Roxin2011}.
+to that observed in analogous networks of spiking neurons~\citep{Roxin2005,BBH07,Roxin2011}.
 In this work it was found that non-space-dependent delays predict the existence 
-of many of the spatio-temporal patterns observed in asynchronous 
-networks of spiking neurons with non-local, space-dependent interactions.
+of many of the spatiotemporal patterns observed in asynchronous 
+networks of spiking neurons with nonlocal, space-dependent interactions.
 The success of NFMs in describing these patterns depends crucially on the 
 spiking activity being highly asynchronous. In fact, it is well known that 
 neural field descriptions fail to describe states characterized by a 
-high degree of spike synchronization, see e.g~\cite{SOA13}.  
+high degree of spike synchronization \citep[see~e.g][]{SOA13}.
 
 
-Here we report a spatio-temporal dynamical feature of 
+Here we report a spatiotemporal dynamical feature of 
 heterogeneous networks of spiking neurons with 
-non-local interactions that, to the best of our knowledge, have been so far 
+nonlocal interactions that, to the best of our knowledge, have been so far 
 unexplored. We show that ring networks of spiking neurons 
 display a number of discrete modes of oscillation, resembling those of a tense string. 
 These modes are exclusively due to transient episodes of synchronous spiking 
 and not due to the different 
-time scales between excitation and inhibition, nor to the presence of any 
+time scales between excitation and inhibition or to the presence of any 
 propagation or synaptic delay.
 
 Traditional NFMs do not describe these synchrony-induced oscillations. 
 Therefore, to investigate and characterize them, we 
 apply a recent method to derive the firing rate equations 
-of a globally coupled heterogeneous population of quadratic integrate and 
-fire (QIF) neurons~\cite{Montbrio2015}. This method, based on the so-called 
-Ott-Antonsen theory~\cite{Ott2008,Ott2009,Ott2011}, leads to an exact macroscopic 
+of a globally coupled heterogeneous population of quadratic integrate-and-fire (QIF) neurons~\citep{Montbrio2015}. This method, based on the so-called 
+Ott-Antonsen theory~\citep{Ott2008,Ott2009,Ott2011}, leads to an exact macroscopic 
 description of the network in terms of two macroscopic variables: 
 the mean firing rate and the mean membrane potential. 
 The resulting mean-field model exactly describes any state of the system, 
 including synchronous states. 
-Here we extend the local firing rate model in~\cite{Montbrio2015}, to include non-local, 
+Here we extend the local firing rate model in~\citep{Montbrio2015}, to include nonlocal, 
 instantaneous interactions. The resulting neural field model 
 for heterogeneous QIF neurons (QIF-NFM) clearly displays the synchrony-induced
 oscillatory modes observed in simulations of spiking neurons.  
 We then thoroughly investigate the QIF-NFM  
-by means of both a linear and non-linear stability analysis of the 
+by means of both a linear and nonlinear stability analysis of the 
 spatially homogeneous state.
 The analysis reveals the presence of an infinite number of 
 oscillation modes, linked to the Fourier components of the spatial pattern of synaptic 
@@ -132,15 +132,16 @@ linked to transient episodes of spike synchronization.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[hp]
 \includegraphics[width=\textwidth]{figs/Figure1.eps}
-\caption{(color online) Schematic representation of the ring network and 
+\caption[E-I ring network schematics.]{Schematic representation of the ring network and 
 coupling architecture under study. Panel (a) shows $N$
-excitatory (red) and $N$ inhibitory (blue) neurons arranged on a ring. The location of 
+excitatory (red triangles) and $N$ inhibitory (blue circles) neurons
+arranged on a ring. The location of  
 neurons is parameterized by the angular variable 
-$\phi_j = \frac{2 \pi j}{N}-\pi$, $j = 1, \dots, N$. Red and blue
-lines indicate synaptic connections between neuron pairs $(\phi_j, \phi_k)$. 
-An example of the excitatory and 
-inhibitory space-dependent connectivity kernels Eqs~\eqref{J} 
-are shown in panel (b) where the abscissa represents the distance,
+$\phi_j = \frac{2 \pi j}{N}-\pi$, $j = 1, \dots, N$. Red (solid) and
+blue (dashed) lines indicate synaptic connections between neuron pairs
+$(\phi_j, \phi_k)$.  An example of the excitatory and 
+inhibitory space-dependent connectivity kernels Eqs.~\eqref{J} 
+are shown in panel (b) where the abscissa represents the distance
 $\left| \phi_k - \phi_j \right|$
 between neurons $j$ and $k$. Panel (c) represents an effective model 
 in which pairs of excitatory/inhibitory neurons located at a certain 
@@ -153,20 +154,18 @@ subtracting the inhibitory pattern from the excitatory one, as show in panel (d)
   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Synchrony-induced modes of oscillation in Networks of Quadratic Integrate 
-and Fire (QIF) Neurons}
+\section{Synchrony-induced modes of oscillation in Networks of QIF Neurons}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Figure~(\ref{Figure1}, a) shows a schematic representation of the spiking neuron network 
 under investigation. The model consists of $N$
-excitatory (Red) and $N$ inhibitory (Blue)
-neurons evenly distributed in a ring, and characterized by the
+excitatory (red triangles) and $N$ inhibitory (blue circles)
+neurons evenly distributed in a ring and characterized by the
 spatial discrete variables  $\phi_j \in[-\pi,\pi)$ with
-$\phi_j = \frac{2\pi j}{N} - \pi,\ j=1,\dots, N$, as shown in
-Figure~(\ref{Figure1},a).
+$\phi_j = \frac{2\pi j}{N} - \pi,\ j=1,\dots, N$.
 Any neuron in the network interacts with all the other neurons via the distance-dependent coupling function $J_{jk}^{e,i}=J^{e,i}(|\phi_j-\phi_k|)$, where
 indices $e,i$ denote excitatory and inhibitory connections, respectively.
-The synaptic projections of the $j$-th excitatory and inhibitory neurons (located at 
+The synaptic projections of the $j$th excitatory and inhibitory neurons (located  
 at $\phi_{j}$) to other two nearby neurons are also schematically represented in 
 Figure (1,a). 
 
@@ -174,14 +173,14 @@ The ring architecture of the network allows one to express the
 excitatory and inhibitory connectivity patterns in Fourier series as  
 %
 \begin{equation}
-J^{e,i}(\phi)= J_0^{e,i}+ 2\sum_{K=1}^\infty   J_K^{e,i} \cos (K \phi).\\
+J^{e,i}(\phi)= J_0^{e,i}+ 2\sum_{K=1}^\infty   J_K^{e,i} \cos (K \phi).
 \label{J}
 \end{equation}
 %
 Figure~(\ref{Figure1},b) shows a particular synaptic connectivity pattern in which excitatory  neurons form strong, 
 short-range connections, whereas inhibitory
 projections are weaker and wider. The state of the excitatory ($e$) 
-and inhibitory ($i$) neurons is determined by the membrane 
+and inhibitory ($i$) neurons is determined by the (dimensionless) membrane 
 potentials $\{v_j^{e,i}\}_{j=1,\ldots,N}$, which are modeled using 
 the Quadratic Integrate and Fire (QIF) model~\cite{Ermentrout1986,Izhikevich2008}
 %
@@ -191,26 +190,26 @@ the Quadratic Integrate and Fire (QIF) model~\cite{Ermentrout1986,Izhikevich2008
 \label{qif1} 
 \end{equation}
 %
-where $\tau$ is the cell's membrane time constant and, $v_r$ and $v_p$
+where $\tau$ is the cell's membrane time constant and $v_r$ and $v_p$
 correspond to the reset and peak potentials of the QIF neurons,
 respectively ---in numerical simulations we consider $\tau=20$~ms.
 The QIF neuron has two possible dynamical
-regimes depending  on the input current $I^{e,i}_j$.
+regimes depending  on the (dimensionless) input current $I^{e,i}_j$.
 If $I^{e,i}_j<0$, the neuron is in the   
 excitable regime, while for $I^{e,i}_j > 0$ the neuron is in the
 oscillatory regime. In the excitable regime, an initial condition  
 $v_j^{e,i}(0)<\sqrt{-I_j^{e,i}}$, asymptotically approaches   
 the resting potential $-\sqrt{-I_j^{e,i}}$. On the other hand, 
 initial conditions above the  
-excitability threshold, $v_j^{e,i}(0)>\sqrt{-I_j^{e,i}}$, make the  
-membrane potential to grow without bound. Specifically, if $v_j^{e,i}(0) \gg
-\sqrt{I_j^{e,i}}$,  the membrane potential reaches infinity approximately 
+excitability threshold, $v_j^{e,i}(0)>\sqrt{-I_j^{e,i}}$,  lead to an
+unbounded growth of the membrane potential. Specifically, if $v_j^{e,i}(0) \gg
+\sqrt{I_j^{e,i}}$,  then the membrane potential reaches infinity approximately 
 after a time $\tau/v_j^{e,i}(0)$.
 In practice, to avoid this divergence, we consider the following resetting rule:  
 When the neuron's membrane potential  $v_j^{e,i}$ reaches a certain peak value 
 $v_p \gg 1$, the neuron is reset to a the new value 
-$v_r=-v_p$ after a refractory period $2\tau/v_t$.
-On the other hand, if $I_j^{e,i}>0$, the neuron is in the oscillatory regime and
+$v_r=-v_p$ after a refractory period $2\tau/v_p$.
+On the other hand, if $I_j^{e,i}>0$, then the neuron is in the oscillatory regime and
 needs to be reset periodically. If $v_p \gg 1$, the frequency of the oscillatory 
 neurons is approximately $f_j=\sqrt{I_j}/(\tau \pi)$. 
 Finally, the current $I_j^{e,i}$ is defined as 
@@ -221,8 +220,7 @@ I_j^{e,i}= \eta_j^{e,i} +\tau  S_j^{e}(t)+\tau S_j^{i}(t) + P_j^{e,i}(t).
 \end{equation}
 %
 Here, $\eta_j^{e,i}$ is a constant external current, which varies 
-from neuron to neuron 
-(note that the voltages $v_j$ and currents $I_j$ are dimensionless). The terms $P^{e,i}(t)$ are time-varying common inputs, 
+from neuron to neuron. The terms $P^{e,i}(t)$ are time-varying common inputs, 
 and $S_j^{e,i}(t)$ are the mean excitatory (positive) and inhibitory (negative) 
 synaptic activities representing all the weighted inputs received by neuron $j$ 
 due to spiking activity in the network:
@@ -233,39 +231,42 @@ S_j^{e,i}(t)=\pm  \sum_{k=1}^{N}  \frac{J_{j k}^{e,i} }{2\pi N}\sum_{l \backslas
 \label{s}
 \end{equation}
 %
-where $\tau_s$ represents the synaptic processing time, 
-and  $t_k^l$ is the time of the $l$-th spike of the excitatory/inhibitory $k$-th neuron. 
+where $\tau_s$ represents the synaptic processing time
+and $t_k^l$ is the time of the $l$th spike of the
+excitatory/inhibitory $k$th neuron. Positive and negative signs
+correspond to $S_j^e$ and to $S_j^i$, respectively.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb]
 \centerline{\includegraphics[width=\textwidth]{figs/Figure2.eps}}
-\caption[]{\label{Figure2} 
+\caption[Transient synchrony in ring networks of QIF neurons]{\label{Figure2} 
 Transient episodes of spike synchrony in heterogeneous ring networks of 
-$N =5\cdot 10^5$ QIF neurons, 
-Eqs.~(\ref{qif1},\ref{qif2}), as a result of spatially-inhomogeneous 
+$N =2.5\cdot 10^5$ excitatory and $N =2.5\cdot 10^5$ inhibitory QIF neurons, 
+Eqs.~\eqref{qif1} and \eqref{qif2}, as a result of spatially inhomogeneous 
 perturbations applied  
-at time $t=0.05$. In Panels (a,b) all excitatory neurons where perturbed. In
-Panels (c,d) all neurons were perturbed. In panels (a,c) the 
-perturbation had wavenumber $K=1$; in Panels (b,d) the perturbation had wavenumber $K=4$. 
-Other parameters are: $\Delta = 1$, $\tau = 20$~ms, and $\bar\eta = 5$.
-All Fourier components of the connectivity~Eq.~\eqref{J} were $J_K^{e,i}=0$, except:
+at time $t=0.05$~s. In Panels (a) and (b) only excitatory neurons are perturbed. In
+panels (c) and (d) all neurons are perturbed. In panels (a) and (c) the 
+perturbation has wave number $K=1$; in panels (b) and (d) the
+perturbation has wave number $K=3$. 
+Other parameters are $\Delta = 1$, $\tau = 20$~ms, and $\bar\eta = 5$.
+All Fourier components of the connectivity~Eq.~\eqref{J} were $J_K^{e,i}=0$, except
 $J^e_0=23$, $J^e_1=10$,  $J^e_2=7.5$,  $J^e_3=-2.5$,  $J^i_0=23$.}
 \end{figure}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
 
 We performed numerical simulations of the QIF model 
-Eqs.~(\ref{qif1},\ref{qif2}) for a network of 
+Eqs.~\eqref{qif1} and \eqref{qif2} for a network of 
 heterogeneous neurons, see Figure \ref{Figure2}, and Appendix
 \ref{app:numer-simul}  
 for details of the numerical simulations. 
 In all cases, the system is initially at a spatially homogeneous state (SHS). 
 At time $t=50$~ms, a brief ($10$~ms) and small current pulse $P_j^{e}$  
-is applied either to all excitatory neurons (panels a, b) or to both excitatory
+is applied either to only excitatory neurons (panels a, b) or to both excitatory
 and inhibitory neurons. 
-Left and right panels show perturbations 
+The left and right panels show perturbations 
 of the first spatial modes, respectively ---see Appendix D for the specific form of the perturbations. 
-Note that, after the perturbation the system decays to the homogeneous 
+Note that, after the perturbation, the system decays to the homogeneous 
 state showing oscillations, which resemble standing waves. 
 Note that the frequency of these oscillations is 
 different for each mode, while the decay rate is similar in 
@@ -278,35 +279,26 @@ have not yet been investigated in the literature.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Neural Field model for quadratic integrate and fire neurons (QIF-NFM)}
+\section{Neural Field model for quadratic integrate and fire neurons}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 In the following, we aim to investigate the nature and origin of the 
-spatio-temporal patterns  shown in Figure~\ref{Figure2}. 
+spatiotemporal patterns  shown in Figure~\ref{Figure2}. 
 To analyze them, we derive the NFM corresponding to the 
 thermodynamic ($N\to \infty$) and continuum limits of the network 
-of QIF neurons Eqs.~(\ref{qif1},\ref{qif2}). 
+of QIF neurons [Eqs.~\eqref{qif1} and \eqref{qif2}]. 
 In additon we also take the 
 limit $v_p \to \infty$, so that the QIF model~\eqref{qif1} 
-is equivalent to the so-called theta-neuron model~\cite{Ermentrout1986,Izhikevich2008}. 
-This leads to an exact neural field model for a network of QIF neurons (QIF-NFM)\interfootnotelinepenalty=10000\footnote{Invoking the Ott-Antonsen theory for populations of pulse-coupled 
-theta neurons~\cite{LBS13,SLB14}, 
-Laing recently derived a NFM~\cite{Laing2014} that is equivalent to ours. 
-However, in~\cite{Ott2008,LBS13,SLB14,Pazo2014,Laing2014} 
-the resulting low-dimensional description is in 
-terms of the complex Kuramoto order parameter. 
-In contrast, the mean field description adopted here ---in terms of 
-mean firing rates and membrane potentials--- greatly simplifies the 
-analysis allowing us to analytically investigate the linear and 
-non-linear stability of the spatially homogeneous states of the QIF-NFM.}.
+is equivalent to the so-called theta-neuron model~\citep{Ermentrout1986,Izhikevich2008}. 
+This leads to an exact neural field model for a network of QIF neurons (QIF-NFM).
 %%%%%%%%%%%%%%%%%%
 The detailed derivation is performed in Appendix
 \ref{app:deriv-qif-neur}, and closely
-follows that of~\cite{Montbrio2015}. 
+follows that of~\citet{Montbrio2015}. 
 The reduction in dimensionality is achieved considering that the currents 
 $\eta^{e,i}$ ---which, after performing 
-the thermodynamic limit become 
+the thermodynamic limit, become 
 continuous random variables--- are distributed according 
 to a Lorentzian distribution of half-width $\Delta$ and centered at $\bar \eta$, 
 %
@@ -333,7 +325,7 @@ R^{e,i})^2+ \tau S(\phi) \\ & & +P^{e,i}(\phi,t).
 \end{subequations}
 %
 and exactly describes the time evolution of the mean 
-firing rate $R^{e,i}(\phi)$, and the population's mean membrane potential 
+firing rate $R^{e,i}(\phi)$ and the population's mean membrane potential 
 $V^{e,i}(\phi)$ of the excitatory and inhibitory populations  
 at any location $\phi$ of the ring ---to facilitate 
 the notation we have avoided explicitly writing the dependence of these variables 
@@ -350,10 +342,13 @@ R^{e,i} (\phi') d \phi'$.
 
 The analysis of the QIF-NFM Eq.~\eqref{freG} is greatly simplified considering 
 that excitatory and inhibitory neurons have identical 
-single cell properties. This scenario is schematically represented in Figure~(\ref{Figure1};c,d). In this case, the solutions of Eqs.~\eqref{freG} satisfy  
-$R^e(\phi,t)=R^i(\phi,t)\equiv R(\phi,t)$ and $V^e(\phi,t)=V^i(\phi,t)\equiv V(\phi,t)$. 
-These solutions exist if $P^e(\phi,t)=P^i(\phi,t)=P(\phi,t)$, and coincide with the 
-solutions of the  effective QIF-NFM 
+single-cell properties. This scenario is schematically represented in
+Figs.~\ref{Figure1}(c) and \ref{Figure1}(d). If we set
+$P^e(\phi,t)=P^i(\phi,t)=P(\phi,t)$, and restrict our attention to
+solutions of Eqs.~\eqref{freG} satisfying
+$R^e(\phi,t)=R^i(\phi,t)\equiv R(\phi,t)$ and
+$V^e(\phi,t)=V^i(\phi,t)\equiv V(\phi,t)$, then we obtain an effective
+QIF-NFM in variables $R$ and $V$,
 %
 \begin{subequations}
 \label{fre}
@@ -376,16 +371,20 @@ S(\phi)=\frac{1} {2\pi} \int\limits_{-\pi}^{\pi} \left[J_0
 \end{equation}
 %
 with the new Fourier coefficients $J_K$, which are related to those in 
-Eq.~\eqref{J} as $J_K=J_K^e-J_K^i$, with $~K=0,1,\dots$, see Fig.\ref{Figure1}(d).
-Note that, in Figs.~(\ref{Figure2};a, b), we perturbed the spatially homogeneous state (SHS) 
-of the system Eqs.~(\ref{qif1},\ref{qif2}) using a current pulse to all 
-the excitatory neurons. 
-The resulting dynamics is only captured by the full system Eqs.~\eqref{freG}
-and not by the effective neural field Eqs.~\eqref{fre}. 
-However we next show that 
+Eq.~\eqref{J} as $J_K=J_K^e-J_K^i$, with $~K=0,1,\dots$, see
+Fig.\ref{Figure1}(d). Solutions to Eqs.~\eqref{freG} need not satisfy
+the condition $R^e=R^i$ and $V^e=V^i$, but the reduced system
+Eqs.~\eqref{fre} captures the mechanism behind the oscillatory behavior
+observed in the model.
+Note that, in Figs.~\ref{Figure2}(a) and \ref{Figure2}(b), we
+perturbed the (SHS) of the system [Eqs.~\eqref{qif1} and \eqref{qif2}]
+using a current pulse to all  excitatory neurons.  
+The resulting dynamics is only captured by the full system [Eqs.~\eqref{freG}]
+and not by the effective neural field [Eqs.~\eqref{fre}]. 
+However, we next show that 
 the existence of the spatial oscillatory modes observed in Fig.\ref{Figure2}
 is exclusively linked to the dynamics in the 
-reduced manifold defined by Eqs.~(\ref{fre}, \ref{mf}).
+reduced manifold defined by Eqs.~\eqref{fre} and \eqref{mf}.
 
 
 
@@ -393,19 +392,19 @@ reduced manifold defined by Eqs.~(\ref{fre}, \ref{mf}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Spatially homogeneous states (SHS) and their stability.
-Synchrony-Induced Modes of oscillation}
+\subsection{SHS and their stability:
+Synchrony-induced modes of oscillation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-In the following we investigate the stability of the stationary, 
-spatially homogeneous states (SHS) of the QIF-NFM 
+In the following we investigate the stability of the stationary
+SHS of the QIF-NFM 
 against spatial perturbations. The detailed linear stability 
-analysis of both the complete model~\eqref{freG}, 
-and the reduced one Eqs.~\eqref{fre} are provided in Appendix \ref{app:line-stab-analys}. 
+analysis of both the complete model [Eqs.~\eqref{freG}], 
+and the reduced one [Eqs.~\eqref{fre}] are provided in Appendix \ref{app:line-stab-analys}. 
 
 In absence of external 
-inputs,  $P(\phi,t)=0$,  the steady states of Eqs.~\eqref{fre} ---and also of  
-Eqs.~\eqref{freG}---, satisfy 
+inputs,  $P(\phi,t)=0$,  the steady states of Eqs.~\eqref{fre}---and also of  
+Eqs.~\eqref{freG}---satisfy 
 $V_*(\phi)=-\Delta/[2 \pi   \tau R_*(\phi)]$, and
 %
 \begin{equation}
@@ -415,8 +414,8 @@ R_*(\phi)=\Phi \left( \bar\eta +\tau S_*(\phi) \right)
 %
 with $\Phi (x) = \sqrt{x +\sqrt{x^2+\Delta^2}}/(\sqrt{2}\pi \tau)$. 
 In Eq.~\eqref{fpr}, the term $S_*(\phi)$ is 
-the mean field Eq.~\eqref{mf} evaluated at $R_*(\phi)$.
-For SHS, the mean field Eq.~\eqref{mf}
+the mean field [Eq.~\eqref{mf}] evaluated at $R_*(\phi)$.
+For SHS, the mean field [Eq.~\eqref{mf}]
 becomes spatially independent, $S_*(\phi)=S_*=J_0 R_*$, 
 and Eq.~\eqref{fpr} becomes a quartic equation for the variable $R_*$.
 To further simplify the analysis, hereafter we consider 
@@ -428,49 +427,42 @@ $J_0=0$ so that Eq.~\eqref{fpr} has $S_*=0$ and
 explicitly determines the value of the fixed point $R_*$.
 %
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb]
 \includegraphics[width=\textwidth]{figs/Figure3.eps}
-\caption{(color online) (a) Phase diagram of Eqs.~\eqref{fre} (with $J_0=0$) 
-showing the regions of stability of the Spatially Homogeneous State (SHS), 
+\caption[Stability of SHS ($J_K$ vs. $\bar \eta$).]{(a) Phase diagram of
+  Eqs.~\eqref{fre} (with $J_0=0$)  
+showing the regions of stability of the SHS, 
 determined by the eigenvalues Eq.~\eqref{lambda}.  
-Spatial perturbations of wavenumber $K>0$ show oscillatory and non-oscillatory decay to the 
+Spatial perturbations of wave number $K>0$ show oscillatory and nonoscillatory decay to the 
 spatially homogeneous state in the light-shaded and dark-shaded 
 regions of the diagram, respectively. 
-The eigenvalues $\lambda_{K\pm}$ associated with the $K$-th mode
+The eigenvalues $\lambda_{K\pm}$ associated with the $K$th mode
  are schematically represented in the complex plane
-(Red crosses), 
+(red crosses)
 for the three qualitatively different regions of the phase diagram.
 Right panels show the 
 response of the Eqs.~\eqref{fre} with $J_1=10$, $J_2=7.5$, $J_3=-2.5$ and 
-$J_K=0$ ($K\neq1,2,3$), $\bar \eta=4.5$, $\Delta=1$ and $\tau=20$~ms, 
+$J_K=0$ ($K\neq1,2,3$), $\bar \eta=4.5$, $\Delta=1$, and $\tau=20$~ms, 
 to a perturbation of the (b) $K=1$ and (c) $K=3$ spatial modes. 
 Both perturbations produce standing waves 
 with frequency and decay rate described by Eqs~\eqref{lambda}.  
 In the white region, limited by the curve Eq.~\eqref{Jc}, these perturbations 
-grow and lead to a Bump State (BS) with $K$ bumps (see Figure \ref{Figure4}). }
+grow and lead to a bump state (BS) with $K$ bumps (see Fig.~\ref{Figure4}). }
 \label{Figure3}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 The steady states of the SHS of Eq.\eqref{fre} coincide with those of a 
-single population of neurons~\cite{Montbrio2015}. However, the stability of the 
+single population of neurons~\citep{Montbrio2015}. However, the stability of the 
 SHS of the QIF-NFM to inhomogeneous perturbations 
 depends on the spatial character of the connectivity kernel Eq.~\eqref{J}. 
 The linear stability analysis of the SHS 
-gives 
-a countably infinite set
+gives a countably infinite set
 % an infinite set 
-of eigenvalues associated to the stability of 
-perturbations 
-with wavenumber $K$
-% of the $K$-wavenumber 
-%%%
-~\footnote{
+of eigenvalues associated to the stability of perturbations 
+with wave number\footnote{
 The stability analysis of the original Eqs.~\eqref{freG} gives 
 two additional complex eigenvalues for each oscillatory mode $K$. 
 These eigenvalues are degenerated and are associated to the oscillatory modes of the 
@@ -480,7 +472,8 @@ due to the translational invariance of the SHS solutions,
 each of the eigenvalues~Eq.~\eqref{lambda} 
 is two-times degenerated, corresponding to 
 even and odd perturbations. See Appendix \ref{app:line-stab-analys} for 
-the detailed linear stability analysis of the QIF-NFM Eqs.~\eqref{freG}.}.
+the detailed linear stability analysis of the QIF-NFM
+Eqs.~\eqref{freG}.} $K$. 
 %%%%
 \begin{equation}
 \lambda_{K\pm}= -\frac{\Delta}{\pi \tau^2 R_*} 
@@ -491,8 +484,8 @@ the detailed linear stability analysis of the QIF-NFM Eqs.~\eqref{freG}.}.
 This equation is the main result of this work, and explains the 
 synchronization patterns shown in Fig.~\ref{Figure2}. 
 Note that the eigenvalues Eq.~\eqref{lambda} may be real or complex, 
-indicating non-oscillatory or oscillatory dynamics of the evolution of 
-perturbations of wavenumber $K$, respectively. 
+indicating nonoscillatory or oscillatory dynamics of the evolution of 
+perturbations of wave number $K$, respectively. 
 In particular, perturbations of any given spatial mode $K$ are oscillatory 
 if the condition $J_K<2 \pi^2 \tau R_*$ is fulfilled. 
 %
@@ -512,13 +505,14 @@ J_K^o= \sqrt{2}\pi \sqrt{\bar \eta+\sqrt{\bar \eta^2+\Delta^2 }},
 \label{Jc}
 \end{equation}
 %
-separating the parameter space into regions where standing waves of wavenumber-$K$
-are, or are not observed. This boundary is depicted with a dotted line in the 
+separating the parameter space into regions where standing waves of
+wave number $K$
+are, or are not, observed. This boundary is depicted with a dotted line in the 
 phase diagram Fig.~\eqref{Figure3}, 
 together with a schematic representation of the location of the 
 eigenvalues $\lambda_{K\pm}$
 % eigenvalues $\lambda_K$
-in the complex plane (red crosses, see also Fig.(\ref{Figure5},a)). 
+in the complex plane (red crosses, see also Fig.\ref{Figure5}(a)). 
 
 
 A given oscillatory mode $K$ has an associated frequency 
@@ -526,7 +520,7 @@ $\nu_K = 1/(2 \pi) |\text{Im}(\lambda_{K\pm})|$, which
 differs from one another depending on the corresponding Fourier 
 coefficients $J_K$ of the 
 patterns of synaptic connectivity Eq.~\eqref{J}. Therefore, spatial perturbations
-of wavenumber $K$, produce standing waves of neural activity of frequency 
+of wave number $K$ produce standing waves of neural activity of frequency 
 $\nu_K$. 
 Locally excitatory coupling $J_K>0$ slows down these oscillations 
 and eventually suppresses them, whereas locally inhibitory coefficients 
@@ -536,27 +530,44 @@ are oscillatory with frequency $\nu= R_*$, which coincides with the
 mean firing rate of the uncoupled neurons).
 
 
-Indeed, in Fig.~(\ref{Figure2},d), a perturbation of wavenumber $K=3$ produced standing waves, since $J_3$ was negative. The frequency of these oscillations was
-fast compared to that of Fig.~(\ref{Figure2},c), where the 
-exited mode was the first one $K=1$, and given that the $J_1$ was positive. 
+Indeed, in Fig.~\ref{Figure2}(d), a perturbation of wave number $K=3$ produced standing waves, since $J_3$ was negative. The frequency of these oscillations was
+fast compared to that of Fig.~\ref{Figure2}(c), where the 
+exited mode was the first one $K=1$ and given that the $J_1$ was positive. 
 However, note that in both cases the decay 
 to the SHS is similar, as predicted by the eigenvalues Eq.~\eqref{lambda}. 
 This indicates that the desynchronization process occurs faster when the 
 diversity $\Delta$ of neurons is increased, 
-and this process doesn't depend on the oscillation mode being excited. 
-Finally, in panels (b,c) of Fig.~\ref{Figure3} we show 
-numerical simulations of the QIF-NFM Eq.~\eqref{fre} using the same parameters as 
-those of Fig.~\ref{Figure2} (c,d), and the agreement is good. 
+and this process does not depend on the oscillation mode being excited. 
+Finally, in Figs.~\ref{Figure3}(b) and \ref{Figure3}(c) we show 
+numerical simulations of the QIF-NFM [Eq.~\eqref{fre}] using the same parameters as 
+those of Fig.~\ref{Figure2}(c) and \ref{Figure2}(d), and the agreement is good. 
 
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb]
+\centerline{\includegraphics[width=\textwidth]{figs/Figure4.eps}}
+\caption[Phase diagram of the QIF-NFM ($J_K$ vs. $\bar \eta$).]{(a) Phase diagram of the 
+QIF-NFM [Eqs.~\eqref{fre}] with $J_2=7.5$, $J_3=-2.5$, $J_K=0$ 
+for $K>3$, and $\Delta=1$. Solid line: Supercritical [red (gray)] and 
+Subcritical (black) Turing bifurcation boundary Eq.~\eqref{JT}.
+Dashed lines: saddle-node bifurcation of bumps (numerical).  
+(b) Diagram ---obtained using a weakly nonlinear analysis---
+showing the regions where the Turing bifurcation 
+is supercritical or subcritical for $J_1=10$, 
+$J_3=-2.5$, and $J_K=0$.  
+(c) Bifurcation diagram (rescaled) 
+$\|R_*\|_2=(2\pi)^{-1}\int_{-\pi}^{\pi}|R_*(\phi)|^2 d\phi$
+vs. $\bar \eta$, for $J_1=10$.
+Solid/dashed black lines: stable/unstable SHS.
+Solid/dashed blue lines: stable/unstable bump states (BS). }
+\label{Figure4}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \subsection{Turing bifurcation and nonlinear stability of the SHS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 As $J_K$ is increased, the frequency $\nu_K$ of a given oscillatory 
 mode decreases and eventually it ceases to oscillate. 
@@ -575,136 +586,97 @@ J_{K}^T  =2\pi\sqrt{\frac{2 \bar \eta^2+2 \Delta^2}
 \end{equation}
 %
 The Turing bifurcation boundary, Eq.~\eqref{JT}, corresponds to the  
-solid line in Figs.~(\ref{Figure3}a,\ref{Figure4}a). 
+solid line in Figs.~\ref{Figure3}(a) and \ref{Figure4}(a). 
 Additionally, in Appendix \ref{app:small-ampl-equat}, we conducted a weakly nonlinear 
-analysis and derived the small amplitude equation Eq.~\eqref{AmplEq} 
+analysis and derived the small-amplitude equation [Eq.~\eqref{AmplEq}] 
 corresponding to the 
 bump solution bifurcating from the SHS.
 The amplitude equations determine if the Turing bifurcation is supercritical,
-or if it is subcritical and bistability between SHS and Bump states 
+or if it is subcritical and bistability between SHS and bump states 
 is expected to occur. The results of this analysis are summarized in 
-Fig.(\ref{Figure4},b). 
+Fig.~\ref{Figure4}(b). 
 
 In addition, we performed numerical simulations of the 
-QIF-NFM~\eqref{fre}, and indeed found 
-coexistence of SHS and Bump states in the blue-shaded
-regions limited by solid and dashed curves in Fig.(\ref{Figure4},a). 
+QIF-NFM~\eqref{fre} and indeed found 
+coexistence of SHS and bump states in the blue-shaded
+regions limited by solid and dashed curves in Fig.~\ref{Figure4}(a). 
 These lines meet at two codimension-2 points (where the Turing 
 bifurcation line changes color) that agree with 
 the results of the weakly nonlinear analysis. 
 Moreover, we computed numerically a bifurcation diagram of the NFM,
-  using the spectral method developed in Reference~\cite{Rankin2014} and
-  available with Reference~\cite{A16}. The results, presented in
-  Figure (\ref{Figure4},c) confirm that the unstable BS  bifurcates subcritically for
-  the SHS. The unstable BS then meets a stable BS ---solid Blue line--- at a fold
-  bifurcation.   
-
-% 
-% Moreover, Figure (\ref{Figure4},c) 
-% shows a numerically-obtained bifurcation diagram of the 
-% NFM which confirms that the unstable BS  
-% bifurcates subcritically for the SHS. The unstable BS then meets a stable BS 
-% ---solid Blue line--- at a fold bifurcation.   
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Fig
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htb]
-\centerline{\includegraphics[width=\textwidth]{figs/Figure4.eps}}
-\caption{(color online) (a) Phase diagram of the 
-QIF-NFM Eqs.~\eqref{fre} with $J_2=7.5$, $J_3=-2.5$, $J_K=0$ 
-for $K>3$, and $\Delta=1$. Solid line: Supercritical (Red) and 
-Subcritical (Black) Turing bifurcation boundary Eq.~\eqref{JT}.
-Dashed lines: Saddle node bifurcation of bumps (numerical).  
-(b) Diagram ---obtained using a weakly nonlinear analysis---
-showing the regions where the Turing bifurcation 
-is supercritical or subcritical, for $J_1=10$, 
-$J_3=-2.5$, and $J_K=0$.  
-(c) Bifurcation diagram (rescaled) 
-$\|R_*\|_2=(2\pi)^{-1}\int_{-\pi}^{\pi}|R_*(\phi)|^2 d\phi$
-vs. $\bar \eta$, for $J_1=10$.
-Solid/Dotted Black lines: Stable/Unstable SHS.
-Solid/Dotted Blue lines: Stable/Unstable Bump States (BS). }
-\label{Figure4}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+  using the spectral method developed in \citep{Rankin2014} and
+  available with \citep{A16}. The results, presented in
+  Fig.~\ref{Figure4}(c) confirm that the unstable BS  bifurcates subcritically for
+  the SHS. The unstable BS then meets a stable BS ---solid blue 
+  (light gray) line--- at a fold bifurcation.   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Synchrony-induced transient oscillations in Bump states}
+\subsection{Synchrony-induced transient oscillations in bump states}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 To investigate whether the synchrony-induced oscillatory modes are also present in the 
 stationary BS, we computed their spectrum.
-The gray points in Fig.~(\ref{Figure5},a) show the spectrum of the unstable Bump
-near the subcritical Turing Bifurcation of wavelength $K=1$.
-Additionally, the red crosses in Fig.~(\ref{Figure5},a) 
+The gray points in Fig.~\ref{Figure5}(a) show the spectrum of the unstable Bump
+near the subcritical Turing bifurcation of wave number $K=1$.
+Additionally, the red crosses in Fig.~\ref{Figure5}(a) 
 are the eigenvalues of the SHS state Eq.~\eqref{lambda}. 
 The profile of the unstable bump is only very weakly modulated, 
-see Fig.~(\ref{Figure5},c), and hence the spectrum of the BS is very close to 
+see Fig.~\ref{Figure5}(c), and hence the spectrum of the BS is very close to 
 that of the SHS, given by the eigenvalues $\lambda_K$. 
-All these eigenvalues are complex, except two real eigenvalues which correspond 
+All these eigenvalues are complex, except two real eigenvalues, which correspond 
 to the $K=1$ mode. One of these eigenvalues is negative and 
-the other is very close to zero and positive, indicating that the SHS is unstable.
-
-Additionally, it is important to note that in Fig.~\ref{Figure5} we have 
-taken $J_K=0$ for all $K$ except for $K=1,2,3$, and hence 
- there is an infinite number of eigenvalues ($\lambda_0$ and $\lambda_{4,5, \dots}$) 
-that are all complex and identical. 
-In Fig.~(\ref{Figure5},a) the eigenvalues of the unstable BS seem to form  
-a continuous band precisely around these infinitely degenerated eigenvalues
-and their complex conjugates. These continuous bands grow in
-size as one moves away from the Turing bifurcation, as it can be seen
-in the spectrum of the stable bump depicted in Fig.~(\ref{Figure5},b)
----here red crosses also correspond to the eigenvalues of the SHS 
-state Eq.~\eqref{lambda}. 
-These results show that all the complex eigenvalues linked to the
-oscillatory modes of the SHS remain complex, suggesting that, in general, similar
-synchronization-induced oscillations may be present in stationary, spatially
-inhomogeneous neural patterns. 
-
-Finally, to illustrate this, in Fig.~(\ref{Figure5},e) we performed a numerical 
-simulation of the QIF-NFM Eqs.~\eqref{fre}, and perturbed the BS shown in 
-Fig.(\ref{Figure5},d) with a spatially inhomogeneous 
-perturbation corresponding to the mode ($K=6$). 
-The perturbation decays to the BS showing a pattern that resembles that of 
-Figs.~\eqref{Figure2}. However here, the regions of the ring with the maximum  
-values of $R_*$ ---around $\phi=0$, in panels (d,e)--- oscillate 
-at high frequencies
-% ($\sim 35~$~Hz), 
-and these oscillations slow down 
-%until $\sim 5~Hz$, 
-as $\phi \to\pm \pi$.
-%(consistent with imaginary part of the complex eigenvalues shown in 
-%Fig.~(\ref{Figure5},b) ). 
-The spectrum of the stable BS Fig.~(\ref{Figure5},b) also indicates that the 
-decay of the fast oscillations (located at the central part of the bump, $\phi=0$) 
-is slow compared to that of the slow oscillations.
-
-
+the other is very close to zero and positive, indicating that the SHS
+is unstable.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Fig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]
 \centerline{\includegraphics[width=\textwidth]{figs/Figure5.eps}}
-\caption{(color online)  Spectrum (a,b) and firing rate 
-profiles (d,c) of an unstable (a,c) and
-stable (b,d) Bump States of the QIF-NFM Eqs.~\eqref{fre}.
-In panel (c) the eigenvalues Eq.~\eqref{lambda} are 
-superimposed with red crosses. 
+\caption[Spectrum and FR profiles of BS.]{Spectrum [(a) and (b)] and firing rate 
+profiles [(d) and (c)] of an unstable [(a) and (c)] and
+stable [(b) and (d)] bump states of the QIF-NFM [Eqs.~\eqref{fre}].
+In panels (a) and (b) the eigenvalues Eq.~\eqref{lambda} are
+superimposed with red crosses.
 Panel (e) shows a numerical simulation of the BS of panel (d). At 
-$t=0.05$~s, a perturbation of wavenumber $K=6$ is applied. 
+$t=0.05$~s, a perturbation of wave number $K=6$ is applied. 
 Parameters are
 $J_0=0$, $J_1=10$, $J_2=7.5$, $J_3=-2.5$, $J_K=0$ for $K>3$, $\Delta=1$,
-$\tau=20$~ms. Panels (a,c): $\bar \eta=2.2120$; Panels (b,d,e): $\bar \eta=2.1828$.}
+$\tau=20$~ms. Panels (a) and (c): $\bar \eta=2.2120$; panels (b), (d)
+and (e): $\bar \eta=2.1828$.}
 \label{Figure5}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Additionally, it is important to note that in Fig.~\ref{Figure5} we have 
+taken $J_K=0$ for all $K$ except for $K=1,2,3$, and hence 
+ there is an infinite number of eigenvalues ($\lambda_0$ and $\lambda_{4,5, \dots}$) 
+that are all complex and identical. 
+In Fig.~\ref{Figure5}(a) the eigenvalues of the unstable BS seem to form  
+a continuous band precisely around these infinitely degenerated eigenvalues
+and their complex conjugates. These continuous bands grow in
+size as one moves away from the Turing bifurcation, as it can be seen
+in the spectrum of the stable bump depicted in Fig.~\ref{Figure5}(b)
+---here red crosses also correspond to the eigenvalues of the SHS 
+state Eq.~\eqref{lambda}. 
+These results show that all the complex eigenvalues linked to the
+oscillatory modes of the SHS remain complex, suggesting that, in general, similar
+synchronization-induced oscillations may be present in stationary, spatially
+inhomogeneous neural patterns.
+
+
+Finally, to illustrate this, in Fig.~\ref{Figure5}(e) we performed a numerical 
+simulation of the QIF-NFM Eqs.~\eqref{fre}, and perturbed the BS shown in 
+Fig.\ref{Figure5}(d) with a spatially inhomogeneous 
+perturbation corresponding to the mode ($K=6$). 
+The perturbation decays to the BS showing a pattern that resembles that of 
+Figs.~\eqref{Figure2}. However here, the regions of the ring with the maximum  
+values of $R_*$ ---around $\phi=0$, in Figs.~\ref{Figure2}(d) and \ref{Figure2}(e)--- oscillate 
+at high frequencies and these oscillations slow down as $\phi \to\pm \pi$.
+The spectrum of the stable BS Fig.~\ref{Figure5}(b) also indicates that the 
+decay of the fast oscillations (located at the central part of the bump, $\phi=0$) 
+is slow compared to that of the slow oscillations.
 
 
 
@@ -718,19 +690,33 @@ We have reported the existence of a class of oscillatory modes in
 spatially distributed networks of heterogeneous 
 spiking neurons. These modes of oscillation 
 reflect the transient episodes of spike synchronization among the neurons 
-and are not captured by traditional NFMs. To investigate them, we derived a novel 
-NFM for QIF neurons, Eqs.~\eqref{freG} and \eqref{fre}, which 
-allows us to find the eigenvalues determining the linear stability of the spatially 
-homogeneous state. This analysis reveals  two important features: 
+and are not captured by traditional NFMs.
+
+To investigate these oscillation modes we derived a novel 
+NFM for QIF neurons [Eqs.~\eqref{freG}]. Alternately, and invoking the
+Ott-Antonsen theory for populations of pulse-coupled  
+theta neurons~\citep{LBS13,SLB14}, 
+\citet{Laing2014} recently derived a NFM that is equivalent to the
+effective QIF-NFM. 
+In Laing's work---like in other recent related papers on pulse-coupled
+oscillators \citep{Pazo2014,OKeeffe2016,Chandra2017,Coombes2016,Byrne2017,Gallego2017}--- 
+the resulting low-dimensional description is in 
+terms of the complex Kuramoto order parameter. 
+In contrast, the mean field description adopted here (in terms of 
+mean firing rates and membrane potentials) greatly simplifies the 
+analysis, allowing us to analytically investigate the linear and 
+nonlinear stability of the spatially homogeneous states of the QIF-NFM.
+
+This analysis reveals  two important features: 
 (i) The frequency of each oscillation mode only depends 
 on the corresponding Fourier coefficient of the synaptic pattern of 
-connectivity; (ii) The decay rate is exactly the same for all
-modes, and is due to a desynchronization mechanism which  
+connectivity, and (ii) the decay rate is exactly the same for all
+modes and is due to a desynchronization mechanism which  
 depends on the degree of quenched heterogeneity. 
-We also numerically investigated networks of identical QIF neurons subject to noise, 
-and found similar results (not shown). In this case the desynchronization 
+We also numerically investigated networks of identical QIF neurons subject to noise 
+and found similar results (not shown). In this case, the desynchronization 
 reflects an underlying phase diffusion proportional to the noise strength. 
-Finally we investigated the existence and stability of bump states, 
+Finally, we investigated the existence and stability of bump states, 
 which bifurcate from the spatially homogeneous 
 states via Turing bifurcations. The spectrum of such bump states 
 has a continuous part off the real axis, 
@@ -738,67 +724,61 @@ indicating that similar synchronization-induced oscillatory modes
 also operate in neural bump states.
 
 Interesting directions of further study are the analysis of the 
-QIF-NFM~\eqref{freG} considering different membrane time constants $\tau$,
+QIF-NFM [Eq.~\eqref{freG}] considering different membrane time constants $\tau$,
 (or different main currents $\bar \eta$) for excitatory and inhibitory neurons.
-As proved recently~\cite{Avitabile2017}, NFMs with time-scale separation display a rich
-variety of robust spatio-temporal patterns, which may also be supported by our
+As proved recently~\citep{Avitabile2017}, NFMs with time-scale separation display a rich
+variety of robust spatiotemporal patterns, which may also be supported by our
 model.
 Also, recent work has been done to extend the local firing rate 
-equations derived in~\cite{Montbrio2015} to include synaptic kinetics~
-\cite{Ratas2016,Coombes2016,Matthew2016,Devalle2017} or fixed delays \cite{Pazo2014}. These studies all show 
-that time delays due to synaptic processing generally lead to the emergence of 
-self-sustained oscillations due to collective 
-synchronization. Extending the QIF-NFM~\eqref{freG} 
+equations derived in~\citep{Montbrio2015} to include fixed synaptic delays~\citep{Pazo2016}
+and synaptic kinetics \citep{Ratas2016,Devalle2017a}---see also
+\citep{Coombes2016,Byrne2017}.
+This work shows that time delays due to synaptic processing generally
+lead to the emergence of self-sustained oscillations due to collective
+synchronization. Extending the QIF-NFM [Eq.~\eqref{freG}]
 to account for the synaptic time delays caused by synaptic processing 
-may lead to spatio-temporal phenomena not previously observed 
+may lead to spatiotemporal phenomena not previously observed 
 in traditional NFMs.
 
+\subsection*{\bf \sffamily Acknowledgments}
 
+J.M.E.-A. and E.M. acknowledge support by European Union's Horizon
+2020 research and innovation programme under the Marie
+Sk\l{}odowska-Curie Grant No. 642563. J.M.E.-A. and E.M. acknowledge
+the projects grants from the Spanish Ministry of Economics and
+Competitiveness, Grants No. PSI2016-75688-P and
+No. PCIN-2015-127. A.R. acknowledge a project grant from the Spanish
+ministry of Economics and Competitiveness, Grant No. BFU2012-33413. A.R. has
+been partially funded by the CERCA progam of the Generalitat
+de Catalunya. D.A. was partially supported by the EPSRC
+Grant No. EP/P510993/1 (United Kingdom).
 \newpage
 %%%%%%%%%%%%%%%%%
 
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-%  \makeatletter 
-% \setcounter{equation}{0} 
-% \renewcommand{\theequation}{A\arabic{equation}}
-%  \makeatother
 \begin{subappendices}
 %%%%%%%%%%%%%%%%%  
   \section{Derivation of the QIF neural field model (QIF-NFM)}
   \label{app:deriv-qif-neur}
 %%%%%%%%%%%%%%%%%  
 
-Our derivation closely follows that of~\cite{Montbrio2015}, but it needs to
+Our derivation closely follows that of~\citep{Montbrio2015}, but it needs to
 be extended to include the spatial dimension. 
 Similar extensions from a single population of phase oscillators 
-to a one dimensional, spatially distributed network with non-local 
+to a one-dimensional, spatially distributed network with nonlocal 
 coupling have been done 
-in~\cite{Laing2014,Lai15,Laing2016a,Laing2016,Lai09i,Ome13,Omelchenko2014,Kawamura2014}.
+in~\citep{Laing2014,Lai15,Laing2016a,Laing2016,Lai09i,Ome13,Omelchenko2014,Kawamura2014}.
 
 Considering the thermodynamic limit $N\to\infty$, we can drop the 
-indexes in Eqs.~(\ref{qif1}, \ref{qif2})  
+indexes in Eqs.~\eqref{qif1} and \eqref{qif2}
 and define the density function $\rho^{e,i}(v^{e,i} \vert \eta^{e,i},
 t, \phi)$ such that $\rho^{e,i}(v^{e,i} \vert \eta^{e,i},
 t, \phi)dv^{e,i}  d\eta^{e,i}  d\phi $  describes the fraction of neurons located  
 between $\phi$  and $\phi + d\phi$, with membrane potentials between $v^{e,i} $ and 
-$v^{e,i} +dv^{e,i} $, and parameters between $\eta^{e,i}$ and 
+$v^{e,i} +dv^{e,i} $ and parameters between $\eta^{e,i}$ and 
 $\eta^{e,i} + d\eta^{e,i}$ at time $t$.  
 Accordingly, parameter $\eta^{e,i}$ becomes now a continuous  
 random variable with probability density function $g(\eta^{e,i})$. For
-the sake of simplicity we assume identical  distributions
+the sake of simplicity, we assume identical  distributions
 for both excitatory and inhibitory populations $g \left( \eta^{e,i}
 \right) = g \left( \eta \right)$.  
 The total voltage density at location 
@@ -812,11 +792,11 @@ $$\partial_t \rho^{e,i} =
 - \partial_{v} \left[  \left( \left( v^{e,i} \right)^2 +\eta + \tau S(\phi,t)+ P^{e,i}(\phi,t) \right) \rho^{e,i} \right],$$ 
 %
 where we have explicitly included the velocity given by  
-equations \eqref{qif1} and \eqref{qif2} and $S \left( \phi,t \right) =
+Eqs.~\eqref{qif1} and \eqref{qif2} and $S \left( \phi,t \right) =
 S^e \left( \phi,t \right) + S^i \left( \phi,t \right)$ represents the
 total synaptic activity. 
-Next we invoke the Ott-Antonsen theory~\cite{Ott2008},  
-by means of the Lorentzian Ansatz (LA) \cite{Montbrio2015}  
+Next we invoke the Ott-Antonsen theory~\citep{Ott2008},  
+by means of the Lorentzian Ansatz (LA) \citep{Montbrio2015}  
 %  
 \begin{equation} 
   \rho^{e,i}(v^{e,i} \vert \eta, t, \phi)= \frac{1}{\pi}\frac{x^{e,i}(\phi,\eta,t)} 
@@ -832,8 +812,8 @@ $R^{e,i}(\phi,\eta,t)$ can be evaluated noting that neurons
 fire at a rate given by the probability flux at infinity:  
 $R^{e,i}(\phi,\eta,t)= \rho^{e,i}(v^{e,i} \to \infty|\eta,t, \phi) \dot v^{e,i} (v^{e,i} \to
 \infty|\eta,t, \phi).$ 
-The limit $v^{e,i}\to\infty$ on the right hand side of this equation can be
-evaluated within the LA, and gives: $x^{e,i}(\phi,\eta,t)=  \pi \tau
+The limit $v^{e,i}\to\infty$ on the right-hand side of this equation can be
+evaluated within the LA and gives: $x^{e,i}(\phi,\eta,t)=  \pi \tau
 R^{e,i}(\phi,\eta,t)$. The total firing rate at a particular location
 $\phi$ of the ring is then   
 %  
@@ -878,41 +858,26 @@ residue theorem. Then the firing rate and mean membrane potential
 depend only on the value of $w^{e,i}$ at the pole of $g(\eta)$ in the  
 lower half $\eta$-plane: 
 $\pi \tau R^{e,i}(\phi,t)+i V^{e,i}(\phi,t) = w^{e,i}(\phi,\bar \eta - i \Delta,t)$,  
-and as a result, \eqref{eq:w} must be evaluated only at $\eta=\bar 
-\eta-i\Delta$ to obtain the neural field equations (Eq.~\eqref{freG})   
-\begin{eqnarray*} 
-  \tau \frac{\partial R^{e,i}}{\partial t} &=& \frac{ \Delta }{\pi
-                                               \tau}   + 2  R^{e,i}
-                                               V^{e,i}, \\  
-  \tau \frac{\partial V^{e,i}}{\partial t} & =& \left( V^{e,i}
-                                                \right)^2+ \bar \eta -
-                                                (\pi \tau R^{e,i})^2+
-                                                \tau
-                                                S(\phi,t)+P^{e,i}(\phi,t).
-\end{eqnarray*} 
-% 
-where again $S \left( \phi,t \right) = S^e \left( \phi,t \right) + S^i
-\left( \phi,t \right)$, and
-considering the limit of infinitely fast synapses,  
-$\tau_s \to 0$ in Eq.~\eqref{s}, the mean field becomes  
-%  
-\begin{equation} 
-  S^{e,i}(\phi,t)= \frac{1} {2\pi} \int_{-\pi}^{\pi}  J^{e,i}(|\phi-\phi'|)
-  R^{e,i}(\phi',t) d \phi',  
-  \label{eq:mf0} 
-\end{equation} 
-%  
-Equations \eqref{freG} with  the mean field \eqref{eq:mf0} 
-exactly describe the macroscopic dynamics of the population of  
-QIF neurons in terms of the local firing rates $R^{e,i}(\phi)$ and mean  
-membrane potentials $V^{e,i}(\phi)$. 
-These equations can be non-dimensionalized  
+and, as a result, \eqref{eq:w} must be evaluated only at $\eta=\bar 
+\eta-i\Delta$ to obtain the neural field equations [Eq.~\eqref{freG}]\footnote{
+The derivation of the QIF-NFM Eq.~\eqref{freG} can be readily extended
+to account for population of excitatory and inhibitory neurons of
+different sizes, i.e. $N^e\neq N^i$. This can be always achieved by
+rescaling the relative contributions of the excitatory and inhibitory
+mean fields as $S \left(\phi \right) = p^eS^e \left( \phi \right) +
+p^i S^i \left( \phi \right)$, where $p^e = 2 N^e/\left( N^e + N^i
+\right)$ and $p^i = 2N^i/\left( N^e + N^i \right)$. In the case of the
+effective model Eq.~\eqref{fre}, this implies that Fourier
+coefficients in Eq.~\eqref{mf} need to be changed as $J_K = p^eJ_K^e- p^iJ_K^i$.}   
+
+These equations can be nondimensionalized  
 by rescaling variables and time as (note the difference between $v^{e,i}_j$, the membrane
 potential of a single neuron $j$, and the mean membrane
 potential $v^{e,i}$):  
 %  
 \begin{equation} 
-  R^{e,i}= \frac{\sqrt{\Delta}}{\tau}  r^{e,i}, ~V^{e,i} =\sqrt{\Delta} ~ v^{e,i},
+  R^{e,i}= \frac{\sqrt{\Delta}}{\tau}  r^{e,i}\ , ~V^{e,i}
+  =\sqrt{\Delta} ~ v^{e,i}\ ,
   ~t=\frac{\tau}{\sqrt{\Delta}} \tilde t, 
   \label{eq:AdimV} 
 \end{equation} 
@@ -920,8 +885,8 @@ potential $v^{e,i}$):
 and parameters as:  
 %  
 \begin{equation} 
-  J^{e,i}_K=\sqrt{\Delta} ~ j^{e,i}_K,~\bar \eta = \Delta~ \tilde \eta,  
-  ~P^{e,i}(\phi,t)=\Delta~ \tilde P^{e,i}(\phi,\tilde t). 
+  J^{e,i}_K=\sqrt{\Delta} ~ j^{e,i}_K,\ \bar \eta = \Delta\tilde \eta,\  
+  P^{e,i}(\phi,t)=\Delta \tilde P^{e,i}(\phi,\tilde t). 
   \label{eq:AdimP} 
 \end{equation} 
 %  
@@ -939,8 +904,8 @@ The resulting dimensionless NFM is then
   \end{eqnarray} 
 \end{subequations} 
 %  
-where the over-dot represents derivation with respect the
-non-dimensional time $\tilde t$, and 
+where the overdot represents derivation with respect the
+nondimensional time $\tilde t$ and 
 the mean field is 
 %  
 \begin{equation}
@@ -959,7 +924,7 @@ the mean field is
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
  
 Considering $\tilde P^{e,i}(\phi,\tilde t)=\tilde P(\phi,\tilde t)$ in
-Eqs.\eqref{eq:freG},  the system    
+Eqs.~\eqref{eq:freG}, the system    
 %  
 \begin{subequations} 
   \label{eq:fre} 
@@ -996,11 +961,12 @@ $$r^e(t)=r^i(t)=r(t), \quad v^e(t)=v^i(t)=v(t).$$
 \label{app:line-stab-analys}
  
 %%%%%%%%%%%%%%%%%  
-\subsection{Linear stability of \\ effective~QIF-NFM~Eq.~\eqref{fre}} 
+\subsection[Linear stability of  the
+effective~QIF-NFM~Eq.~\eqref{fre}]{\sloppy Linear stability of  the\\
+  effective~QIF-NFM~Eq.~\eqref{fre}} 
 %%%%%%%%%%%%%%%%%  
  
  
-
 The homogeneous steady state is given by the solution of
 Eq.~\eqref{fpr} when $R_{*} \left( \phi \right) = R_{*}$. This is
 equivalent to $S_{*} \left( \phi \right) = S_{*} = J_0 R_{*}$ that in dimensionless 
@@ -1008,10 +974,10 @@ form is
 %
 \begin{equation}
 \label{eq:rshs-quartic}
-\pi^2r_{*}^4 - j_0 r_{*}^3 -  \tilde \eta r_{*}^2 - \frac{1}{4\pi^2} = 0,
+\pi^2r_{*}^4 - j_0 r_{*}^3 -  \tilde \eta r_{*}^2 - \frac{1}{4\pi^2} = 0.
 \end{equation}
 %
-This equation is greatly simplified assuming $j_0 = 0$, and gives 
+This equation is greatly simplified assuming $j_0 = 0$ and gives 
 %
 \begin{equation}
 \label{eq:rshs-j00}
@@ -1019,7 +985,7 @@ r_{*} = \frac{1}{\pi\sqrt{2}} \sqrt{\tilde \eta  + \sqrt{\tilde{\eta}^2
   + 1}}.
 \end{equation}
 %
-The stability of homogeneous steady state solutions can be analyzed
+The stability of homogeneous steady-state solutions can be analyzed
 studying the evolution of the small (even) perturbations 
 ($\epsilon \ll 1 $) of the SHS  
 %  
@@ -1057,7 +1023,7 @@ gives
 \end{eqnarray}}
 %  
 %
-where we have used the Ansatz  
+where we have used the ansatz  
 $a_K(t)=a_K e^{\mu_K t}$ and $b_K(t)=b_K e^{\mu_K t}$, where $\mu_K$
 represents the dimensionless  eigenvalue of the $K$th mode. 
 For SHS states, $(r_*(\phi),v_*(\phi))=(r_{*} ,v_{*} )$, the modes 
@@ -1084,7 +1050,7 @@ with:
   L_{*}=\begin{pmatrix} 
     2 v_{*}  & 2 r_{*} \\ 
     j_K-2 \pi^2 r_{*}  & 2 v_{*}    
-  \end{pmatrix} .
+  \end{pmatrix}.
   \label{eq:jacobian} 
 \end{equation} 
 %  
@@ -1121,18 +1087,10 @@ with eigenvectors
   \label{eq:eigenvect} 
 \end{equation} 
 %  
-In terms of the dimensional variables and parameters (\ref{eq:AdimV}, \ref{eq:AdimP}),  
+In terms of the dimensional variables and parameters \eqref{eq:AdimV} and \eqref{eq:AdimP},  
 the eigenvalues \eqref{eq:mu0} are $\lambda_k t = \mu_k
-\tilde{t}$, and thus $\lambda_k =\sqrt{\Delta}\mu_k/\tau$. 
-In dimensional form, Eq.~\eqref{eq:mu0} is
-%  
-\begin{equation}
-\label{eq:mu1}
-  \mu_{K\pm}=-\frac{\sqrt{\Delta}}{\pi \tau R_{*}} \pm \frac{2 \pi \tau R_{*}}{\sqrt{\Delta}}\sqrt{\frac{J_K}{2 \pi^2 \tau R_* }-1}, 
-\end{equation}
-%
-and the eigenvalues give Eq.~\eqref{lambda} in the main text.
-
+\tilde{t}$, and thus $\lambda_k =\sqrt{\Delta}\mu_k/\tau$, which gives
+the eigenvalues Eq.~\eqref{lambda} in the main text. 
  
 %%%%%%%%%%%%%%%%%  
 \subsection{Linear stability of the full QIF-NFM} 
@@ -1206,9 +1164,9 @@ The eigenvectors
     \pm 1 \\  
     \sqrt{\frac{j_K^e-j_K^i }{2r_{*} }- \pi^2} 
   \end{pmatrix}. 
-  \label{eq:eigenvect} 
+  \label{eq:eigenvect-perpendicular} 
 \end{equation} 
-%  
+%
 have eigenvalues   
 %  
 \begin{equation} 
@@ -1219,7 +1177,7 @@ have eigenvalues
 %  
 These eigenvalues coincide with those of the reduced system
 \eqref{eq:mu0}, and are associated with  
-the standing waves shown in Figure 2. Additionally, the eigenvector
+the standing waves shown in Fig.~\ref{Figure2}. Additionally, the eigenvector
 %  
 \begin{equation} 
   \mathbf{u}_{K\perp}= 
@@ -1229,14 +1187,14 @@ the standing waves shown in Figure 2. Additionally, the eigenvector
     i j_K^e \\ 
     \pi j_K^e 
   \end{pmatrix}, 
-  \label{eq:eigenvect} 
+  \label{eq:eigenvect-orthogonal} 
 \end{equation} 
 %  
-and its complex conjugate $\mathbf{\bar u}_{K\perp}$, with associated
+and its complex conjugate $\mathbf{\bar u}_{K\perp}$, with the associated
 eigenvalue  
 %  
 \begin{equation} 
-  \mu_\perp=-\frac{1}{\pi r_*}  +i 2 \pi r_* . 
+  \mu_\perp=-\frac{1}{\pi r_*}  +i 2 \pi r_*,
   \label{eq:muT} 
 \end{equation} 
 %  
@@ -1271,7 +1229,7 @@ eigenmode:
 %  
 At criticality, the critical eigenmode of $L_{*}$ satisfies  
 %  
-$$ L_{*c} \mathbf{u}_{c}=0$$  
+$$ L_{*c} \mathbf{u}_{c}=0,$$  
 %  
 where $L_{*c}$ corresponds to the operator \eqref{eq:jacobian}
 evaluated  
@@ -1279,9 +1237,9 @@ at $j_K=j_{Kc}$. The left critical eigenvector of the operator
 $L_{*c}$ is 
 then defined as  
 %  
-$$ \mathbf{u}_{c}^\dagger L_{*c} =0$$  
+$$ \mathbf{u}_{c}^\dagger L_{*c} =0,$$  
 %  
-what gives   
+which gives   
 %  
 \begin{equation} 
   \mathbf{u}_{c}^\dagger=\pi\binom{-v_*}{r_*}^T, 
@@ -1302,7 +1260,7 @@ at criticality is expected to contain only the component
 $\mathbf{u}_{+c}$.           
 In the following we derive a small-amplitude equation for the bump
 solutions    
-using multiple-scale analysis, see e.g.  \cite{Bezruchko2010}.  
+using multiple-scale analysis, \citep[see~e.g.]{Bezruchko2010}.  
 First, let the solution of Eqs.~\eqref{eq:fre} be written as the  
 perturbation expansion  
 %  
@@ -1320,9 +1278,9 @@ where $(r_{*} ,v_{*} )$ is the state SHS given by the solutions of
 \eqref{eq:rshs-quartic},  
 and $\epsilon \ll 0$ is a small parameter, which measures the distance
 from the  
-Turing bifurcation. In addition we define a long time scale
+Turing bifurcation. In addition, we define a long time scale,
 $\tilde{T}=\epsilon^2 \tilde t$, that 
-is considered to be  independent of $\tilde t$.  Accordingly, the
+is considered to be independent of $\tilde t$.  Accordingly, the
 differential  
 operator in Eqs.~\eqref{eq:fre} may be replaced by:  
 $$\partial_{\tilde t} \to \partial_{\tilde
@@ -1342,7 +1300,7 @@ write it as
 \end{equation} 
 where $j_1^T$ is the critical value of $j_1$ at which the Turing  
 bifurcation occurs, given by Eq.~\eqref{Jc}, with $K=1$.  
-Accordingly, the (non-dimensionalized) connectivity footprint
+Accordingly, the (nondimensionalized) connectivity footprint
 \eqref{J} is 
 %  
 \begin{equation} 
@@ -1364,8 +1322,6 @@ $v_{\epsilon,\epsilon \epsilon,\dots}$ on the variables $\tilde t,T$
 and $\phi$. 
 Substituting \eqref{eq:exp} and \eqref{eq:expJ} into the mean field
 \eqref{eq:mf}:  
-
-
 %  
 \begin{eqnarray} 
   s(\phi)&=&\frac{1}{2\pi} \int_{-\pi}^\pi(r_{*} +\epsilon r_\epsilon
@@ -1468,7 +1424,7 @@ neutral solution:
 \end{equation} 
 %  
 where $A$ is the small amplitude with slow time dependence that   
-we aim to determine, and $\mathbf{u}_c$ is the critical eigenmode   
+we aim to determine and $\mathbf{u}_c$ is the critical eigenmode   
 given by Eq.~\eqref{eq:cr_eigenmode}.  
 Substituting the solution \eqref{eq:O1s} into  
 the nonlinear forcing terms $N_{\epsilon \epsilon}$ we find  
@@ -1516,7 +1472,7 @@ Eq.~\eqref{JT} we find
   \binom{\pi^{-1}}{v_{*} ^2-\pi^2 r_{*} ^2} ,\nonumber 
 \end{equation} 
 %  
-what gives the coefficients  
+which gives the coefficients  
 %  
 \begin{eqnarray} 
   r_{\epsilon \epsilon 0} &=&\frac{3v_{*} ^2-\pi^2r_{*}
@@ -1538,13 +1494,13 @@ Fourier modes:
   \label{eq:v22} 
 \end{eqnarray} 
 %  
-Collecting the third order terms of equation \eqref{eq:MSeq} we obtain
+Collecting the third-order terms of equation \eqref{eq:MSeq}, we obtain
 the identity 
 %  
 \begin{equation} 
   -L_c \binom{r_{\epsilon \epsilon \epsilon} }{v_{\epsilon \epsilon
       \epsilon}} -L_{\epsilon \epsilon} \binom{r_\epsilon
-  }{v_{\epsilon} }= N_{\epsilon \epsilon \epsilon} , 
+  }{v_{\epsilon} }= N_{\epsilon \epsilon \epsilon}.  
   \label{eq:O3eq} 
 \end{equation} 
 %  
@@ -1552,7 +1508,7 @@ To obtain the desired amplitude equation, we shall left-multiply
 Eq.~\eqref{eq:O3eq} 
 by the left null-eigenvector \eqref{eq:lne} 
 and project it into the first spatial Fourier mode.  
-The first term on the r.h.s. of Eq.~\eqref{eq:O3eq} vanishes since  
+The first term on the right-hand side  of Eq.~\eqref{eq:O3eq} vanishes since  
 $ \mathbf{u}_c^\dagger L_c=0$. The second term is    
 %  
 \begin{equation} 
@@ -1562,7 +1518,7 @@ $ \mathbf{u}_c^\dagger L_c=0$. The second term is
   \nonumber 
 \end{equation} 
 %  
-Finally, the nonlinear forcing term at the l.h.s. of Eq.~\eqref{eq:O3eq} is:  
+Finally, the nonlinear forcing term at the left-hand side of Eq.~\eqref{eq:O3eq} is  
 %  
   \begin{eqnarray} 
     N_{\epsilon \epsilon \epsilon} &=& -A \cos \phi \binom{v_{*}  \alpha -r_{*}  \beta}
@@ -1589,39 +1545,39 @@ Finally, the nonlinear forcing term at the l.h.s. of Eq.~\eqref{eq:O3eq} is:
   \end{eqnarray} 
   %  
   Substituting the coefficients
-  (\ref{eq:r20},~\ref{eq:v20},~\ref{eq:r22},~\ref{eq:v22})  
+  \eqref{eq:r20},~\eqref{eq:v20},~\eqref{eq:r22}, and \eqref{eq:v22}
   into Eq.~\eqref{eq:sc} gives the desired amplitude equation 
   %  
   \begin{equation} 
     \label{eq:AE} 
     \partial_{\tilde{T}} A= \pi r_{*} ^2 ~\delta j_1 A+ \tilde{a} A^3,  
   \end{equation} 
-  %  
+  % 
   where the parameter $\tilde{a}$ is  
-  %  
+  % 
   \begin{eqnarray}
-\begin{split}
-    \tilde{a} =&\pi \left( 5 v_*^4 +\pi^4r_{*} ^4 - \frac{5}{2} \right)  
-    \left( \frac{1}{j_1^T-j_0}+\frac{1/2}{j_1^T-j_2} \right) \\
-    &- v_{*} \left( \frac{j_0}{j_1^T-j_0}+\frac{j_2/2}{j_1^T-j_2}
-    \right).
-\end{split}    
+    \begin{split}
+      \tilde{a} =&\pi \left( 5 v_*^4 +\pi^4r_{*} ^4 - \frac{5}{2} \right)  
+      \left( \frac{1}{j_1^T-j_0}+\frac{1/2}{j_1^T-j_2} \right) \\
+      &- v_{*} \left( \frac{j_0}{j_1^T-j_0}+\frac{j_2/2}{j_1^T-j_2}
+      \right).
+    \end{split}    
     \label{eq:b} 
   \end{eqnarray} 
-  %  
+  % 
   Equating Eq.~\eqref{eq:b} to zero, gives the critical boundary
   $j_2^c$  
-  separating sub-critical and super-critical Turing bifurcations: 
+  separating subcritical and supercritical Turing bifurcations: 
   %  
   \begin{equation} 
     j_2^c=\frac{3 j_1^T-j_0}{2}+\frac{6(j_1^T-j_0)^2 \pi^2 r_{*}
       ^3}{5 + 4 \pi^2 r_{*} ^3  
-      (3 j_0 - j_1^T - 10 \pi^2 r_{*}  + 4 \pi^6 r_{*} ^5)} 
+      (3 j_0 - j_1^T - 10 \pi^2 r_{*}  + 4 \pi^6 r_{*} ^5)} .
     \label{eq:J2c} 
   \end{equation} 
   %  
  
-In dimensional form, Eqs.~(\ref{eq:AE},~\ref{eq:b},~\ref{eq:J2c}) are respectively:
+In dimensional form, Eqs.~\eqref{eq:AE}, \eqref{eq:b}, and \eqref{eq:J2c} are respectively:
 %
 \begin{equation} 
   \tau \partial_T A  =  \pi \frac{\tau^2 R_{*}^2}{\Delta} ~\delta 
@@ -1687,50 +1643,51 @@ and
       \EndIf
 \end{algorithmic}
 \end{algorithm}
-\caption{\label{alg:qif}
-Algorithm used for the Euler integration of the QIF neuron~Eq.\eqref{qif1}.}
+\caption[Euler integration of QIF neurons.]{\label{alg:qif}
+Algorithm used for the Euler integration of the QIF neuron Eq.~\eqref{qif1}.}
 \end{figure}
 
 In numerical simulations we used the Euler scheme  with time step $dt = 10^{-3}$.
 Additionally, we considered the peak and reset values  $v_p = -v_r = 100$.
-The Algorithm used to simulate the QIF neuron \eqref{qif1} is shown 
+The algorithm used to simulate the QIF neuron \eqref{qif1} is shown 
 in Fig.~\ref{alg:qif}.  
 
 
 \subsection{Numerical simulation of the ring network}
 
 To numerically implement the ring network of QIF neurons we
-divided the ring into $n=100$ intervals located at $\phi_m =2\pi
-m/n-\pi$, $m = 1, \dots, n$. 
-At each interval $\phi_m$, we considered $N^e_m=N/(2n) = 2.5\cdot
-10^3$ excitatory and $N^i_m=2.5\cdot 10^3$ inhibitory neurons. 
+divided the ring into $m=100$ intervals located at $\phi_l =2\pi
+l/m-\pi$, $l = 1, \dots, m$. 
+At each interval $\phi_l$, we considered   $n = 2.5\cdot
+10^3$ excitatory and $n=2.5\cdot 10^3$ inhibitory neurons (i.e. the
+ring consisted of a total of $2N = 2m\ n = 5\times 10^5$ QIF
+neurons).
 
-Then we distributed the neurons in each interval $\phi_m$ using a
-Lorentzian distribution Eq.~\eqref{g}. For each $\phi_m$ the we used the inverse cumulative
- distribution function (quantile function):
+The neurons in each location $\phi_l$ receive Lorentzian-distributed
+currents, which have been generated using the formula
 \begin{equation}
 \label{eq:1}
-\eta_i = \bar \eta + \Delta \tan \left[ \frac{\pi}{2} \frac{2i - N_m -
-  1}{N_m + 1} \right],\ i = 1, \dots, N_m.
+\eta_i = \bar \eta + \Delta \tan \left[ \frac{\pi}{2} \frac{2i - n -
+  1}{n + 1} \right],\ i = 1, \dots, n.
 \end{equation}
 
 
-Perturbations were implemented such that,
-at a certain time $t_0 = 0.05$ s, a spatially modulated pulse was
-applied with the form:
+On the other hand, perturbations (applied at time $t_0$) are modeled
+using the function 
 \begin{equation}
 \label{eq:perturbations}
 P^{e,i} \left( \phi, t \right) = A \left(e^{\left( t-t_0 \right)/\tau_r} -1\right)\cdot\cos
 \left( K\cdot \phi \right), 
 \end{equation}
-where the amplitude was $A = 0.3$, $K$ represents the wavenumber of the perturbation and
-$\tau_r = 4\cdot 10^{-3}$ s  is the rising time constant of the perturbation. The
+where $A$ is the amplitude, $K$ is the wave number, and $\tau_r$ is
+the rising time constant of the perturbation. In Figs.~\ref{Figure2},
+\ref{Figure3} and \ref{Figure5} we used $t_0 = 0.05$~s, $A=0.3$, and
+$\tau_r = 4\times 10^{-3}$~s. The
 perturbations had a duration of $\Delta t = 0.01$ s. 
-\newline
 
-The instantaneous firing rates in Fig. \ref{Figure2} are obtained
-binning time and counting the spikes of neurons in each interval $\phi_{m}$  within a sliding time window of size
-$\delta t = 0.01$s (in dimensionless time, $\delta \tilde{t} = 0.5)$. 
+Finally, the instantaneous firing rates in Fig. \ref{Figure2} are obtained
+binning time and counting the spikes of neurons in each interval $\phi_{l}$  within a sliding time window of size
+$\delta t = 0.01$s. 
 
 \end{subappendices}
 

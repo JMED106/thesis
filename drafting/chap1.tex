@@ -1,10 +1,13 @@
 % \chapter{\bf Synchrony-induced oscillations in networks of spiking
 %   neurons}
-\chapter{\bf Oscillatory dynamics in excitatory-inhibitory networks of
+\chapter{\bf \sffamily Oscillatory dynamics in excitatory-inhibitory networks of
   spiking neurons} 
 \label{cha:chap1}
 
-\epigraph{``Quote''}{--- \textup{Author}, Title of Source.}
+\epigraph{\it ``There cannot be a language more universal and more simple,
+  more free from errors and from obscurities, that is to say more
+  worthy to express the invariable relations of natural things''}{---
+  \textup{Joseph Fourier}, The Analytical Theory of Heat (1878)}
 
 % \section{Introduction}
 
@@ -27,11 +30,9 @@
 
 % Cabe destacar además, que los sistemas de spiking neuron a los que nos
 % referimos son más generales de lo que en un principio podía
-% parecer. Dichas dinámicas aparecen en modelos de LIF (no he
-% conseguido reproducir el efecto, ya que no he encontrado un rango de
-% parámetros adecuado), QIF, EIF (no lo he intentado), (como
-% alternativa podría hacerlo con Wang-Buszaki, pero no aportaría nada
-% nuevo ya que resulta equivalente para cierto límite)
+% parecer. Dichas dinámicas aparecen en modelos de LIF, QIF, EIF,
+% (además de con Wang-Buszaki, pero no aportaría nada
+% nuevo ya que resulta equivalente al modelo QIF para cierto límite)
 % etc.
 
 % Por lo tanto, sería ideal disponer de un sistema macroscópico, como los
@@ -101,39 +102,230 @@
 % de razonamientos fisiológicos que nos permitirán un estudio analítico
 % de las ecuaciones en cuestión.
 
-The primary aim of this chapter is to guide the reader towards the
-questions that inspired the work of this thesis, such that the
-research flow, strictly theoretical,  is
-followed in a natural way. We start by making some concrete observations
-regarding the dynamics of large populations of spiking neurons, which
-are indeed general to a great variety of spiking network
-models. Following the spirit of 
-the already introduced mean field modeling, we then try to study the
-dynamics of this observations by means of the classical Firing Rate
-models. It will be shown that these models fail to describe such
-phenomena and therefore we will be required to develop additional
-tools in order to understand the mechanics behind the observed
-dynamics. The chapter ends with the derivation of a novel
-firing rate model, which allowed us to study the phenomena and
-understand the precise mechanism common to all the observed dynamics.
+This general introductory Chapter aims to motivate the questions that
+inspired this thesis
+(sections~\ref{sec:oscill-netw-spik} and \ref{sec:wcmodel}), and also 
+serves as the presentation of the model that allowed us to
+quantitatively address such questions (section~\ref{sec:qif-fr}).
 
-\section{Oscillations in a network of spiking neurons}
+Here we ask the following questions: what minimal conditions must
+be fulfilled in order to construct a neural mechanism capable of
+generating macroscopic oscillatory activity? what is the role of neural diversity
+in shaping such phenomena? are traditional firing rate models capable of
+capturing these collective dynamics? 
+
+We start by reviewing possible mechanisms described in the
+literature which ought to explain rhythmogenesis in local populations
+of excitatory (E) and inhibitory (I) neurons. By focusing on either
+fast transients or persistent activity, we formulate an early hypothesis
+about the origin of some of the rhythms we observe in spiking neural
+networks. To test the validity of such hypothesis we perform simulations
+of spiking neurons which satisfy the minimal conditions needed to observe
+oscillatory behaviors. Afterwards, we test the
+capability of H-FR models to reproduce such behaviors. We finish
+the chapter by introducing the QIF-FR model, which will be used as our
+preferred modeling tool through the rest of the work.  
+
+\subsection*{Rhythmogenesis in neural populations: transient and
+  persistent oscillatory dynamics}
+
+% Brief opening about hypothetical importance of oscillatory dynamics:
+% functional role of oscillations. Not our aim to describe any, just
+% mention some relevant works which assign possible functional roles
+% to oscillatory dynamics (e.g. Buzsaki)
+
+Almost a century has passed since the rather esoteric discovery of the
+electroencephalogram (EEG) and the alpha waves by
+\citet{Berger1929} and other contemporary researchers. Since then, 
+oscillatory dynamics has been reported and categorized
+according to their frequency, location in the brain, relation to
+particular conscious states, etc \citep{Buzsaki2004}. As a
+consequence, we now have a cacophony 
+of oscillatory behaviors which are categorized according to their
+observation circumstances. This universal presence of oscillations in
+the activity of the brain strongly suggests their relation to numerous
+brain functions \citep{Buzsaki2004,Buzsaki2013}. However, the discussion on the
+functionality of oscillations is out of the scope of this work
+\footnote{For a broad introduction about brain rhythms,
+  with an approach that goes beyond mathematical and
+  philological aspects of the matter, see \citet{Buz06}.}, in contrast,
+our interest is more devoted to dig into the mechanisms involved in their 
+arousal.  
+
+We will limit our work 
+to particular cases involving localized populations of
+excitatory (E) and inhibitory (I) neurons. Note however, that in
+Chapter~\ref{cha:chap2} we derive a neural field model with nonlocal
+connectivity.  Despite the model exhibiting \textit{angular}
+dependence (in addition to temporal dependence), it is not a model
+accounting for the typical spatial activity propagation, but rather a mean
+field model where neurons are characterized for having
+selectivity to spatially modulated inputs. As such,
+the mathematical description is not given in the form of PDE, but in
+the form of integro-differential equations.
+This approach normally intends to describe dynamics occurring at small regions of 
+the cortex or the hippocampus, where a certain homogeneity in neurons
+properties can be assumed. All these constrains
+normally imply the appearance of fast oscillations, in contrast with
+the slow dynamics typically measured in studies involving whole brain activity,
+such as resting state dynamics. In our path towards the study of
+the role of collective synchronization in oscillatory dynamics, we
+first investigate fast transient responses, and afterwards, expand our
+research to persistent oscillations. We would first like to add a  word
+of caution about what we understand as \textit{mechanisms} and \textit{concepts}
+underlying specific dynamics in neuronal populations. We understand
+concepts as substrate independent, whereas mechanisms depend on given
+substrates which could respond to more general concepts. For example,
+oscillations are generally generated as an interplay between negative
+and positive feedback processes, but their manifestation in neural
+populations can be produced by different mechanisms.
+
+\subsubsection*{Transient episodes of oscillatory dynamics}
+
+We define transient oscillations as relatively fast (of the order of
+the membrane time constant of neurons) episodes of oscillatory dynamics
+which arise as a consequence of an external perturbation (e.g. a
+momentary step current applied directly to the neurons) and which fade
+out after a certain duration after the perturbation, normally in the
+form of damped oscillations and in a way similar to the damped
+harmonic oscillator. An example of such oscillations
+is shown in Fig.~\ref{fig:lif-fr1}. Physiological studies reporting similar dynamics
+go back to the 1960s where damped oscillations were observed in evoked
+potential studies
+\citep{Freeman1967,Freeman1968,Freeman1968a,Andersen1962} and more
+recently, in studies performed \textit{in vitro} preparations
+\citep{Silberberg2003,Tchumatchenko2011}.
+
+% Figure LIF simulation FR
+\begin{figure}[htbp]
+  \centerline{\includegraphics[width=0.95\textwidth]{figs/chap1/fig1_if_fr2.png}}
+  \caption[Transient oscillations in LIF neural
+  population.]{\label{fig:lif-fr1}  Fast transient response of a
+    population of noisy LIF model neurons [Eq.~\eqref{eq:if-eq}] to an
+    abruptly injected step current
+    $P(t)$. Panel (a) and (b) show, respectively, the raster and the
+    instantaneous firing rate activity $R(t)$
+    of a population of $N=2500$ LIF neurons subject to uncorrelated
+    random inputs modeled as GWN of mean $\bar{\eta}=-2$~mV and width $\sigma =
+    5.0$~mV. At $0.4$~s a step current of duration $0.3$~s  
+    is applied as shown in panel (c). In panel (d) the membrane potential
+    $v(t)$ of two randomly chosen neurons are shown. Parameters
+    characterizing individual LIF neurons are $v_{th}= -48$~mV,
+    $v_r=-68$~mV, $E = -50$~mV, $\tau_m=20$~ms. See Appendix\cita. for
+   details of the numerical simulations.}
+\end{figure}
+
+
+The theoretical aspects of transient responses were already studied by
+\citet{Kni72} and \citet{Wilson1972}, who tackle the observed
+phenomena from fundamentally different perspectives.  Although the
+resulting oscillatory dynamics were qualitatively similar, and their time scales
+could be adjusted so that their frequency matched, the underlying
+mechanisms generating such oscillations were different. A difference
+which is further reflected by the methodology they used.
+
+On one hand, fast transients in the
+population activity of spiking neurons can be attributable to 
+their intrinsic dynamics, and arise independently of the specific
+synaptic dynamics. As such, the population activity responds to big
+and rapid changes in the input currents in a relatively fast manner,
+characterized by the membrane time constant, in contrast to the slow
+temporal scales related to synaptic kinetics. This observations have
+been reported in studies dealing with spiking neuron networks and
+supported by experimental data obtained \textit{in vitro} preparations
+\citep[see~e.g][]{Ger00,Brunel2001,Silberberg2003,Naud2012}. In the following
+ we show that oscillatory transients can be observed
+in networks of spiking neurons without synaptic couplings, which suggest the
+existence of a collective mechanism generating such dynamics. 
+
+On the other hand, \citeauthor*{Wilson1972} modeled similar dynamics
+using the integral-equation approach, 
+i.e. the WC model prior to the time-coarse graining
+simplification. It is generally hard to draw conclusions based on
+traditional firing rate equations due to their blurry relationship
+with the microscopic state they represent, nevertheless it is
+straightforward to see that the reported oscillations in WC
+integral-equation model are entirely attributable to synaptic dynamics
+represented in the temporal integral. An observation which they
+emphasized in the derivation of the simplified version of the
+model and which we show later. These oscillations therefore, reflect a
+a potentially alternative
+mechanism of ryhtmogenesis, based on the synaptic time delays rather
+than on the intrinsic dynamics of neurons. This feature is
+explicitly included in more general integral-equations, and also in
+recent extensions of the WC model describing synaptic kinetics (modeled
+as additional ODEs). 
+
+\subsubsection*{Persistent oscillatory dynamics} 
+
+The link between transient and persistent dynamics is not trivial, and
+extrapolating the above hypothesis to infer possible mechanisms behind
+the generation of persistent oscillation is not straightforward.
+Even less when we consider the joint effect of synaptic kinetics and
+collective synchronization. Thus, following our aim of understanding
+the role of collective synchronization in the generation of
+oscillatory dynamics, we will consider the simplest possible scenario
+in which persistent oscillations arise.
+
+Generally speaking, oscillations occur as the interplay between fast excitatory
+versus slow inhibitory feedback processes for which neural systems offer a
+variety of compatible mechanisms. Following
+systematic studies in the generation and modulation of gamma rhythms in
+hippocampal slices \citep{Population2010,Whittington2011}, fast oscillations are
+categorized into three groups. Namely, 
+Interneuron Network Gamma (ING),
+Pyramidal Interneuron Network Gamma (PING) and Persistent
+Gamma (PG). The first type are associated to oscillations occurring due
+to purely inhibitory activity whereas PING oscillations require the
+interplay between excitatory neurons (also known as principal
+neurons) and inhibitory interneurons. The last category is given to
+oscillations involving also both types of cells, but where excitatory neurons
+fire at low rates as compared to those observed during PING
+oscillations. In addition, PG oscillations persist considerately longer
+that ING or PING. Still, this categorization mainly accounts for the
+physiological circumstances in which these oscillations are observed
+(generally \textit{in vitro}), and to some extent on the qualitative
+observations of both the macroscopic dynamics and the response of
+individual neurons. In fact, all three descriptions admit more than
+one compatible mechanism, and they are not mutually exclusive. In any
+case, \textit{in vivo} activity is more likely to be composed of a
+mixture of the three rhythms where synchronization is commonly assume  
+to play a decisive role.
+
+
+Extensive theoretical research exists around the principles of ING
+generation \citep{Whittington1995,Xiao-JingWangandGyorgyBuzsaki1996,White1998,
+  Tiesinga2000,Whittington2000,BH06,Bartos2007,Wang2010},
+however we are interested in populations where excitatory neurons play
+a significant role in shaping macroscopic dynamics. Therefore, we will
+not discuss ING oscillations in this thesis, but many conclusions  
+obtained in this work are also applicable to those type of networks
+and have been discussed by e.g. \citet{Devalle2017a}.
+
+
+
+
+
+
+\section{Case study: Simulations of spiking neural networks}
 \label{sec:oscill-netw-spik}
 
-\textit{Motivation: why does people use spiking neuron networks to
-  model, describe, reproduce, ... oscillations. Oscillations in the
-  cortex, in the hipocampus, thalamus, etc. Depending on the system or
-  mechanism we are trying to model we can use different configuration
-  of such networks. We may have discrete systems, with pulls of
-  neurons representing some kind of population without a specific
-  location. Such systems are typical of decision making, binocular
-  rivalry, etc. They are often use in pairs of excitatory and
-  inhibitory populations or just as a single population of either
-  excitatory or inhibitory neurons. On the other hand, some situations
-require a specific parameter assigned to each neuron, e.g. orientation
-selectivity neurons, frequency selectivity, etc. In such cases,
-neurons must be distributed and therefore we obtain a ``spatially''
-distributed network, also known as Neural Field.}
+
+
+% \textit{Motivation: why does people use spiking neuron networks to
+%   model, describe, reproduce, ... oscillations. Oscillations in the
+%   cortex, in the hipocampus, thalamus, etc. Depending on the system or
+%   mechanism we are trying to model we can use different configuration
+%   of such networks. We may have discrete systems, with pulls of
+%   neurons representing some kind of population without a specific
+%   location. Such systems are typical of decision making, binocular
+%   rivalry, etc. They are often use in pairs of excitatory and
+%   inhibitory populations or just as a single population of either
+%   excitatory or inhibitory neurons. On the other hand, some situations
+% require a specific parameter assigned to each neuron, e.g. orientation
+% selectivity neurons, frequency selectivity, etc. In such cases,
+% neurons must be distributed and therefore we obtain a ``spatially''
+% distributed network, also known as Neural Field.}
 
 In the following examples we present two different configurations of
 such networks. The first one will consist on a typical orientation
@@ -156,30 +348,33 @@ homogeneous state, also known as the asynchronous state
   and biological plausibility. \textit{Intro?}
 \end{itemize}
 
-\subsection{Experiment I: decaying oscillations in  a spatially
-  distributed network of excitatory and inhibitory neurons}
+\subsection*{Observation I: decaying oscillations in  a spatially
+  E-I distributed network}
+\label{sec:expI}
 
 % Figure LIF simulations, QIF simulations
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\textwidth]{figs/chap1/if_nf/if_nf.pdf}}
 \caption[Spatio-temporal patterns in networks of LIF spiking neurons.]{\label{fig:lif-nf} Transient episodes of spike synchrony in heterogeneous ring networks of 
 $N =2\cdot 10^5$ LIF neurons, 
-Eqs.~(\ref{lif1},\ref{lif2}), as a result of spatially-inhomogeneous 
-perturbations applied  
-at time $t=0.12$. Each panel shows perturbations of different
-wavenumber ($K = 1,2,3,4$) applied  to all neurons in the network.
-Other parameters are: $\Delta = 1$, $\tau = 20$~ms, and $\bar\eta = 4$.
-All Fourier components of the connectivity~Eq.~\eqref{J} were
-$J_K^{e,i}=0$, except:
+% Eqs.~(\ref{eq:lif1},\ref{eq:lif2}), as a result of spatially-inhomogeneous 
+% perturbations applied  
+% at time $t=0.12$. Each panel shows perturbations of different
+% wavenumber ($K = 1,2,3,4$) applied  to all neurons in the network.
+% Other parameters are: $\Delta = 1$, $\tau = 20$~ms, and $\bar\eta = 4$.
+% All Fourier components of the connectivity~Eq.~\eqref{eq:J} were
+% $J_K^{e,i}=0$, except:
 $J^e_0=6.0$, $J^e_1=2.5$,  $J^e_2=1.875$,  $J^e_3=-0.75$,  $J^i_0=-6$.}
 \end{figure}
 
 
-\subsection{Experiment II: persistent oscillations in a model of
-  two interacting excitatory and inhibitory populations of spiking neurons}
+\subsection*{Observation II: persistent oscillations in a two
+  population E-I model}
+\label{sec:experII}
 
-\section{Population dynamics: Canonical firing rate and neural field
-  models}
+\section{Canonical firing rate (H-FR) and neural field
+  models (H-NF)}
+\label{sec:wcmodel}
 
 Previously shown simulations consist on populations of spiking neurons
 of the order of $N = 10^5$, and they present incredibly rich dynamics
@@ -226,20 +421,454 @@ on a one dimensional differential equation
 \end{itemize}
 
 
-\section{Exact macroscopic description of an all-to-all population of
-  QIF neurons (QIF-FR)}
+\section[Firing rate model of QIF neurons]{\sloppy Firing rate model of QIF neurons (QIF-FR)}
+\label{sec:qif-fr}
 
-\textit{\color{red} In this section we introduce the QIF-FR model,
-  first appeared in \cite{Montbrio2015}. We first give a full
-  description of the Quadratic-Integrate-and-Fire (QIF) spiking neuron
-model. We then derive the model using the Lorentzian ansatz, as in
-\cite{Montbrio2015}, and then present the derivation in the
-Theta-neuron space using Ott-Antonsen ansatz.}
+% \textit{\color{red} In this section we introduce the QIF-FR model,
+%   first appeared in \cite{Montbrio2015}. We first give a full
+%   description of the Quadratic-Integrate-and-Fire (QIF) spiking neuron
+% model. We then derive the model using the Lorentzian ansatz, as in
+% \cite{Montbrio2015}, and then present the derivation in the
+% Theta-neuron space using Ott-Antonsen ansatz.}
+
+As was shown in the preceding section, canonical FR models fail to
+describe population dynamics in which a significant fraction of the
+neurons fire synchronously. In the simulations of
+section~\ref{sec:oscill-netw-spik} we could observe that synchronous
+firing occur not only due to external drive (Case I~\ref{sec:expI}) but also to some degree
+during spontaneously generated network states (Case II~\ref{sec:experII}). 
+
+In this section we present a recently published set of exact
+macroscopic equations for 
+quadratic integrate-and-fire neurons (QIF-FRE) which explicitly take
+into account subthreshold integration \citep{Montbrio2015}. In
+subsequent chapters we will be using these set of equations along with
+their equivalent microscopic representation, i.e. simulations of QIF
+neurons, to further investigate collective synchronization in networks
+of spiking neurons. We also show that in the limit of slow recurrent synaptic
+kinetics the QIF-FRE reduce to an equation formally identical to WC
+equation \cita.. However, as we could observe in the first set of
+simulations \cita., perturbations applied to uncoupled populations
+also generated fast oscillatory transients which were not capture by
+WC equations. Hence, even in this limit, fast fluctuations in external
+inputs can drive spike synchrony in the network, and consequently the
+slow synaptic approximation of the QIF-FRE breaks down. This
+contributes to previously shown results in suggesting that a correct
+description of spiking networks requires keeping track of the mean
+subthreshold voltage along with the mean firing rate.
+
+
+\subsection{Quadratic Integrate-and-Fire (QIF) model neuron}
+\label{sec:qif-model}
+
+So far, we have performed numerical simulations using various models
+of integrate-and-fire neurons and seen similar qualitative behaviors
+for a wide range of conditions. All these models represent simplified
+versions of the Hodgkin-Huxley (HH) model with only standard spiking
+currents. In particular, they are examples of Class I excitability
+neurons, characterized by the presence of a saddle-node bifurcation on
+an invariant circle at the transition from quiescence to spiking. Near
+threshold the spiking dynamics are dominated by the time spent in the
+vicinity of the saddle-node itself, allowing for a formal reduction in
+dimensionality from the HH model to a reduced normal-form
+equation for a saddle-node bifurcation
+\citep{ET10,Ermentrout1996,Izhikevich2008}.
+
+This normal-form is also known as the \textbf{Quadratic}
+integrate-and-fire model  which is a specific instance of the
+generalized integrate-and-fire model [Eq.~\eqref{eq:if-eq}] in which
+the voltage dependent function takes the form $f(v) = v^2$. Therefore
+the QIF neuron represents the canonical model for Class I neurons. The
+time evolution equation for the membrane potential may be written as
+\citep{Hansel2001,Hansel2003,LRN+00}
+\begin{equation}
+\label{eq:qif-full}
+C \frac{du}{dt} = g_L \frac{\left( u -u_{th} \right) \left( u-u_r
+  \right)}{u_{th}-u_r} + I_u,\quad (+\text{ resetting rule}),
+\end{equation}
+where $C$ is the cell capacitance, $g_L$ is the leak conductance and
+$I_u$ are input currents. Additional cell parameters are $u_{th}$
+and $u_r$ which represent the threshold and resting potentials of the
+neurons, respectively. As it also happens with the other integrate-and-fire
+models, the generation of the spike requires a resetting rule. In
+numerical simulations, once the voltage reaches a given peak value is
+manually reset to $u_r$. We can simplify this equation by performing
+a shift in the membrane potential and rescaling,
+\begin{equation}
+\label{eq:qif-u-v}
+u'  = u - \frac{u_{th} + u_r}{2}\quad \longrightarrow \quad v = \frac{u'}{u_{th}-u_r},
+\end{equation}
+reducing the QIF model Eq.~\eqref{eq:qif-full} to 
+\begin{equation}
+\label{eq:qif}
+\tau_m \frac{dv}{dt} = v^2 + I,\quad (+\text{ resetting rule}),
+\end{equation}
+where $\tau_m = C/g_L$ is the membrane time constant, and $I$ are the
+rescaled (dimensionless) currents
+\begin{equation}
+\label{eq:I-rescaled}
+I = \frac{I_u}{g_L \left( u_{th}- u_r \right)} - \frac{1}{4}.
+\end{equation}
+In the following we will use Eq.~\eqref{eq:qif} when referring to the
+QIF model, and we will denote the (dimensionless) membrane potentials
+of individual neurons with the letter $v$.
+
+Notice that the ODE describing the QIF neuron may grow without bound
+depending on the value of the input currents $I$. This behavior
+accounts for the generation of the spike, and therefore requires the
+use of a resetting rule to return the neuron to the subthreshold
+regime. Hence, the QIF model exhibits two possible dynamical
+regimes which depend on the sign of $I$. If $I < 0$ the neuron is said
+to be in the excitable regime, whereas for $I>0$ the neuron is the
+oscillatory regime. In the excitable regime, an initial condition $v
+(0) < \sqrt{-I}$ asymptotically approaches the resting potential
+$-\sqrt{I}$. On the other hand, initial conditions above the
+excitability threshold, $v(0) > \sqrt{-I}$, lead to an unbounded
+growth of the membrane potential. Specifically, if $v(0) \gg
+\sqrt{I}$, then the membrane potential reaches infinity approximately
+after a time $\tau_m/v(0)$. In numerical simulations, this divergence
+is usually avoided by implementing a resetting rule by hand. When the
+membrane potential $v$ reaches a certain peak value $v_p\gg 1$, the
+neuron is reset to the value $v_r\ll -1$ after a refractory period
+$\tau_m/v_p + \tau_m/v_p$. Moreover, in the oscillatory regime, $I >0$, the neuron
+needs to be reset periodically with an approximate frequency $\nu =
+\sqrt{I}/(\tau \pi)$, provided $v_p \gg 1$. These dynamical features
+are summarized in Fig.~\ref{fig:qif-regimes}.
+
+% Figure LIF simulation FR
+\begin{figure}[htbp]
+  \centerline{\includegraphics[width=0.95\textwidth]{figs/chap1/qif_v3.pdf}}
+  \caption[Possible regimes of the QIF model
+  neuron.]{\label{fig:qif-regimes}  Schematic representation of the
+    two possible regimes of the QIF neuron~\eqref{eq:qif} with
+    an input current $I = \eta + P(t)$. Top and
+    bottom panels correspond to the excitable and oscillatory regimes,
+    respectively. For each regime, 
+    left and right panels show the corresponding 
+    phase portrait and a representative time series, respectively. In
+    the top right panel, a time varying external input $P(t)$ is plotted
+    in red, which after some time drives the neuron's voltage across the
+    threshold (\fullmoon:~unstable fix point in the left panel)
+    producing a spike. Then the voltage is 
+    reset (gray dashed path in the left panel) to $v_r$ which drives the
+    neuron back to the rest potential (\newmoon: stable fix point in the
+    left panel). The effect of any perturbation $P(t)$ in the phase
+    portrait is translated in a vertical shift of the
+    parabola, i.e. excitatory (inhibitory) currents shift the parabola
+    upwards (downwards), with the subsequent displacement of the fix
+    points. In the oscillatory regime there are no fix 
+    points and therefore the neuron is firing with a constant
+    frequency proportional to $\eta$.}
+\end{figure}
+
+\subsubsection{Theta neuron}
+\label{sec:theta-neuron}
+
+For mathematical analysis of the QIF model, one takes $v_p\to
++\infty$ and $v_r\to - \infty$\footnote{In order to mimic this limit
+  in numerical simulations, it is convenient to take $v_r = - v_p$
+  with $v_p \gg 1$.}, which then using the following change of variables
+\begin{equation}
+\label{eq:v-theta}
+v (t) = \tan \left( \frac{\theta(t)}{2} \right),
+\end{equation}
+the QIF model is transform into a phase
+model, called the Theta-Neuron model \citep{Ermentrout1986},
+\begin{equation}
+\label{eq:theta-model}
+\tau_m \frac{d\theta}{dt} = \left( 1 - \cos \theta \right) + I \left( 1 +
+  \cos \theta \right), \quad \theta \in \left( -\pi,\ \pi \right).
+\end{equation}
+This phase model has an strictly positive Phase Resetting Curve (PRC). Neurons
+exhibiting such PRCs are known as Type 1 neurons, indicating that
+(positive) perturbations always produce an advance (and not a delay)
+of their phase.
+
+Because the theta model is a phase oscillator, it does not properly
+produce spikes. Therefore, the spike time is normally assumed to take
+place whenever the phase, $\theta(t)$, crosses $\theta=\pi$. Both models are
+mathematically equivalent in this limit, and numerical simulations of
+both models should give similar results.
+
+In the next sections we derive the macroscopic equations for a
+population of QIF neurons following the work of \citet*{Montbrio2015}. 
+
+\subsection{Continuity equation for a population of QIF neurons}
+\label{sec:continuity}
+
+Let us now consider a population of $N$ all-to-all coupled QIF
+neurons. The state of the system will be characterized by the neuronal
+membrane potentials $\left\{ v_i \right\}_{i = 1,\dots,N}$, each
+obeying Eq.~\eqref{eq:qif}
+\begin{equation}
+\label{eq:qif-i}
+\tau_m \frac{dv_i}{dt} = v_i^2 + I_i,
+\end{equation}
+where the input currents $I_i$ will account for a constant external
+current, $\eta_i$, and time varying inputs coming from within and outside the
+population,
+\begin{equation}
+\label{eq:input-one-pop}
+I_i = \eta_i + J S(t) + P(t).
+\end{equation}
+The external time varying inputs are denoted as $P(t)$ whereas the
+recurrent current $J s(t)$ is equal to the synaptic weight $J$ times
+the mean synaptic activation $s(t)$ due to the firing activity of the
+population\footnote{For clearer reading, abuse of notation often
+  ignores the integral in the right hand side of
+  Eq.~\eqref{eq:synaptic-activation-onepop}.},
+\begin{equation}
+\label{eq:synaptic-activation-onepop}
+S(t) = \frac{1}{N} \sum\limits_{j=1}^N
+\sum\limits_{k}^{}\int_{-\infty}^t \alpha_{\tau_s}\left( t-t'
+\right)\delta  \left( t'-t_j^k \right)\ dt'. 
+\end{equation}
+Synaptic activation is the common mean field driving all neurons,
+which sums the changes in the current due to all the spiking activity
+occurring prior to time $t$. Each $k$th spike emitted  
+by neuron $j$th is modeled as an instantaneous pulse happening at time
+$t=t_j^k$ which is represented by a
+Dirac delta $\delta \left( t-t^k_j 
+\right)$. The pulse is then
+convoluted with a synaptic kernel $\alpha_{\tau_s}$ 
+characterized by the time constant $\tau_s$.  
+
+In the limit of infinitely fast synapses, $\tau_s\to 0$, the
+synaptic activation~\eqref{eq:synaptic-activation-onepop} is equivalent to the instantaneous population mean
+firing rate 
+\begin{equation}
+\label{eq:mean-fr-onepop}
+R(t) = \lim_{\tau_s\to 0}\frac{1}{\tau_s}\frac{1}{N}\sum\limits_{j=1}^N
+\sum\limits_k^{}\int_{t-\tau_s}^t \delta \left( t'-t_j^k \right)\ dt'.
+\end{equation}
+
+\subsubsection{Continuous formulation}
+
+We know exploit the idea of \textit{columnar organization} which
+states that cortical cells can be grouped into ``columns'' of neurons
+with similar properties containing up to several thousand neurons
+\citep{Hubel1968,Lund2003}. This idea allows us to apply the thermodynamic
+limit in Eqs.~\eqref{eq:qif-i}, \eqref{eq:input-one-pop} and
+\eqref{eq:mean-fr-onepop}, and define the \textit{membrane potential
+density} function $\rho \left( v|\eta,t \right)$. This approach has
+been also followed by
+e.g. \citet{Abbott1993,Brunel1999,Fusi1999,Brunel2000,Nykamp2000,Omurtag2000}.
+Thus, at time $t$, the 
+fraction of neurons with membrane potentials between $v_0$ and $v_0+
+\Delta v$ and parameter $\eta$ is given by
+\begin{equation}
+\label{eq:fraction-v-with-eta}
+\int_{v_0}^{v_0+\Delta v}\rho \left( v|\eta,t \right) dv.
+\end{equation}
+Additionally, we assume the population to be slightly\footnote{Neurons
+are still modeled according to the QIF model neuron, and even though
+their microscopic parameters may be different, their dynamics are,
+nonetheless, very similar.} heterogeneous
+by considering a distribution $g(\eta)$ for the external
+currents ($\eta \in \left( -\infty,\ \infty \right)$). Hence, the total
+voltage density is
+\begin{equation}
+\label{eq:total-v-density}
+\int_{-\infty}^{\infty} \rho \left( v|\eta,t \right) g \left( \eta
+\right) d\eta,
+\end{equation}
+and bringing back the limit $v_p\to \infty$ and $v_r\to
+\infty$, the conservation of the number of neurons implies
+\begin{equation}
+\label{eq:continuity}
+\int_{-\infty}^{\infty}\left( \int_{-\infty}^{\infty} \rho \left( v|\eta,t \right) g \left( \eta
+\right)d\eta \right)dv = 1,\quad \forall t.
+\end{equation}
+We may now translate all this [Eqs.~\eqref{eq:qif-i},
+\eqref{eq:input-one-pop}, \eqref{eq:mean-fr-onepop} and
+\eqref{eq:continuity}] into the continuity equation 
+\begin{equation}
+\label{eq:continuity-onepop}
+\frac{\partial \rho}{\partial t} + \frac{\partial}{\partial v} J \left( v|\eta,t \right) = 0,
+\end{equation}
+where the probability flux $J \left( v|\eta, t \right)$ is the net
+fraction of neurons with parameter $\eta$ that crosses the value $v$
+per unit time, and is equal to the density of neurons multiplied by the
+\textit{velocity} of $v$ (right hand side of Eq.~\eqref{eq:qif-i}), that is
+\begin{equation}
+\label{eq:flux-onepop}
+J \left( v|\eta,t \right) = \frac{1}{\tau_m}\rho \left( v|\eta, t \right)
+  \left( v^2 + \eta + JR + P \right).
+\end{equation}
+The continuity equation describes the temporal evolution of the
+distribution of membrane potentials of the neuronal population, and
+therefore gives a complete dynamical description of the state of the
+system. However, it still represents a high dimensional system, in
+which the knowledge of the exact form of the distribution is crucial
+to obtain a precise description of the macroscopic dynamics.
+
+\subsection{Dimensionality reduction: Lorentzian Ansatz}
+\label{sec:ansatz}
+
+What \citeauthor*{Montbrio2015} discovered, inspired by the work of
+\citet{Ott2008} and later by \citet{LBS13,SLB14}, was precisely that
+the distribution of the membrane potentials followed a Lorentzian
+function (also known as Cauchy distribution). Therefore, by
+considering the Lorentzian ansatz (LA) 
+\begin{equation}
+\label{eq:LA}
+\rho \left( v|\eta, t \right) = \frac{1}{\pi} \frac{x \left( \eta,t
+  \right)}{\left[ v - y \left( \eta,t \right) \right]^2 + x \left(
+    \eta,t \right)^2} 
+\end{equation}
+the state of the system is completely  characterized by \textbf{two
+macroscopic} magnitudes, $x$ and $y$ which have a direct
+relationship with physically meaningful macroscopic 
+quantities related to the population activity. Similar, but
+approximate methodology is followed in many other population density
+models to infer the macroscopic behavior of populations of
+neurons\footnote{Of particular interest is the paper of
+  \citet{Amari1972}, where he also obtained two macroscopic quantities
+  related to the width and the mean values of the distribution of
+  membrane potentials}. 
+
+Notice that the firing rate of the population is just the drift flux
+$J_{\text{drift}} (v_p|\eta,t)$ through the peak potential $v_p$ (when
+the spike is emitted). In this particular situation this is written as 
+\begin{equation}
+\label{eq:x-r}
+R \left( \eta,t \right) = \frac{1}{\tau_m} \lim_{v_p\to \infty}\rho \left( v_p|\eta,t \right)\cdot \left.\frac{\partial v}{\partial t}
+\right|_{v_p} = \frac{x \left( \eta,t \right)}{\pi
+  \tau_m}.
+\end{equation}
+To obtain the \textbf{total firing rate} we need to integrate the latter
+quantity over all possible values of the external current, which gives
+\begin{equation}
+\label{eq:total-r}
+R \left( t \right) = \frac{1}{\pi\tau_m} \int_{-\infty}^{\infty}x
+\left( \eta,t \right)g \left( \eta \right)d \eta.
+\end{equation}
+On the other hand, the remaining macroscopic quantity $y \left( \eta,t
+\right)$ is easily identified with the mean membrane potential,
+because, by definition, is the center\footnote{Moments of the
+  Lorentzian  distribution are not well-defined, nevertheless the
+  central value exists and corresponds to its median value, which can
+  be computed by means of the principal value: $\text{p.v.}
+  \int_{-\infty}^{\infty} f(x)dx = \lim_{a\to \infty}\int_{-a}^a f(x)
+  dx$.} of the distribution of membrane potentials:   
+\begin{equation}
+\label{eq:y-v}
+y \left(\eta,t \right) = \text{p.v.} \int_{-\infty}^{\infty} \rho
+\left( v|\eta, t \right)d v,
+\end{equation}
+and equivalently the \textbf{total mean membrane potential} is
+\begin{equation}
+  \label{eq:total-v}
+  V \left( t \right) = \int_{-\infty}^{\infty}y
+\left( \eta,t \right)g \left( \eta \right)d \eta.
+\end{equation}
+Therefore for a given distribution of external currents $g(\eta)$ the
+total distribution of membrane potentials can be written as
+\begin{equation}
+\label{eq:total-rho}
+\rho \left( t \right) = \frac{\tau_mR(t)}{\left( v-V(t) \right)^2 + \left( \pi\tau_mR(t) \right)^2}.
+\end{equation}
+
+
+It is worth commenting on the implications of these preliminary
+results as compare to the H-FREs~\cita.. Here we can see that the mean
+field approach collapses the infinite-dimensional  system into two
+macroscopic quantities, and hence provides us with a description of the
+macroscopic dynamics in terms of two variables---$x$ and $y$, which are
+related to $R$ and $V$. In contrast, traditional firing rate models
+are described only by a single variable, the firing rate.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\textwidth]{figs/chap1/fig_qif_PRX_mod.pdf}}
+\caption[QIF membrane potential distribution and firing
+rate.]{\label{fig:qif-distribution}  Macroscopic observables of the
+  activity, such as the firing rate $R$ in panel (d), are directly
+  related to the membrane potential distribution $\rho(v)$ [Eq.~\eqref{eq:total-rho}]. Panels
+  (a), (b) and (c) show the instantaneous distributions of membrane
+  potentials for three selected instants of the network's evolution
+  depicted in panel (d). The histograms are obtained by
+  numerically simulating a network of $N=10^4$ QIF neurons subject to
+  a slowly time-varying perturbation $P(t)$, as shown in panel (e). The orange
+  line in panels (a), (b) and (c) is the  Lorentzian distribution
+  analytically obtained using the
+  firing rate $R$ and mean membrane potential $V$ from Eqs.\cita.. It can
+  be clearly seen that the 
+  full width at half maximum, $x$ (not shown in panel (a)), is related
+  to the firing rate of the neural activity by the simple relation
+  $x=\pi \tau_mR$. In panel (d) the black line corresponds to the
+  firing rate measured from the network of QIF neurons, whereas the
+  orange line has been simulated using Eqs.\cita..
+}
+\end{figure}
+
+In  Fig.~\ref{fig:qif-distribution} an example of the evolution of
+the network activity under the influence of a time-varying external
+current, $P(t)$, is shown. The network consists on an ensemble of
+$N=10^4$ heterogeneous uncoupled, $J=0$, QIF neurons
+[Eq.~\eqref{eq:qif-i}]. At an approximate time $t=0.15$~s, a
+slowly growing perturbation is initiated
+[Fig.~\ref{fig:qif-distribution}(e)] which contributes to lowering the
+firing thresholds of neurons---$v_{th}$ in Fig.~\ref{fig:qif-regimes}---producing
+a gradual increase in the firing rate. This change is in activity is
+very well reflected in the distributions of membrane potentials shown
+in Figs.~\ref{fig:qif-distribution}(a), \ref{fig:qif-distribution}(b)
+and \ref{fig:qif-distribution}(c), where we can see that for very low
+firing rates [Fig.~\ref{fig:qif-distribution}(a)] the distribution is
+sharply centered at a low value of the membrane potential. As the
+firing rate is increased, the distribution widens
+[Figs.~\ref{fig:qif-distribution}(b) and 
+\ref{fig:qif-distribution}(c)] and the center
+is moved towards the mean threshold potential $v_{th}= -50$ mV. The
+broadening is intuitively associated with an increase of firing rate,
+because the drift flux $J_{\text{drift}}(v_p,t)$ at $v_p$ will
+increase---the density of neurons crossing $v=v_p$ increases. Finally,
+the conservation of neurons adds a constrain to the normalization of the
+distribution $\rho(v)$, hence binding $x(t)$ and $y(t)$ in
+\eqref{eq:total-rho} together, or equivalently, establishing a functional
+relationship between $R(t)$ and $V(t)$, respectively. 
+
+We may summarize these results in a single conclusion: the correct
+macroscopic description of spiking networks requires keeping track of
+the mean subthreshold voltage along with the mean firing rate. We will
+see that this relation has an important implication when dealing with
+large rapidly changing input currents, as in this situations
+the distribution will suffer a sudden kick which, under certain
+circumstances, will be translated into synchronous leading to
+macroscopic oscillatory phenomena.   
+
+Next, we finally obtain the macroscopic firing rate equations by solving the
+continuity equation.\vfill
+
+\subsection[Solution to the continuity equation: QIF-FR equations]{Solution to the continuity equation: \\QIF-FR equations}
+\label{sec:fr-equations}
+
+In order to solve the continuity equation
+\eqref{eq:continuity-onepop}, we use the LA \eqref{eq:LA} and we
+obtain the following relation between $x$ and $y$
+\begin{equation}
+\label{eq:2}
+\frac{\partial}{\partial t} w (\eta,t) = i \left[ \eta + JR(t) - w
+  \left( \eta,t \right)^2 + P(t) \right],
+\end{equation}
+where $w \left( \eta,t \right) \equiv x \left( \eta, t \right) + i y \left( \eta,t \right)$.
 
 
 
-\subsection{\sloppy Canonical type-I spiking neuron model:
-  Quadratic-Integrate-and-Fire (QIF) model}
+% \subsubsection{Ott-Antonsen theory}
+
+% \begin{figure}[htbp]
+% \centerline{\includegraphics[width=\textwidth]{figs/chap1/ott-diagram.pdf}}
+% \caption[From QIF/Theta to QIF-FR/QIF-Kuramoto]{\label{fig:ott} Scheme
+% of the derivation of the QIF-Firing Rate model showing different
+% paths towards the macroscopic description. Starting from the
+% microscopic description, the dynamics of the population of QIF neurons
+% may be reduce to a low-dimensional macroscopic description: the QIF-FR
+% model. Equivalently, the QIF model can be express as an oscillator
+% model, the Theta neuron, and then derive the low-dimensional
+% description using the Ott-Antonsen ansatz in the Kuramoto space. From
+% there the QIF-FR model can be obtained by means of the conformal
+% mapping, a transformation in the complex plane.}
+% \end{figure}
 
 \begin{itemize}
 \item Description of the full QIF model.
@@ -247,136 +876,15 @@ Theta-neuron space using Ott-Antonsen ansatz.}
 \item Transfer function of the QIF model (to be used in chapters 2 and 3).
 \end{itemize}
 
-% here we describe the whole neuron model with the threshold potential
-% and everything else, and we do the reduction to the normal form of
-% the saddle-node bifurcation.
-
-\paragraph{Theta neuron:} {\it \color{red} this can be placed in a
-  box. Following the style of the text-books.}
-
-\subsection{Dimensionality reduction: Lorentzian Ansatz}
 
 
-\subsubsection{Ott-Antonsen theory}
+% \subsection{Firing rate model for current-based spiking neurons}
 
-\begin{figure}[htbp]
-\centerline{\includegraphics[width=\textwidth]{figs/chap1/ott-diagram.pdf}}
-\caption[From QIF/Theta to QIF-FR/QIF-Kuramoto]{\label{fig:ott} Scheme
-of the derivation of the QIF-Firing Rate model showing different
-paths towards the macroscopic description. Starting from the
-microscopic description, the dynamics of the population of QIF neurons
-may be reduce to a low-dimensional macroscopic description: the QIF-FR
-model. Equivalently, the QIF model can be express as an oscillator
-model, the Theta neuron, and then derive the low-dimensional
-description using the Ott-Antonsen ansatz in the Kuramoto space. From
-there the QIF-FR model can be obtained by means of the conformal
-mapping, a transformation in the complex plane.}
-\end{figure}
-
-\subsection{Firing rate model for current-based spiking neurons}
-
-\begin{itemize}
-\item Derivation of the model as in \cite{Montbrio2015}.
-\end{itemize}
-
-\subsection{Firing rate model for conductance-based spiking neurons}
-
-Following the general expression  for the QIF neuron
-\eqref{eq:qif_general}, we can now define the conductance-based QIF
-neuron as:
-\begin{equation}
-\label{eq:1}
-\tau \dot{v}_j = v_j^2 + \eta_j - g \tau S \left( t \right) \left(
-  v - v_{E,j} \right),
-\end{equation}
-where $g$ corresponds to the conductance of the synapses and
-$v_{E,j}$ denotes the reversal potential of the neuron $j$, which may
-be distributed in a similar fashion as the external currents $\eta_j$.
-
-{\color{red} We explicitly do the derivation ... }
-By applying the same procedure as before we obtain the QIF-firing-rate
-equations for the population of neurons:
-\begin{subequations}
-  \label{eq:conductance_fr}
-\begin{eqnarray}
-\label{eq:conductance_fr-R}
-\tau \dot R & = & \frac{\Delta}{\tau \pi} + 2 R V - g \tau R \left( R
-                  - \frac{\Gamma }{\tau\pi}\right) \\
-  \label{eq:conductance_fr-V}
-\tau \dot V & = & V^2 + \bar{\eta} - \left( \pi \tau R \right)^2 - g
-                  \tau R \left( V - V_E \right).
-\end{eqnarray}
-\end{subequations}
-
-\paragraph{Rescaled equations:} rescaling $\Delta$ and $\tau$ in the
-following way:
-\begin{eqnarray}
-\label{eq:3}
-R = \frac{\sqrt{\Delta}}{\tau} r; \quad V = \sqrt{\Delta} v; \quad t =
-\frac{\tau}{\sqrt{\Delta}}\tilde{t}. \\
-\bar{\eta} = \Delta \tilde{\eta}; \quad \Gamma = \Delta \gamma; \quad
-V_E = \sqrt{\Delta} v_E, \nonumber
-\end{eqnarray}
-gives
-\begin{subequations}
-\label{eq:conductance_fr-rescaled}
-\begin{eqnarray}
-\label{eq:conductance_fr-R-r}
-\dot r & = & \frac{1}{\pi} + 2 rv - g r \left( r
-                  - \frac{\gamma}{\pi}\right) \\
-  \label{eq:conductance_fr-V-r}
-\dot v & = & v^2 + \tilde{\eta} - \left( \pi  r \right)^2 - g
-                  r \left( v - v_E \right).
-\end{eqnarray}
-\end{subequations}
+% \begin{itemize}
+% \item Derivation of the model as in \cite{Montbrio2015}.
+% \end{itemize}
 
 
-
-
-\paragraph{Without external current heterogeneity:}  setting $\Delta =
-0$ makes easy to compute the fixed points. We may re-scale the equations
-again:
-\begin{eqnarray}
-\label{eq:3}
-R = \frac{\Gamma}{\tau} r; \quad V =  \Gamma v; \quad t =
-\frac{\tau}{\Gamma}\tilde{t}. \\
-\bar{\eta} = \Gamma^2 \tilde{\eta}; \quad
-V_E = \Gamma v_E, \nonumber
-\end{eqnarray}
-which leads to:
-\begin{subequations}
-\label{eq:conductance_fr-rescaled2}
-\begin{eqnarray}
-\label{eq:conductance_fr-R-r-2}
-\dot r & = & 2 rv - g r \left( r
-                  - \frac{1}{\pi}\right) \\
-  \label{eq:conductance_fr-V-r-2}
-\dot v & = & v^2 + \tilde{\eta} - \left( \pi  r \right)^2 - g
-                  r \left( v - v_E \right).
-\end{eqnarray}
-\end{subequations}
-
-
-
-
- Eq. \eqref{eq:conductance_fr-R} gives two possible fixed
-points:
-\begin{subequations}
-  \label{eq:qif-cond-fixed}
-  \begin{align}
-    \label{eq:qif-cond-fixed1}
-    \left(r_{*}, v_{*} \right) &=\left( 0, - \sqrt{-\tilde \eta} \right).\\
-    \label{eq:qif-cond-fixed2}
-    \left(r_{*}, v_{*} \right) &=\left(\frac{v_Eg \pm \sqrt{\left( v_Eg \right)^2 + \left( g^2 + \pi^2
-        \right)\left( 4\eta + g^2/\pi^2 \right)}}{2 +
-      \frac{g^2}{2\pi^2}},  \frac{g}{2\pi} \left( \pi r - 1 \right) \right).
-  \end{align}
-\end{subequations}
-
-\paragraph{Without reversal potential heterogeneity:} 
-
-\section{Neural mass and neural field models}
-% ????
 
 %%% Local Variables: 
 %%% mode: latex

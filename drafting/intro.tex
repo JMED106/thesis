@@ -1,6 +1,15 @@
-\chapter*{\bf {Introduction}}
+\chapter*{\bf \sffamily General Introduction}
 \label{cha:intro}
-\addcontentsline{toc}{chapter}{\bf \uppercase{Introduction}}
+\addcontentsline{toc}{chapter}{\bf \sffamily General Introduction}
+
+\epigraph{\it ``Philosophy is written in this great book---by which I
+  mean the universe---which stands always open to our view, but it
+  cannot be understood unless one first learns how to comprehend the
+  language and interpret the symbols in which it is written, and its
+  symbols are triangles, circles, and other geometric figures, without
+  which it is not humanly possible to comprehend even one word of it;
+  without these one wanders in a dark labyrinth.''}{---
+  \textup{Galileo Galilei}, \textit{Il Saggiatore} (The Assayer) (1623)}
 
 % Historical aperture: we must focus on mathematical neuroscience but
 % also mention the theories that attribute a computational role to
@@ -13,16 +22,20 @@
 % We must do a brief review of the population models (firing rate models: WC
 % type models; density models: FP, ...;)
 
+\noindent
 Since the pioneering discoveries of Santiago Ramon y Cajal and Camilo Golgi in
 the late 19th century which established the foundations of what we nowadays know as
 Neuroscience, extensive work has been done in order to understand the
 laws that shape neural dynamics. As in almost any natural science,
 the aim of scientists toward universal laws explaining our
 observations have push, from the very beginning, towards mathematical
-descriptions of the observed phenomena. Early in the 20th century,
+descriptions of the observed phenomena. With the birth of 
+\textit{neural theory} researchers sought to understand the secrets
+behind animal behavior looking into the microscopic constituents of
+its source: the neurons. Early in the 20th century,
 Louis Lapicque introduced what is considered as the precursor  of
 the famous integrate-and-fire model neuron \citep{Brunel2007}
-\citep[see also][]{Brunel2007a,Abbott1999}, giving an intuitive view of the polarization
+\citep[see also][]{Brunel2007a,Abbott1999}, providing a first quantitative approach to the polarization
 process of neurons and the generation of the  
 first spike after stimulus onset ---what we know as
 the action potential. Theoretical
@@ -40,114 +53,426 @@ dynamics were possible,  but
 also drove them to the hypothesis of the existence of ionic channels,
 which were confirmed only few decades later. 
 
+\subsection*{Modeling from the microscopic perspective: Spiking neuron models}
+
 Further development in the biophysical principles of neural dynamics
-was made with the addition of more cellular elements to the models, such as
-different classes of ionic channels and pumps, synapses,
+was made with the study of additional cellular mechanisms involved in
+the reception and generation of the action potentials, such as
+different classes of ionic channels and pumps, synaptic transmission processes,
 etc. Currently, detailed biophysical modeling of single neurons
-remains  a very active research area where sophisticated
+remains a very active field of research where sophisticated
 models are continuously expanding our knowledge about neural
 mechanisms. On the other hand, the necessity of decreasing the complexity
 of neural systems lead many theoreticians towards simplified models
 of the neuron, where only the underlying mechanisms that generate the
-action potential were studied. We refer to these phenomenological
+action potential were sought. We refer to these phenomenological
 models as point neurons or \textbf{spiking neuron} models. The first
-of its kind was probably that developed by Lapicque that
+of its kind was probably that developed by Lapicque which
 later evolved into the \textit{leaky integrate-and-fire} (LIF) neuron model
-\citep{Stein1965,Kni72}, which can be mathematically 
-derived as a limit case of the Hodgkin-Huxley model \citep[see~for~example][]{Gerstner2014}. Since the
-outbreak of computer driven simulations, their elegance and
-simplicity has make them a widely used tool in the study of
-principles of neural information processing.
+\citep{Stein1965,Kni72,Tuckwell1988}.
 
-Yet, the complexity of each neuron added to their outstanding
-numerosity,
+The LIF model and the more general nonlinear
+integrate-and-fire models can be mathematically 
+derived as limit cases of the Hodgkin-Huxley model
+\citep[see~for~example][]{Gerstner2014}; they are typically presented
+in the form of an ordinary differential equation (ODE) describing the time evolution of the
+membrane potential $v(t)$ of the neuron, plus a resetting rule
+mimicking the generation of the action potential, which basically drives the
+potential back to a reset potential $v_r$ after the neuron crosses a given
+threshold $v_{th}$. Their general mathematical form is
+\citep{Abbott1993}:
+\begin{equation}
+\label{eq:if-eq}
+\tau_m \frac{dv}{dt} = f(v) + RI(t) \quad +\text{reseting rule
+  involving }v_r\text{ and }v_{th},
+\end{equation}
+where $f(v)$ is the function that shapes the dynamics of the specific
+model (LIF, QIF, EIF, GIF, etc.), and $RI(t)$ corresponds to  changes on the
+membrane potential due to input currents $I$ ($R$ denotes a constant
+input resistance). The time scale of the dynamics of the neuron are
+determined by the value of the membrane time constant $\tau_{m}$. 
+
+As an exchange to reduce complexity, the precision with which the model reproduces
+electrophysiological measurements is sacrificed. However, due to the
+rather stereotyped shape of the action potential, it is unlikely that
+information transmission depends on its specific shape, but rather on its timing or
+frequency. Therefore, these models serve as an excellent tool to model
+spiking events and are much easier to analyze than complex biophysical or
+conductance models. In fact, since the outbreak of
+computer driven simulations, their elegance and simplicity has make
+them a widely used tool in the study of principles of neural
+information processing: the simplest LIF model is still the most
+popular of the \textit{integrate-and-fire} family, but nonlinear
+models, such as the exponential-integrate-and-fire (EIF) \citep{Fourcaud-Trocme2003}  and the
+quadratic-integrate-and-fire (QIF) \citep{Ermentrout1986,Ermentrout1996} models are often considered as they
+better reproduce the spiking onset. The choice of the model rests upon
+the specific system we are willing to study, and what questions are we
+seeking to answer. For a thorough analysis on the dynamical
+properties of a great variety of spiking neuron models see
+\citet{Izhikevich2008}. 
+
+Yet, the outstanding
+number of neurons present in any small piece of cortex
 makes the brain one of the most complex systems ever
 studied. A universe inside our heads
 is still waiting to be discovered.
-Even if we would use one of the simplest phenomenological
-model neurons, and without taking into account any
+Even if we considered the simplest phenomenological
+model neuron, and without taking into account any
 complex network structure, a simple model of the brain would consist on a system of approximately
 $86\times 10^9$ differential equations --each describing the dynamics
 of a single neuron. A system
-impossible to work with, nor in the  20th century nor nowadays; even with
-the incredible computational power at our hands. With this paradigm in
-mind, models of population average activity started to appear, first
-in the 1950's by the hands of \citet{Beu56}, and later in the
-1960's by 
+impossible to work with, nor  in the  20th century nor currently; even with
+the incredible computational power that we have at our hands. Any
+mathematical study involving so many differential equations is
+generally impossible to face, unless a proper reduction in
+dimensionality is done.
+
+Practical matters aside, fundamental reasons concerning the
+statistical nature of neural populations \citep{Cragg1954}, alongside other information
+theory-based hypothesis, suggested
+that collective, rather than single neuron dynamics, were more relevant
+in the information processing happening in the brain.    
+With this paradigm in mind, models of population average activity started to appear, first
+in the 1950's by the hands of \citet{Beu56}, and later in the 1960's by 
 \citet{Griffith1963}. They developed the first continuum
 approximations of neural activity by making some statistical
 assumptions, following a methodology closely related to that used in
-statistical mechanics in connection with
+statistical physics in connection with
 thermodynamics. The aim was to 
 create low dimensional models capable of capturing the essential
 collective properties of neural populations, yet simple enough to provide a
-mathematically tractable framework for their study. 
+mathematically tractable framework for their study.
 
-In parallel, the rapid progress made in experimental neuroscience
-with studies such as those carried out by Mountcastle and Hubel and
-Wiesel in the somato-sensory and visual cortices of cats and monkeys
+In parallel, the
+rapid progress made in experimental neuroscience 
+with studies such as those carried out by Mountcastle, and Hubel and
+Wiesel in the somatosensory and visual cortex of cats and monkeys
 \citep{Mountcastle1957,Hubel1962,Hubel1968}, gave support to the
-original hypothesis of Beurle. During the 1970's all
+original hypothesis of Beurle. Moreover, in the early 1960's the first
+attempts to account for physiologically measurable phenomena in terms of
+the modeled properties of population of neurons were held by
+\citet{Freeman1964}.  During the 1970's all
 these accumulation of experimental evidence 
 inspired the work of many researchers, including
 \citet{Wilson1972,Wilson1973}, \citet{Kni72} and
 \citet{Amari1972,Ama74,Amari1977} among others, towards the
-development of  population models, also known as \textit{neural mass}
-models. ...
-\textbf{Firing Rate} models for the activity of neural population which
-became the canonical models for the study of large populations of
-neurons. These models consisted in systems of differential (or
-integro-differential) equations which could be $i)$ mathematically
-studied using the tools provided by dynamical systems theory and $ii)$
-easily solved using numerical methods in computer-driven simulations.
+development of population models, also known as \textit{neural mass}
+models or \textit{firing rate} models.
 
-\textit{(intro of the firing rate model)The model was thought from the
-  pragmatic point of view that sensory 
-information is introduced into the nervous system in the form of large
-spatio-temporal activity which involved too many neurons to be studied
-from the single neuron level. In addition, they exploited the
-hypothesis that neurons alone were unreliable units of information
-processing, and thus they assumed that any reliable observable should
-involve large population of neurons.
-}
-\textit{Brief description of what they are and their
-  mathematical representation (differential or integro-differential equations)}
+\subsection*{Looking to the whole picture from a low-dimensional
+  perspective: Firing rate models} 
 
-During the last 50 years, their equations were adapted or expanded to
-model different network configurations, to include synaptic kinetics,
-transmission delays, etc. They are used not only to model population
-of neurons but also average activity of single neurons (measured as
-trial-to-trial averages). Furthermore, they can be either used to
-describe discrete populations or spatially distributed systems, such
-as orientation selectivity or head direction systems. The latter case
-is modeled by means of a partial integro-differential version of the
-same equations.
+Population models were quickly accepted as valid descriptions of neural
+activity due to the increasing popularity of rate and population
+code\footnote{Although both, rate and population coding hypothesis, lie on the average
+  activity of neurons, the former refers to the temporal average of
+  spikes, while the latter refers to the population average. In an
+  ergodic system, both hypothesis should be equivalent, however many
+  neural systems show fast dynamics where the ergodic assumption is
+  not likely to stand.}
+hypothesis---which assumes
+information is transmitted as the average activity of neurons and not
+by their individual spiking times (known as the time code hypothesis)---, plus the
+empirical evidence that pointed towards the existence of large redundancy among
+neural populations. Moreover,
+many brain measurement techniques, such as electroencephalography (EEG) and
+functional magnetic resonance imaging (fMRI), provide
+measures of averaged population activity
+taken as the average spike rate across populations distributed in
+relatively large areas of the cortex. All these, made
+firing-rate-based population models very useful tools not only as a
+theoretical construct but also as an experimental modeling tool
+\citep{Destexhe2009}. 
 
-However, in general the connection between the macroscopic models:
-such as firing rate models, and their microscopic counterpart:
-populations of spiking neurons, has been so far done in an heuristic
-manner. In other words, the derivation of such equations does not
+Among the various firing rate (FR) models developed in the 1970's,
+the Wilson and Cowan (WC) model is probably the most extended one due to its
+simplicity and versatility. It typically consists on an a set of two
+ODEs describing the time evolution of the activity of spatially lumped excitatory and
+inhibitory neural populations, measured as the fraction of active neurons in each
+population. Such activity is defined as
+the number of spikes per unit time, i.e. the firing rate.
+Space dependent firing rate models, also known as neural fields, are
+extensions of this model to continuously distributed populations of
+interacting excitatory and inhibitory neurons following some sort of
+network topology. In such cases, the 
+model usually appears as a set of partial differential
+equations (PDE). In either case, models including temporal correlations, by
+adding synaptic kinetics, or axonal delays, require the use of
+integro-differential equations or additional differential equations
+modeling variables related to synaptic dynamics.
+
+% \textbf{Firing Rate} models for the activity of neural population which
+% became the canonical models for the study of large populations of
+% neurons. These models consisted in systems of differential (or
+% integro-differential) equations which could be $i)$ mathematically
+% studied using the tools provided by dynamical systems theory and $ii)$
+% easily solved using numerical methods in computer-driven simulations.
+
+% \textit{(intro of the firing rate model)The model was thought from the
+%   pragmatic point of view that sensory 
+% information is introduced into the nervous system in the form of large
+% spatio-temporal activity which involved too many neurons to be studied
+% from the single neuron level. In addition, they exploited the
+% hypothesis that neurons alone were unreliable units of information
+% processing, and thus they assumed that any reliable observable should
+% involve large population of neurons.
+% }
+
+During the last 50 years, the WC model has been adapted or extended to
+account for different network configurations and to include a variety of
+physiologically relevant elements such as synaptic processes\cita. or axonal
+delays \citep{Coombes2003,Roxin2005,Coombes2009,Roxin2011}. Moreover,
+it is used not only to model population  
+of neurons but also averaged activities of single neurons (measured as
+trial-to-trial averages) \citep[e.g.][]{Grossberg1973}. However, these rate models are
+generally treated as 'ad hoc' models as 
+they are not derived from the dynamics of the microscopic elements
+that constitute the studied system: the neurons. 
+% do not correctly reflect the dynamics of neurons with absolute
+% refractoriness.
+In other words, the derivation of rate equations does not
 follow a proper reduction of the microscopic neural system. Moreover,
 traditional firing rate models assume microstates  where neurons'
-activity is completely uncorrelated, and therefore they usually
+activity is fully or highly uncorrelated. in order to simplify
+their mathematical expressions. Therefore they usually
 fail to describe any dynamical phenomena occurring as a consequence
-of synchronous firing, or even highly correlated activity. These
+of synchronous firing. These phenomena may 
 include fast transients and some types of persistent oscillations
-observed in their homologous spiking neuron networks. In the following
-sections we briefly review the WC firing rate equations and describe
-the quadratic-integrate-and-fire (QIF) model neuron which we will use
-in the rest of the work.
-\newline 
+observed in their homologous spiking neural networks.
 
-In Chapter I we apply these models to simulate excitatory and inhibitory
-neural networks and show some of the discrepancies that exist between
-both approaches. In addition, we present a novel firing rate model,
-exactly derived from the quadratic-integrate-and-fire model neuron
-which will solve such discrepancies and allow us to perform further
-dynamical studies. In Chapter II and III we show how this new FR model
-give precise results of networks of spiking neurons and we extract
-some interesting mechanistic conclusions which we discuss in the final
-section of this work.
+One of the goals of this work is to understand the effect that
+synchronized states (transient or persistent) have in the macroscopic
+dynamics. Therefore, we find convenient to summarize the main
+assumptions and simplifications usually followed in the derivation of traditional firing
+rate models. 
+A quick revision to the seminal work of \citet{Wilson1972} reveals some
+of the typical assumptions made for obtaining this type of firing rate
+equations: 
+\begin{enumerate}[i)]
+\item\label{item:1} The heterogeneity of neural population, modeled as
+  the distribution of a given microscopic neural parameter,
+  is generally averaged out to a single macroscopic
+  variable. In their paper, the mean field approach reduces the
+  apparent distribution of neurons, taken as a distribution on the
+  number of afferent synapses per cell, to the neural response function
+  $\mathcal{S}$. This assumption states that all
+  neurons are behaving equally following a relevant observable that
+  only describes the average value of the distribution of neurons. And
+  therefore, ignores any dynamical effects that higher moments of the
+  distribution may have over the macroscopic dynamics.
+\item\label{item:2} Correlations between the level of excitation of a
+  cell and the probability that the cell is sensitive are assumed to be
+  negligible. This assumption is neglecting any effects related to the
+  heterogeneous distribution of neurons, i.e. any dynamical regime
+  which rests upon the specific time evolution of the distribution of
+  the states of the neurons will be lost. This, along with the
+  previous reduction, further decreases
+  the effect of microscopic diversity in the macroscopic
+  behavior. E.g.: in an heterogeneous population of neurons, some of
+  the neurons may be in the refractory period while others are close to
+  threshold; the effect that the response function has over them will
+  vary, and therefore it will create correlations. These correlations
+  will further depend on the specific dynamics of the membrane
+  potentials of neurons.
+\item\label{item:3} Probably, the most famous simplification is that of
+  the \textit{time coarse graining}: by considering that synaptic
+  activation behaves as a low-pass filter, the authors reduce the temporal
+  integrals to time-averaged quantities, thus reducing the original
+  system composed of a couple of integro-differential equations to
+  that of a couple of ODEs, much easier to treat analytically. This
+  simplification prevents any fast transient dynamics occurring as a
+  consequence of synaptic kinetics, such as some type of damped
+  oscillations. In general, this situation is easy to overcome by the
+  inclusion of at least\footnote{A general model of synaptic kinetics
+    is the alpha function, which accounts for both rise and decay of
+    synaptic activation described by a second order ODE, with
+    different time constants for each process.} 
+  an additional equation for the dynamics of the synapses. However,
+  the system becomes 4-dimensional and consequently much harder to
+  mathematically analyze. 
+\end{enumerate}
+
+We are mainly interested on the simplifications done to reduce the
+intrinsic dimensionality given by the neural diversity, i.e., those
+statistical assumptions related to the distribution of membrane
+potentials. Summarizing the above assumptions, the WC firing rate
+model heuristically sets the firing rate of the population to the
+firing rate of the \textit{typical} neuron in the network, that is,
+the one with the mean parameters. This explains why the model is also
+used to describe the firing rate of single neurons under stochastic
+fluctuations.  
+
+\subsection*{The bridge between the micro and the macro}
+
+Since the emergence of the first population models,
+many studies have address all these issues from different
+perspectives. The so called \textit{integral-equation}
+approach ---in which we may include the original WC \citeyear{Wilson1972}
+model--- defines the state of the system by means of a probability
+density function $P_I \left( t| \hat{t}_i\right)$ describing the
+probability that the next spike occurs around time $t$ given that the
+last spike was at time $\tilde{t}_i$ and the neuron was subject to an
+input $I \left( t' \right)$, $t < t'$ \citep{Gerstner2014}. Thus,
+neuronal activity is interpreted in terms of the interspike interval
+(ISI) distribution. This methodology, which can be extended to account
+for neural adaptation \citep{Naud2012}, and heterogeneous populations (modeled
+as noisy neurons \citep{Ger00}), successfully captures many of the
+fast dynamics caused by heterogeneity and also synaptic
+kinetics. However, it is generally difficult to write down an exact
+analytical formula for the probability density $P_I$, and the
+subsequent mathematical analysis is not an easy task. Moreover, the
+use of such models involves complex numerical 
+methods which makes them unpopular among experimental researchers in
+contrast to the much simpler WC firing rate equations.
+
+On the other hand, methods focusing on the \textit{population density}
+were inspired by previous works in statistical physics.
+\citet{Amari1972} faced the problem of population
+dynamics in a way closely related to the approach followed by
+\citet{Kni72}; the idea is to apply the thermodynamic
+limit and define a membrane potential density equation for the
+population of neurons. Next, due to the conservation of neurons, the
+continuity equation can be applied. Theoretically, macroscopic
+observables, such as the firing rate or the mean membrane potential of
+the population should be related to the macroscopic quantities that
+determine the distribution of membrane potentials. Furthermore,
+knowledge of the momentary distribution of membrane potentials should
+be enough to characterize the momentary state of the population as a
+whole.
+
+The main challenge
+here, as it also happens for the integral-equation approach, is to
+determine the distribution of membrane potential and its temporal
+evolution. To be able to tackle this situation, statistical
+assumptions related to neuronal populations are applied, often
+inspired by simulations of their constituent spiking neurons, or
+focusing on particular dynamical states. Typical examples assume
+uniform or normal distributions for membrane potentials,
+uncorrelated populations, diffusion driven dynamics. etc. Usually,
+such simplifications lead to well known mathematical 
+descriptions like the Fokker-Plank (FP) equation \citep{Risken1989,Abbott1993,Brunel1999,Brunel2000,Knight2000,Nykamp2000,Brunel2001,Fourcaud2002}. 
+In any case, the population
+density approach is closely related to that of the integral-equation,
+and a formal mathematical relation between both approaches exists for
+certain neuron models \citep{Gerstner2014}.
+
+As it happens with the
+integral equation, not only is difficult to asses the impact that
+simplifications have in the macroscopic dynamics of the
+population, but also they often lead to complex mathematical formulations
+which require numerical methods for their application as population
+models (for a robust numerical integration of the FP equation for
+integrate-and-fire type neural populations see
+\citet{Richardson2007,Richardson2009}). Yet, the development of all
+these models has greatly 
+contributed to the understanding of the underlying mechanisms of the
+macroscopic dynamics of networks of spiking neurons
+\citep{Fusi1999,Omurtag2000}.
+
+Finally, a third family of population models is worth mentioning. The
+so-called \textit{neural mass} models (also known simply as neural
+population models) refer to a class of models that describe the
+temporal evolution of one or more statistical moments that
+characterize the dynamical state of the neural system
+\citep{Liley2013}. They are generally focused on describing the
+temporal evolution of the mean membrane potential rather than the
+firing rate, although they commonly include a mathematical expression
+that binds both macroscopic quantities. Such models are closely
+related to the approach followed by \citet{Amari1972} in the fact that
+they consider not only mean quantities related to the population
+distribution, but also second order or higher moments relevant to the
+macroscopic dynamics of the population. Highly
+influenced by the work of \citet{LopesdaSilva1974}, typical neural-mass models
+follow the reasoning approach of \citet{Freeman1975}, and their
+current canonical form is the Jansen-Rit model
+\citep{Jansen1993,Jansen1995}. This latter model contains three
+interconnected neural populations with a set of feedback loops, where
+each population is described by as second-order (linear) differential
+operator transforming the incoming mean firing rate to the mean
+potential. In addition, a nonlinear function transforms the mean
+membrane potential back to a mean output firing rate quantity \citep{Knosche2014}.
+
+Their main advantage is the ability to produce a wide variety of
+dynamical regimes by means of a rather simple low-dimensional
+model. This feature makes it particularly efficient in modeling
+large-scale activity of the brain \citep{Deco2008}. However, its phenomenological 
+construction makes difficult to dig into the most subtle mechanisms
+involving the subthreshold dynamics of neural populations. 
+
+
+\subsection*{Objectives}
+
+In light of the limitations of traditional FR models to explain some
+of the collective behaviors observed in spiking neural networks,  
+in this work we exploit a recently published FR model \citep{Montbrio2015} to
+understand the mechanisms behind some of the fast macroscopic dynamics
+observed in populations of spiking neurons.
+This novel FR model (see section \ref{sec:qif-fr}) is exactly derived from a network of
+quadratic-integrate-and-fire (QIF) neurons and therefore provides an exact
+link between the spiking neuron simulations and the FR equations. We
+will refer to this model as the \textbf{QIF-FR} model in contrast to the
+traditional and heuristically derived WC firing rate model, which we
+name as \textbf{H-FR} model. The QIF-FR model consists on a system of
+coupled ODEs susceptible to an analytical study, and it will
+provide us with valuable information to better understand the
+microscopic mechanisms behind the observed macroscopic dynamics. 
+
+In Chapter I we start by reviewing the common mechanisms describing
+the onset of oscillatory activity in excitatory-inhibitory neuronal
+ensembles, and we perform
+some numerical experiments were we compare results obtained from
+simulations of spiking neural networks with 
+their equivalent mean-field representation, modeled using the
+H-FR equations (H-FREs). Next by performing linear
+stability analysis on the H-FREs we demonstrate that some
+observed oscillatory dynamics can not be capture by them, which
+motivates us to use the QIF-FREs. In the following chapters, we
+systematically apply this model as a tool  to study the dynamics
+of networks of excitatory and inhibitory neurons.
+
+In Chapter II we extend the QIF-FR model into a neural field model
+(QIF-NF) to study the dynamics of a ring network of excitatory and
+inhibitory neurons with non-local all-to-all coupling. Here we
+focus on the network's response to spatially modulated perturbations 
+and define what we call the \textit{modes of oscillation} of a neural
+network. We discuss about the relation between such macroscopic modes
+and their relation to transient synchronization of the neural
+population.
+
+Further research of oscillatory dynamics in networks of excitatory and
+inhibitory neurons requires the incorporation of synaptic dynamics into
+the model, and also the necessity of explicitly differentiate  excitatory and
+inhibitory populations (by changing the intrinsic properties of the
+neural populations). As a first step, in Chapter III we analyze the spatially
+flat state (spatially homogeneous state) using an equivalent two population firing rate
+description, i.e. a typical E-I neural setup \citep{Wilson1972}.
+Following the same methodology as in Chapter II, we seek to
+understand the mechanisms that give rise to oscillatory behaviors.
+In order to proof the role of
+population synchronization in the generation of persistent
+oscillations we compare our QIF neural network to an equivalent system of
+Kuramoto oscillators allowing us to qualitatively compare the
+macroscopic dynamics of both systems. We find that some type of
+oscillations are consequence of a complex \textit{two stage}
+synchronization-resonance process. 
+
+% In Chapter III we investigate the effect of synchronization in a
+% system composed of excitatory and inhibitory neurons arranged in two discrete
+% pools of neurons. We explore the minimum conditions that these sort of
+% networks must fulfill in order to present oscillatory behavior. We
+% compare the results with a network of Kuramoto oscillators, taken 
+% as the limit case for many systems of coupled oscillators. We
+% find that, some oscillatory regimes, not present in traditional firing
+% rate models are due to a \textit{two stage} synchronization process
+% occurring among the excitatory and inhibitory neurons.
+
+Finally, we summarize and discuss the
+role of synchronous activity in the generation of collective
+oscillations, 
+which are not captured by  traditional firing rate
+models. We also comment on the most relevant features and limitations
+of the QIF-FR model, and the plausibility of such systems in actual
+neural networks.
 
 \cleardoublepage
 
